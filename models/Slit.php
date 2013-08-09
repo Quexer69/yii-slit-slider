@@ -84,13 +84,16 @@ class Slit extends BaseSlit
     }
 
     public function showSlider($pageName = NULL)
-    {       
+    {   
+        // @var pageID: Get active P3Page->id
         if ($pageName === NULL) {
-            // @var pageID: Get active P3Page->id
+            
             $pageID = Slit::getActivePageId();
         } 
+        
+        // @var pageID: is P3Page->id = 1 (site/index.php)
         elseif($pageName === Slit::INDEXPAGE) {
-            // @var pageID: is P3Page->id = 1 (site/index.php)
+            
             $pageID = Slit::INDEXPAGE;
         }
 
@@ -102,8 +105,8 @@ class Slit extends BaseSlit
         $criteria->addSearchCondition('language', Yii::app()->getLanguage());
         
         // findAll with this $creteria
-        $thisSlits = Slit::model()->findAll($criteria);
-        $thisSlitsDots = $thisSlits;
+        $thisSlits          = Slit::model()->findAll($criteria);
+        $thisSlitsDots      = $thisSlits;
 
         // Check if slits are availible for this P3age
         if (sizeof($thisSlits) > 0) {
@@ -139,8 +142,10 @@ class Slit extends BaseSlit
                 echo "          </div>\n";
                 echo "      </div>\n";
             }
+            
+            // put needed dots to navigate, first hast class 'nav-dot-current'
             if (sizeof($thisSlitsDots) > 1) {
-                // put needed dots to navigate, first hast class 'nav-dot-current'
+                
                 echo "      <nav class=\"nav-dots\" id=\"nav-dots\">\n";
                 echo "          <span class=\"nav-dot-current\"></span>\n";
 
