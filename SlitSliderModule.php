@@ -1,6 +1,4 @@
 <?php
-Yii::import('vendor.phundament.p3pages.models.*');
-Yii::import('vendor.phundament.p3media.models.*');
 
 class SlitSliderModule extends CWebModule
 {
