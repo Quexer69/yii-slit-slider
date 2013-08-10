@@ -1,19 +1,19 @@
 {
-    "name":"phundament/app",
-    "description":"Yii Framework Application Boilerplate, with packages from composer repository http://packages.phundament.com",
-    "keywords":["yii", "web", "application", "boilerplate", "foundation", "template"],
-    "homepage":"http://phundament.com/",
+    "name":"yii-slit-slider",
+    "description":"Yii Slit Slider for phundament 3, with packages from composer repository http://packages.phundament.com",
+    "keywords":["yii", "web", "application", "slider", "extension", "widget"],
+    "homepage":"https://github.com/Quexer69",
     "type":"yii-application",
     "license":"BSD-3-Clause",
     "authors":[
         {
-            "name":"Tobias Munk",
-            "email":"schmunk@usrbin.de",
-            "homepage":"http://www.phundament.com"
+            "name":"Christopher",
+            "email":"chris@stebe.eu",
+            "homepage":"https://github.com/Quexer69"
         }
     ],
     "support":{
-        "email":"phundament@usrbin.de",
+        "email":"chris@stebe.eu",
         "issues":"https://github.com/phundament/app/issues",
         "forum":"http://phundament.com/en/forum-13.html",
         "faq":"http://stackoverflow.com/questions/tagged/phundament",
