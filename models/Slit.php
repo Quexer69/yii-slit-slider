@@ -1,17 +1,15 @@
 <?php
 
 // auto-loading
+Yii::setPathOfAlias('SlitAassets', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR));
 Yii::setPathOfAlias('Slit', dirname(__FILE__));
 Yii::import('Slit.*');
-Yii::import('vendor.phundament.p3pages.models.*');
-Yii::import('vendor.phundament.p3media.models.*');
 
 class Slit extends BaseSlit
 {
 
     public $itemLabel = "SlitSlider";
 
-    const INDEXPAGE = 1;
     const SLIT_ACTIVE = 'published';
     const IMAGE = 'image';
     const HTML = 'html';
@@ -27,6 +25,65 @@ class Slit extends BaseSlit
     public function init()
     {
         return parent::init();
+    }
+
+    public function behaviors()
+    {
+        return array_merge(
+                parent::behaviors(), array(
+            'CTimestampBehavior' => array(
+                'class' => 'zii.behaviors.CTimestampBehavior',
+                'createAttribute' => 'created_at',
+                'updateAttribute' => 'updated_at',
+            ),
+            'OwnerBehavior' => array(
+                'class' => 'OwnerBehavior',
+                'ownerColumn' => 'created_by'
+            ),
+        ));
+    }
+
+    /*
+     *  Call this function on which page and position
+     *  you what the slit-slider appear
+     * 
+     *      <?php Slit::showSlider(); ?>
+     */
+    public function showSlider()
+    {
+        // @var pageID: Get active P3Page->id
+        $pageID = Slit::getActivePageId();
+
+        // get Slit models for this P3Page and status
+        $thisPage = Slit::querySlits($pageID);
+
+        // Check if slits are availible for this P3age
+        if (Slit::hasSlits($thisPage)) {
+
+            // Just if the SlitSlider would be shown, publish Assls (css, js)
+            Slit::registerAssets();
+
+            // Output HTML Template, id -> slider
+            Slit::openSliderWrapper();
+
+            foreach ($thisPage as $slit) {
+
+                // if slit type -> image
+                if ($slit->type === Slit::IMAGE) {
+
+                    Slit::showImage($slit->media_id, Slit::IMAGE_PRESET, $slit->headline, $slit->subline, $slit->link, $slit->custom_attributes);
+                }
+                // if slit type -> html
+                elseif ($slit->type === Slit::HTML) {
+
+                    Slit::showHtml($slit->bodyHtml, $slit->custom_attributes);
+                }
+            }
+            // put needed dots to navigate, first hast class 'nav-dot-current'
+            Slit::showDots($thisPage);
+
+            Slit::closeSliderWrapper();
+        }
     }
 
     public function getP3MediaNames()
@@ -83,105 +140,104 @@ class Slit extends BaseSlit
         }
     }
 
-    public function showSlider($pageName = NULL)
-    {   
-        // @var pageID: Get active P3Page->id
-        if ($pageName === NULL) {
-            
-            $pageID = Slit::getActivePageId();
-        } 
-        
-        // @var pageID: is P3Page->id = 1 (site/index.php)
-        elseif($pageName === Slit::INDEXPAGE) {
-            
-            $pageID = Slit::INDEXPAGE;
-        }
+    public function registerAssets()
+    {
+        $registerScripts = Yii::app()->getClientScript();
 
-        // get Slit models for this P3Page and status
+        // JS files
+        $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAassets') . '/js', true, -1, true); // set last param to `true` for development
+        $registerScripts->registerScriptFile($js . "/jquery.slitslider.js", CClientScript::POS_END);
+        $registerScripts->registerScriptFile($js . "/jquery.slitslider.init.js", CClientScript::POS_END);
+
+        // CSS files
+        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAassets') . '/css', true, -1, true); // set last param to `true` for development
+        $registerScripts->registerCssFile($css . '/slitslider.css');
+    }
+
+    public function querySlits($pageID)
+    {
         $criteria = new CDbCriteria();
         $criteria->order = Slit::ORDER_BY;
         $criteria->addSearchCondition('page_name', $pageID);
         $criteria->addSearchCondition('status', Slit::SLIT_ACTIVE);
         $criteria->addSearchCondition('language', Yii::app()->getLanguage());
-        
+
         // findAll with this $creteria
-        $thisSlits          = Slit::model()->findAll($criteria);
-        $thisSlitsDots      = $thisSlits;
+        return Slit::model()->findAll($criteria);
+    }
 
-        // Check if slits are availible for this P3age
-        if (sizeof($thisSlits) > 0) {
-            
-            echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
-            echo "   <div class=\"sl-slider\">\n";
+    public function hasSlits($allSlits)
+    {
+        if (sizeof($allSlits) > 0) {
+            return true;
+        }
+        return false;
+    }
 
-            foreach ($thisSlits as $slit) {
+    public function hasDots($allSlits)
+    {
+        if (sizeof($allSlits) > 1) {
+            return true;
+        }
+        return false;
+    }
 
-                echo "      <div class=\"sl-slide\" data-orientation=\"horizontal\" data-slice1-rotation=\"-25\" data-slice1-scale=\"2\" data-slice2-rotation=\"-25\" data-slice2-scale=\"2\">\n";
-                echo "          <div class=\"sl-slide-inner\">\n";
+    public function showImage($id, $preset, $headline, $subline, $link, $custom_attributes)
+    {
+        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $id, 'preset' => $preset));
 
-                // if slit type -> image
-                if ($slit->type === Slit::IMAGE) {
+        echo "      <div class=\"sl-slide\" {$custom_attributes}>\n";
+        echo "          <div class=\"sl-slide-inner\">\n";
+        echo "              <div class=\"bg-img\">\n";
+        echo "                  <img src=\"{$imgSrc}\" alt=\"\" />";
+        echo "              </div>\n";
+        echo "                    <h2>{$headline}</h2>\n";
+        echo "                    <blockquote>\n";
+        echo "                        <p>{$subline}</p>\n";
+        echo "                        <cite>{$link}</cite></blockquote>\n";
+        echo "          </div>\n";
+        echo "      </div>\n";
+    }
 
-                    $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $slit->media_id, 'preset' => Slit::IMAGE_PRESET));
+    public function showHtml($code, $custom_attributes)
+    {
+        echo "      <div class=\"sl-slide\" {$custom_attributes}>\n";
+        echo "          <div class=\"sl-slide-inner\">\n";
+        echo "              <div class=\"centerHtml\">\n";
+        echo $code;
+        echo "              </div>\n";
+        echo "          </div>\n";
+        echo "      </div>\n";
+    }
 
-                    echo "              <div class=\"bg-img\">\n";
-                    echo "                  <img src=\"{$imgSrc}\" alt=\"\" />";
-                    echo "              </div>\n";
-                    echo "                    <h2>{$slit->headline}</h2>\n";
-                    echo "                    <blockquote>\n";
-                    echo "                        <p>{$slit->subline}</p>\n";
-                    echo "                        <cite>{$slit->link}</cite></blockquote>\n";
-                }
-                // if slit type -> html
-                elseif ($slit->type === Slit::HTML) {
-                    echo "              <div class=\"centerHtml\">\n";
-                    echo                    $slit->bodyHtml;
-                    echo "              </div>\n";
-                }
+    public function showDots($allSlits)
+    {
+        if (Slit::hasDots($allSlits)) {
+            $_size = sizeof($allSlits);
 
-                echo "          </div>\n";
-                echo "      </div>\n";
-            }
-            
-            // put needed dots to navigate, first hast class 'nav-dot-current'
-            if (sizeof($thisSlitsDots) > 1) {
-                
+            if ($_size > 1) {
+
                 echo "      <nav class=\"nav-dots\" id=\"nav-dots\">\n";
                 echo "          <span class=\"nav-dot-current\"></span>\n";
 
-                for ($i = 0; $i < sizeof($thisSlitsDots) - 1; $i++) {
+                for ($i = 0; $i < $_size - 1; $i++) {
                     echo "              <span></span>";
                 }
                 echo "      </nav>";
             }
-            echo "   </div>\n";
-            echo "</div>\n";
-        }
-        // return false if no slits on this P3Page
-        else {
-            return false;
         }
     }
 
-    public function get_label()
+    public function openSliderWrapper()
     {
-        return (string) $this->status;
+        echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
+        echo "   <div class=\"sl-slider\">\n";
     }
 
-    public function behaviors()
+    public function closeSliderWrapper()
     {
-        return array_merge(
-                parent::behaviors(), array(
-            'CTimestampBehavior' => array(
-                'class' => 'zii.behaviors.CTimestampBehavior',
-                'createAttribute' => 'created_at',
-                'updateAttribute' => 'updated_at',
-            ),
-            'OwnerBehavior' => array(
-                'class' => 'OwnerBehavior',
-                'ownerColumn' => 'created_by',
-            ),
-        ));
+        echo "   </div>\n";
+        echo "</div>\n";
     }
 
 }
