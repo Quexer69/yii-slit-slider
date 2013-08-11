@@ -11,15 +11,16 @@
 class SlitSliderWidget extends CWidget
 {
 
-    const SLIT_ACTIVE           = 'published';
-    const IMAGE                 = 'image';
-    const HTML                  = 'html';
+    const SLIT_ACTIVE = 'published';
+    const IMAGE = 'image';
+    const HTML = 'html';
 
-    public $orientation         = 'horizontal';
-    public $image_preset        = 'slitslider';
-    public $order               = 'rank ASC';
-    public $width               = '100%';
-    public $height              = '600px';
+    public $orientation = 'horizontal';
+    public $image_preset = 'slitslider';
+    public $order = 'rank ASC';
+    public $pageId = null;
+    public $width = '100%';
+    public $height = '600px';
 
     /**
      *  Call this Widget on which page and position
@@ -41,7 +42,7 @@ class SlitSliderWidget extends CWidget
      * @version 0.1.0
      * @package quexer69/yii-slit-slider
      */
-
+    
     public function run()
     {
         // @var pageID: Get active P3Page->id
@@ -59,15 +60,19 @@ class SlitSliderWidget extends CWidget
             // Output HTML Template (for IMAGE and HTML slits)
             $this->openSliderWrapper();
 
-                foreach ($thisSlits as $slit) {
+            foreach ($thisSlits as $slit) {
 
-                    // if slit type -> image
-                    if      ($slit->type === $this::IMAGE)   { $this->showImage($slit); }
-                    // if slit type -> html
-                    elseif  ($slit->type === $this::HTML)    { $this->showHtml($slit); }
+                // if slit type -> image
+                if ($slit->type === $this::IMAGE) {
+                    $this->showImage($slit);
                 }
-                // put needed dots to navigate, first hast class 'nav-dot-current'
-                $this->showDots($thisSlits);
+                // if slit type -> html
+                elseif ($slit->type === $this::HTML) {
+                    $this->showHtml($slit);
+                }
+            }
+            // put needed dots to navigate, first hast class 'nav-dot-current'
+            $this->showDots($thisSlits);
 
             $this->closeSliderWrapper();
         }
@@ -98,17 +103,21 @@ class SlitSliderWidget extends CWidget
     {
         if (!P3Page::getActivePage()) {
             return false;
-        }else{
+        } else {
             return array(P3Page::getActivePage()->id => P3Page::getActivePage()->nameId);
         }
     }
 
     public function getActivePageId()
     {
-        $activePage = $this->getActivePage();
-        foreach ($activePage as $key => $nameId) {
+        if (isset($this->pageId) && $this->pageId !== NULL) {
+            return $this->pageId;
+        } else {
+            $activePage = $this->getActivePage();
+            foreach ($activePage as $key => $nameId) {
 
-            return $key;
+                return $key;
+            }
         }
     }
 
@@ -124,7 +133,7 @@ class SlitSliderWidget extends CWidget
     public function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
-        
+
         // Custom CSS wrapper settings
         $cssParam = ".sl-slider-wrapper {width: {$this->width};height: {$this->height};}";
         $registerScripts->registerCss('slitSlider_custom', $cssParam);
@@ -171,14 +180,15 @@ class SlitSliderWidget extends CWidget
     {
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => $this->image_preset));
 
-        $thisDataOrientation    = (isset ($model->data_orientation)) ? $model->data_orientation : $this->orientation;
+        $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
+        
         echo "      <div class=\"sl-slide\" 
                             data-orientation=\"$thisDataOrientation\" 
                             data-slice1-rotation=\"$model->data_slice1_rotation\" 
                             data-slice2-rotation=\"$model->data_slice2_rotation\" 
                             data-slice1-scale=\"$model->data_slice1_scale\" 
                             data-slice2-scale=\"$model->data_slice2_scale\">\n";
-        
+
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "              <div class=\"bg-img centerHtml\">\n";
         echo "                  <img src=\"{$imgSrc}\" alt=\"\" />";
@@ -199,10 +209,10 @@ class SlitSliderWidget extends CWidget
                             data_slice2_rotation=\"$model->data_slice2_rotation\" 
                             data_slice1_scale=\"$model->data_slice1_scale\" 
                             data_slice2_scale=\"$model->data_slice2_scale\">\n";
-        
+
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "              <div class=\"centerHtml\">\n";
-        echo                    $model->bodyHtml;
+        echo $model->bodyHtml;
         echo "              </div>\n";
         echo "          </div>\n";
         echo "      </div>\n";

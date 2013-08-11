@@ -23,7 +23,7 @@ Quick-Start
 ### Composer
 If you have [composer already installed](http://getcomposer.org/doc/00-intro.md#installation-nix)
    
-`composer.phar require `quexer69/yii-slit-slider`
+`composer.phar require quexer69/yii-slit-slider`
 
 **or**
 
@@ -53,7 +53,7 @@ edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
 'migrate' => array(
         'modulePaths' => array(
             ...
-            'slitSlider'            => 'vendor.quexer69.yii-slit-slider.migrations',
+            'slitSlider' => 'vendor.quexer69.yii-slit-slider.migrations',
             ...
             ),
         ),
@@ -62,14 +62,14 @@ edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
 Run widget
 =============
 
-** Default Call of the slitSlider Widget **
+**Default Call of the slitSlider Widget**
 ```php
 
     $this->widget('slitSlider.components.SlitSliderWidget'); 
 
 ```
 
-** Params Call of the slitSlider Widget **
+**Params Call of the slitSlider Widget**
 ```php
 
     $this->widget('slitSlider.components.SlitSliderWidget', 
@@ -77,12 +77,18 @@ Run widget
                 'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
                 'image_preset'  => 'slitslider',    // P3Media image preset for pictures
                 'order'         => 'rank DESC',     // sort order of the slits
+                'pageId'        => '5',             // show all slits for a P3Page->id
                 'height'        => '600px',         // css height of the wrapper
                 'width'         => '100%'           // css width of the wrapper
             )
     );
 
 ```
+
+Administration
+=============
+Now you get in the P3Admin backend the module SlitSlider to configurate your sliders!!!
+
 
 Custom Attributes
 =============
@@ -98,7 +104,7 @@ data-slice1-scale
 data-slice2-scale
 `
 
-The first one, `data-orientation` should be either `vertical` or `horizontal`. 
+The first one, `data-orientation` should be either `vertical` or `horizontal`.
 This we need in order to know where to “slice” the slide. It will be either slice horizontally or vertically. 
 The `data-slice1-rotation` and `data-slice2-rotation` value will be the **rotation degree** for each one of the slices 
 and the `data-slice1-scale` and `data-slice2-scale` value will be the **scale value**.
