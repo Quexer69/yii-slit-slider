@@ -43,9 +43,10 @@ abstract class BaseSlit extends CActiveRecord{
 
 	public function rules()
 	{
+            // TODO: Validation
 		return array_merge(
 		    parent::rules(), array(
-			array('status, language, type, rank, created_by, updated_by', 'required'),
+			array('status, language, type, page_name, media_id, rank', 'required'),
 			array('headline, subline, link, bodyHtml, keywords, media_id, page_name, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('media_id, rank, created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>9),

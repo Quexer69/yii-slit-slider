@@ -30,7 +30,7 @@ class Slit extends BaseSlit
 		'CTimestampBehavior' => array(
 				'class' => 'zii.behaviors.CTimestampBehavior',
 				'createAttribute' => 'created_at',
-				'updateAttribute' => null,
+				'updateAttribute' => 'updated_at',
 					),
 
 		'OwnerBehavior' => array(
