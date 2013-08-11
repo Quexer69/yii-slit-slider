@@ -11,16 +11,16 @@
 class SlitSliderWidget extends CWidget
 {
 
-    const SLIT_ACTIVE = 'published';
-    const IMAGE = 'image';
-    const HTML = 'html';
+    const SLIT_ACTIVE       = 'published';
+    const IMAGE             = 'image';
+    const HTML              = 'html';
 
-    public $orientation = 'horizontal';
-    public $image_preset = 'slitslider';
-    public $order = 'rank ASC';
-    public $pageId = null;
-    public $width = '100%';
-    public $height = '600px';
+    public $orientation     = 'horizontal';
+    public $image_preset    = 'slitslider';
+    public $order           = 'rank ASC';
+    public $pageId          = null;
+    public $width           = '100%';
+    public $height          = '600px';
 
     /**
      *  Call this Widget on which page and position
@@ -50,7 +50,7 @@ class SlitSliderWidget extends CWidget
 
         // get Slit models for this P3Page and status
         $thisSlits = $this->querySlits($pageID);
-
+        
         // Check if slits are availible for this P3age
         if ($this->hasSlits($thisSlits)) {
 
@@ -81,7 +81,15 @@ class SlitSliderWidget extends CWidget
     public function getP3MediaNames()
     {
         // TODO: checkAccess for media Files!!
-        return P3Media::model()->findAll();
+        $mediaIds = array();
+
+        //FindAll P3Media's
+        $p3medias = P3Media::model()->findAll();
+        foreach ($p3medias AS $p3media) {
+            
+                $mediaIds[$p3media->id] = $p3media->originalName;
+        }
+        return $mediaIds;
     }
 
     public function getP3Pages()
@@ -140,6 +148,8 @@ class SlitSliderWidget extends CWidget
 
         // JS files
         $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/js', true, -1, true); // set last param to `true` for development
+        $registerScripts->registerScriptFile($js . "/jquery.ba-cond.min.js", CClientScript::POS_END);
+        $registerScripts->registerScriptFile($js . "/modernizr.custom.79639.js", CClientScript::POS_END);
         $registerScripts->registerScriptFile($js . "/jquery.slitslider.js", CClientScript::POS_END);
         $registerScripts->registerScriptFile($js . "/jquery.slitslider.init.js", CClientScript::POS_END);
 
