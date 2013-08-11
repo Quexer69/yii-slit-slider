@@ -3,7 +3,7 @@
 /**
  * Class File
  * @author    Christopher Stebe <chris@stebe.eu>
- * @link      http://www.phundament.com/
+ * @link      https://github.com/Quexer69
  * @copyright Copyright &copy; 2005-2010 diemeisterei GmbH
  * @license   http://www.phundament.com/license/
  */
