@@ -113,7 +113,7 @@
 
     <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'media_id'); ?></div>
-            <div class='controls'><?php echo $form->dropDownList($model,'media_id', $model->getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?></div>
+            <div class='controls'><?php echo $form->dropDownList($model,'media_id', SlitSliderWidget::getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?></div>
             <?php echo $form->error($model,'media_id'); ?>
             <?php if('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) { 
                 echo "<span class='help-block'>{$help}</span>";            
@@ -123,7 +123,7 @@
 
     <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'page_name'); ?></div>
-            <div class='controls'><?php echo $form->dropDownList($model,'page_name', $model->getP3Pages(), array('size'=>60,'maxlength'=>255)); ?></div>
+            <div class='controls'><?php echo $form->dropDownList($model,'page_name', SlitSliderWidget::getP3Pages(), array('size'=>60,'maxlength'=>255)); ?></div>
             <?php echo $form->error($model,'page_name'); ?>
             <?php if('help.page_name' != $help = Yii::t('SlitSliderModule.crud', 'help.page_name')) { 
                 echo "<span class='help-block'>{$help}</span>";            
