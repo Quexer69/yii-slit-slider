@@ -5,7 +5,7 @@
  * Created with https://github.com/schmunk42/database-command
  */
 
-class m130810_022151_init_slitSlider_tables extends CDbMigration {
+class m130811_203247_init_slitSlider_tables extends CDbMigration {
 
 	public function safeUp() {
         if (Yii::app()->db->schema instanceof CMysqlSchema) {
@@ -13,6 +13,9 @@ class m130810_022151_init_slitSlider_tables extends CDbMigration {
         } else {
            $options = '';
         }
+
+
+
 
         // Schema for table 'slider_slit'
         $this->createTable("slider_slit", 
@@ -29,7 +32,11 @@ class m130810_022151_init_slitSlider_tables extends CDbMigration {
             "media_id"=>"int(11)",
             "page_name"=>"varchar(255)",
             "rank"=>"int(11) NOT NULL",
-            "custom_attributes"=>"varchar(255)",
+            "data_orientation"=>"enum('horizontal','vertical')",
+            "data_slice1_rotation"=>"varchar(5)",
+            "data_slice2_rotation"=>"varchar(5)",
+            "data_slice1_scale"=>"varchar(5)",
+            "data_slice2_scale"=>"varchar(5)",
             "start_date"=>"date",
             "end_date"=>"date",
             "created_at"=>"timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'",
@@ -38,6 +45,8 @@ class m130810_022151_init_slitSlider_tables extends CDbMigration {
             "updated_by"=>"int(11) NOT NULL",
             ), 
         $options);
+
+
 
 	}
 
