@@ -59,6 +59,28 @@ edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
         ),
 ```
 
+Run widget
+=============
+
+** Default Call of the slitSlider Widget **
+```php
+
+    $this->widget('slitSlider.components.SlitSliderWidget'); 
+
+```
+
+** Params Call of the slitSlider Widget **
+```php
+
+    $this->widget('slitSlider.components.SlitSliderWidget', 
+            array(
+                'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
+                'image_preset'  => 'slitslider',    // P3Media image preset for pictures
+                'order'         => 'rank DESC',     // sort order of the slits
+            )
+    );
+
+```
 
 Custom Attributes
 =============
