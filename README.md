@@ -1,36 +1,26 @@
-Yii Slit Slider 
-==========
+Yii Slit Slider Widget
+=============
 
 **Version 0.1.0**
 
 
-What is Slit Slider?
+What is Slit Slider Widget?
 =============
 
-Using jQuery and CSS animations we can create unique slide transitions for the content elements.
+The well known jQuery Slit Slider.
+But we have one backend crud to administrate all the slider widgets in your webapplication.
+*featuring P3Pages and P3Media*
 
-We have a backend to administrate all the sliders in your webapplication.
+Composer support for easy installation of this phundament3 widget.
 
-*Featured by P3Pages and P3Media*
-
-A lot of changes were integrated into the new Slit Slider, here are the most important ones:
-
-    *The slider can now be used in a responsive context, simply set the wrapper’s width to a percentage and it will adapt.
-    *The Transit plugin was removed.
-    *We’ve added public methods for navigation control: next, previous and specific slide. This will make it possible to use custom controls.
-    *Keyboard navigation has been added (right and left arrow keys).
-    *The Firefox bug has been fixed.
-    *We’ve added callback functions for before and after each slide transition.
-    *New method for dynamically adding new slides.
-    *Some other bug fixes, like flickering etc.
-
-(https://github.com/quexer69/yii-slit-slider)
+ * [phundament3 on GitHub]      (https://github.com/phundament/app)
+ * [yii-slit-slider on GitHub]  (https://github.com/quexer69/yii-slit-slider)
 
 
 Quick-Start
 =============
 
-### Step 1
+### Composer
 If you have [composer already installed](http://getcomposer.org/doc/00-intro.md#installation-nix)
    
 `composer.phar require `quexer69/yii-slit-slider`
@@ -42,7 +32,9 @@ add the package `quexer69/yii-slit-slider` to your composer.json
 
 *!!! You need to have already setup a database connection for the yii-slit-slider migration !!!*
 
-### Step 2  
+
+Setup
+============= 
 [SETUP] edit in app/config/main.php
 
 **REQUIRED**
@@ -51,21 +43,41 @@ add the package `quexer69/yii-slit-slider` to your composer.json
         'slitSlider' => array(
             'class' => 'vendor.quexer69.yii-slit-slider.SlitSliderModule',
         ),
+        ...
 ```
 
-[SETUP] edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
+edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
 
 **REQUIRED**
 ```php
 'migrate' => array(
         'modulePaths' => array(
             ...
-            'slitSlider'            => 'vendor.quexer69.yii-slit-slider.SlitSliderModule.migrations',
+            'slitSlider'            => 'vendor.quexer69.yii-slit-slider.migrations',
             ...
             ),
         ),
 ```
 
+
+Custom Attributes
+=============
+
+Every slide will also have some data-attributes that we will use in order to control the effect for each slide. 
+The data attributes that we want are the following:
+
+`	
+data-orientation
+data-slice1-rotation
+data-slice2-rotation
+data-slice1-scale
+data-slice2-scale
+`
+
+The first one, `data-orientation` should be either `vertical` or `horizontal`. 
+This we need in order to know where to “slice” the slide. It will be either slice horizontally or vertically. 
+The `data-slice1-rotation` and `data-slice2-rotation` value will be the **rotation degree** for each one of the slices 
+and the `data-slice1-scale` and `data-slice2-scale` value will be the **scale value**.
 
 Documentation
 =============
