@@ -77,6 +77,8 @@ Run widget
                 'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
                 'image_preset'  => 'slitslider',    // P3Media image preset for pictures
                 'order'         => 'rank DESC',     // sort order of the slits
+                'height'        => '600px',         // css height of the wrapper
+                'width'         => '100%'           // css width of the wrapper
             )
     );
 
@@ -110,6 +112,14 @@ Documentation
 Database-Dump
 =============
 
+dump Schema
+---
+     app/yiic database dump init_slitSlider_tables --prefix=slider_ \
+     --dbConnection=db --createSchema=1 \
+    --insertData=0
+
+dump datas
+---
      app/yiic database dump replace_slider_data --prefix=slider_ \
      --dbConnection=db --createSchema=0 \
      --foreignKeyChecks=0 --truncateTable=1
