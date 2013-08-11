@@ -32,20 +32,28 @@ return false;
         'displayFirstAndLast' => true,
     ),
     'columns'=>array(
-		array('header'=>'','value'=>'$data["page_name"]'),
-		'id',
+		
+                array(
+                    'name' => 'page_name',
+                    'type' => 'raw',
+                    'value' => function($data) {
+                        $thePageName    = P3Page::model()->findByPk($data->page_name);
+                        return $thePageName->nameId;
+                    }
+                ),
+		'rank',
 		'status',
 		'language',
 		'type',
 		'headline',
-		'subline',
-		'link',
+		#'subline',
+		#'link',
 		/*
-#		'bodyHtml',
-		/*
-		'keywords',
+		'bodyHtml',
+		*/
+		#'keywords',
 		'media_id',
-		'page_name',
+		/*
 		'rank',
 		'data_orientation',
 		'data_slice1_rotation',
@@ -66,4 +74,4 @@ return false;
             'deleteButtonUrl' => "Yii::app()->controller->createUrl('delete', array('id' => \$data->id))",
         ),
     ),
-)); ?>
+)); 

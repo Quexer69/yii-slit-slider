@@ -19,9 +19,6 @@
             <h2>
                 <?php echo Yii::t('SlitSliderModule.crud','Data')?>            </h2>
 
-            <h3>
-                <?php echo $model->page_name?>            </h3>
-
             <div class="form-horizontal">
                 
     <div class="control-group">
@@ -143,7 +140,11 @@
 
     <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'data_orientation'); ?></div>
-            <div class='controls'><?php echo $form->textField($model,'data_orientation',array('size'=>10,'maxlength'=>10)); ?></div>
+
+            <div class='controls'><?php echo CHtml::activeDropDownList($model, 'data_orientation', array(
+			'horizontal' => 'horizontal' ,
+			'vertical' => 'vertical' ,
+)); ?></div>
             <?php echo $form->error($model,'data_orientation'); ?>
             <?php if('help.data_orientation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_orientation')) { 
                 echo "<span class='help-block'>{$help}</span>";            
@@ -293,7 +294,7 @@
         
     <?php
         echo CHtml::Button(Yii::t('SlitSliderModule.crud', 'Cancel'), array(
-			'submit' => (isset($_GET['returnUrl']))?$_GET['returnUrl']:array('slit/admin'),
+			'submit' => (isset($_GET['returnUrl']))?$_GET['returnUrl']:array('admin'),
 			'class' => 'btn'
 			));
         echo ' '.CHtml::submitButton(Yii::t('SlitSliderModule.crud', 'Save'), array(

@@ -13,13 +13,7 @@ $this->breadcrumbs[] = $model->id;
 
 <div class="row">
     <div class="span8">
-        <h2>
-            <?php echo Yii::t('SlitSliderModule.crud','Data')?>        </h2>
-
-        <h3>
-            <?php echo $model->itemLabel?>        </h3>
-
-
+        
         <?php
     $this->widget('TbDetailView', array(
     'data'=>$model,
