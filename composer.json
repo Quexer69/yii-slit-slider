@@ -1,7 +1,7 @@
 {
     "name":"yii-slit-slider",
     "description":"Yii Slit Slider for phundament 3, with packages from composer repository http://packages.phundament.com",
-    "keywords":["yii", "web", "application", "slider", "extension", "widget"],
+    "keywords":["yii", "web", "application", "slitslider", "slider", "extension", "widget"],
     "homepage":"https://github.com/Quexer69",
     "type":"yii-application",
     "license":"BSD-3-Clause",
