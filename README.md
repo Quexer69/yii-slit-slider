@@ -46,6 +46,17 @@ Setup
         ...
 ```
 
+**add slitSlider Widget to the P3Widgets**
+```php
+'p3widgets' => array(
+        'params' => array(
+            'widgets' => array(
+                ...
+                'slitSlider.components.SlitSliderWidget' => 'SlitSlider'
+        ),
+        ...
+```
+
 edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
 
 **REQUIRED**
