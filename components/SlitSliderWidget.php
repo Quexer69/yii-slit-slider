@@ -8,9 +8,6 @@
  * @license   http://www.phundament.com/license/
  */
 
-Yii::setPathOfAlias('Slit', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'models');
-Yii::import('Slit.*');
-
 class SlitSliderWidget extends CWidget
 {
 
@@ -21,6 +18,8 @@ class SlitSliderWidget extends CWidget
     public $orientation         = 'horizontal';
     public $image_preset        = 'slitslider';
     public $order               = 'rank ASC';
+    public $width               = '100%';
+    public $height              = '600px';
 
     /**
      *  Call this Widget on which page and position
@@ -125,6 +124,10 @@ class SlitSliderWidget extends CWidget
     public function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
+        
+        // Custom CSS wrapper settings
+        $cssParam = ".sl-slider-wrapper {width: {$this->width};height: {$this->height};}";
+        $registerScripts->registerCss('slitSlider_custom', $cssParam);
 
         // JS files
         $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/js', true, -1, true); // set last param to `true` for development
