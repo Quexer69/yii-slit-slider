@@ -20,7 +20,7 @@
                 <?php echo Yii::t('SlitSliderModule.crud','Data')?>            </h2>
 
             <h3>
-                <?php echo $model->itemLabel?>            </h3>
+                <?php echo $model->page_name?>            </h3>
 
             <div class="form-horizontal">
                 
@@ -111,7 +111,7 @@
     </div>
 
 
-    <div class="control-group">
+     <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'media_id'); ?></div>
             <div class='controls'><?php echo $form->dropDownList($model,'media_id', SlitSliderWidget::getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?></div>
             <?php echo $form->error($model,'media_id'); ?>
@@ -142,10 +142,50 @@
 
 
     <div class="control-group">
-            <div class='control-label'><?php echo $form->labelEx($model,'custom_attributes'); ?></div>
-            <div class='controls'><?php echo $form->textField($model,'custom_attributes',array('size'=>60,'maxlength'=>255)); ?></div>
-            <?php echo $form->error($model,'custom_attributes'); ?>
-            <?php if('help.custom_attributes' != $help = Yii::t('SlitSliderModule.crud', 'help.custom_attributes')) { 
+            <div class='control-label'><?php echo $form->labelEx($model,'data_orientation'); ?></div>
+            <div class='controls'><?php echo $form->textField($model,'data_orientation',array('size'=>10,'maxlength'=>10)); ?></div>
+            <?php echo $form->error($model,'data_orientation'); ?>
+            <?php if('help.data_orientation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_orientation')) { 
+                echo "<span class='help-block'>{$help}</span>";            
+} ?>
+    </div>
+
+
+    <div class="control-group">
+            <div class='control-label'><?php echo $form->labelEx($model,'data_slice1_rotation'); ?></div>
+            <div class='controls'><?php echo $form->textField($model,'data_slice1_rotation',array('size'=>5,'maxlength'=>5)); ?></div>
+            <?php echo $form->error($model,'data_slice1_rotation'); ?>
+            <?php if('help.data_slice1_rotation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice1_rotation')) { 
+                echo "<span class='help-block'>{$help}</span>";            
+} ?>
+    </div>
+
+
+    <div class="control-group">
+            <div class='control-label'><?php echo $form->labelEx($model,'data_slice2_rotation'); ?></div>
+            <div class='controls'><?php echo $form->textField($model,'data_slice2_rotation',array('size'=>5,'maxlength'=>5)); ?></div>
+            <?php echo $form->error($model,'data_slice2_rotation'); ?>
+            <?php if('help.data_slice2_rotation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_rotation')) { 
+                echo "<span class='help-block'>{$help}</span>";            
+} ?>
+    </div>
+
+
+    <div class="control-group">
+            <div class='control-label'><?php echo $form->labelEx($model,'data_slice1_scale'); ?></div>
+            <div class='controls'><?php echo $form->textField($model,'data_slice1_scale',array('size'=>5,'maxlength'=>5)); ?></div>
+            <?php echo $form->error($model,'data_slice1_scale'); ?>
+            <?php if('help.data_slice1_scale' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice1_scale')) { 
+                echo "<span class='help-block'>{$help}</span>";            
+} ?>
+    </div>
+
+
+    <div class="control-group">
+            <div class='control-label'><?php echo $form->labelEx($model,'data_slice2_scale'); ?></div>
+            <div class='controls'><?php echo $form->textField($model,'data_slice2_scale',array('size'=>5,'maxlength'=>5)); ?></div>
+            <?php echo $form->error($model,'data_slice2_scale'); ?>
+            <?php if('help.data_slice2_scale' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_scale')) { 
                 echo "<span class='help-block'>{$help}</span>";            
 } ?>
     </div>
@@ -242,14 +282,7 @@
         </div>
         <!-- main inputs -->
 
-        <div class="span4"> <!-- sub inputs -->
-            <h2>
-                <?php echo Yii::t('SlitSliderModule.crud','Relations')?>            </h2>
-            
-
-
-        </div>
-        <!-- sub inputs -->
+       
     </div>
 
     <p class="alert">

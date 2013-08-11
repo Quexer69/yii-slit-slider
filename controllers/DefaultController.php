@@ -1,8 +1,6 @@
 <?php
 
-
-
-class SlitController extends Controller
+class DefaultController extends Controller
 {
     #public $layout='//layouts/column2';
     public $defaultAction = "admin";
@@ -18,7 +16,7 @@ public function accessRules() {
 	return array(
 			array('allow',
 				'actions'=>array('create','editableSaver','update','delete','admin','view'),
-				'roles'=>array('SlitSlider.Slit.*'),
+				'roles'=>array('SlitSlider.Default.*'),
 				),
 			array('deny',
 				'users'=>array('*'),

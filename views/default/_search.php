@@ -72,8 +72,28 @@
                     </div>
 
                     <div class="row">
-            <?php echo $form->label($model,'custom_attributes'); ?>
-                            <?php echo $form->textField($model,'custom_attributes',array('size'=>60,'maxlength'=>255)); ?>
+            <?php echo $form->label($model,'data_orientation'); ?>
+                            <?php echo $form->textField($model,'data_orientation',array('size'=>10,'maxlength'=>10)); ?>
+                    </div>
+
+                    <div class="row">
+            <?php echo $form->label($model,'data_slice1_rotation'); ?>
+                            <?php echo $form->textField($model,'data_slice1_rotation',array('size'=>5,'maxlength'=>5)); ?>
+                    </div>
+
+                    <div class="row">
+            <?php echo $form->label($model,'data_slice2_rotation'); ?>
+                            <?php echo $form->textField($model,'data_slice2_rotation',array('size'=>5,'maxlength'=>5)); ?>
+                    </div>
+
+                    <div class="row">
+            <?php echo $form->label($model,'data_slice1_scale'); ?>
+                            <?php echo $form->textField($model,'data_slice1_scale',array('size'=>5,'maxlength'=>5)); ?>
+                    </div>
+
+                    <div class="row">
+            <?php echo $form->label($model,'data_slice2_scale'); ?>
+                            <?php echo $form->textField($model,'data_slice2_scale',array('size'=>5,'maxlength'=>5)); ?>
                     </div>
 
                     <div class="row">

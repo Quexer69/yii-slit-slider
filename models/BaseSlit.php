@@ -16,7 +16,11 @@
  * @property integer $media_id
  * @property string $page_name
  * @property integer $rank
- * @property string $custom_attributes
+ * @property string $data_orientation
+ * @property string $data_slice1_rotation
+ * @property string $data_slice2_rotation
+ * @property string $data_slice1_scale
+ * @property string $data_slice2_scale
  * @property string $start_date
  * @property string $end_date
  * @property string $created_at
@@ -41,15 +45,16 @@ abstract class BaseSlit extends CActiveRecord{
 	{
 		return array_merge(
 		    parent::rules(), array(
-			array('status, language, type, rank', 'required'),
-			array('headline, subline, link, bodyHtml, keywords, media_id, page_name, custom_attributes, start_date, end_date, created_at, updated_at', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('status, language, type, rank, created_by, updated_by', 'required'),
+			array('headline, subline, link, bodyHtml, keywords, media_id, page_name, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('media_id, rank, created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>9),
 			array('language', 'length', 'max'=>8),
-			array('type', 'length', 'max'=>5),
-			array('headline, subline, link, keywords, page_name, custom_attributes', 'length', 'max'=>255),
+			array('type, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale', 'length', 'max'=>5),
+			array('headline, subline, link, keywords, page_name', 'length', 'max'=>255),
+			array('data_orientation', 'length', 'max'=>10),
 			array('bodyHtml, start_date, end_date, created_at, updated_at', 'safe'),
-			array('id, status, language, type, headline, subline, link, bodyHtml, keywords, media_id, page_name, rank, custom_attributes, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
+			array('id, status, language, type, headline, subline, link, bodyHtml, keywords, media_id, page_name, rank, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
 		    )
 		);
 	}
@@ -86,7 +91,11 @@ abstract class BaseSlit extends CActiveRecord{
 			'media_id' => Yii::t('SlitSliderModule.crud', 'Media'),
 			'page_name' => Yii::t('SlitSliderModule.crud', 'Page Name'),
 			'rank' => Yii::t('SlitSliderModule.crud', 'Rank'),
-			'custom_attributes' => Yii::t('SlitSliderModule.crud', 'Custom Attributes'),
+			'data_orientation' => Yii::t('SlitSliderModule.crud', 'Data Orientation'),
+			'data_slice1_rotation' => Yii::t('SlitSliderModule.crud', 'Data Slice1 Rotation'),
+			'data_slice2_rotation' => Yii::t('SlitSliderModule.crud', 'Data Slice2 Rotation'),
+			'data_slice1_scale' => Yii::t('SlitSliderModule.crud', 'Data Slice1 Scale'),
+			'data_slice2_scale' => Yii::t('SlitSliderModule.crud', 'Data Slice2 Scale'),
 			'start_date' => Yii::t('SlitSliderModule.crud', 'Start Date'),
 			'end_date' => Yii::t('SlitSliderModule.crud', 'End Date'),
 			'created_at' => Yii::t('SlitSliderModule.crud', 'Created At'),
@@ -115,7 +124,11 @@ abstract class BaseSlit extends CActiveRecord{
 		$criteria->compare('t.media_id', $this->media_id);
 		$criteria->compare('t.page_name', $this->page_name, true);
 		$criteria->compare('t.rank', $this->rank);
-		$criteria->compare('t.custom_attributes', $this->custom_attributes, true);
+		$criteria->compare('t.data_orientation', $this->data_orientation, true);
+		$criteria->compare('t.data_slice1_rotation', $this->data_slice1_rotation, true);
+		$criteria->compare('t.data_slice2_rotation', $this->data_slice2_rotation, true);
+		$criteria->compare('t.data_slice1_scale', $this->data_slice1_scale, true);
+		$criteria->compare('t.data_slice2_scale', $this->data_slice2_scale, true);
 		$criteria->compare('t.start_date', $this->start_date, true);
 		$criteria->compare('t.end_date', $this->end_date, true);
 		$criteria->compare('t.created_at', $this->created_at, true);
