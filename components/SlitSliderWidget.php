@@ -10,7 +10,7 @@
 
 class SlitSliderWidget extends CWidget
 {
-
+    
     const SLIT_ACTIVE       = 'published';
     const IMAGE             = 'image';
     const HTML              = 'html';
