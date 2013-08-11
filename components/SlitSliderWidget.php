@@ -18,6 +18,7 @@ class SlitSliderWidget extends CWidget
     const IMAGE                 = 'image';
     const HTML                  = 'html';
 
+    public $orientation         = 'horizontal';
     public $image_preset        = 'slitslider';
     public $order               = 'rank ASC';
 
@@ -62,15 +63,9 @@ class SlitSliderWidget extends CWidget
                 foreach ($thisSlits as $slit) {
 
                     // if slit type -> image
-                    if ($slit->type === $this::IMAGE) {
-
-                        $this->showImage($slit->media_id, $this->image_preset, $slit->headline, $slit->subline, $slit->link, $slit->custom_attributes);
-                    }
+                    if      ($slit->type === $this::IMAGE)   { $this->showImage($slit); }
                     // if slit type -> html
-                    elseif ($slit->type === $this::HTML) {
-
-                        $this->showHtml($slit->bodyHtml, $slit->custom_attributes);
-                    }
+                    elseif  ($slit->type === $this::HTML)    { $this->showHtml($slit); }
                 }
                 // put needed dots to navigate, first hast class 'nav-dot-current'
                 $this->showDots($thisSlits);
@@ -169,29 +164,42 @@ class SlitSliderWidget extends CWidget
         return false;
     }
 
-    public function showImage($id, $preset, $headline, $subline, $link, $custom_attributes)
+    public function showImage($model)
     {
-        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $id, 'preset' => $preset));
+        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => $this->image_preset));
 
-        echo "      <div class=\"sl-slide\" {$custom_attributes}>\n";
+        $thisDataOrientation    = (isset ($model->data_orientation)) ? $model->data_orientation : $this->orientation;
+        echo "      <div class=\"sl-slide\" 
+                            data-orientation=\"$thisDataOrientation\" 
+                            data-slice1-rotation=\"$model->data_slice1_rotation\" 
+                            data-slice2-rotation=\"$model->data_slice2_rotation\" 
+                            data-slice1-scale=\"$model->data_slice1_scale\" 
+                            data-slice2-scale=\"$model->data_slice2_scale\">\n";
+        
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "              <div class=\"bg-img centerHtml\">\n";
         echo "                  <img src=\"{$imgSrc}\" alt=\"\" />";
         echo "              </div>\n";
-        echo "                    <h2>{$headline}</h2>\n";
+        echo "                    <h2>{$model->headline}</h2>\n";
         echo "                    <blockquote>\n";
-        echo "                        <p>{$subline}</p>\n";
-        echo "                        <cite>{$link}</cite></blockquote>\n";
+        echo "                        <p>{$model->subline}</p>\n";
+        echo "                        <cite>{$model->link}</cite></blockquote>\n";
         echo "          </div>\n";
         echo "      </div>\n";
     }
 
-    public function showHtml($code, $custom_attributes)
+    public function showHtml($model)
     {
-        echo "      <div class=\"sl-slide\" {$custom_attributes}>\n";
+        echo "      <div class=\"sl-slide\" 
+                            data_orientation=\"$model->data_orientation\" 
+                            data_slice1_rotation=\"$model->data_slice1_rotation\" 
+                            data_slice2_rotation=\"$model->data_slice2_rotation\" 
+                            data_slice1_scale=\"$model->data_slice1_scale\" 
+                            data_slice2_scale=\"$model->data_slice2_scale\">\n";
+        
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "              <div class=\"centerHtml\">\n";
-        echo $code;
+        echo                    $model->bodyHtml;
         echo "              </div>\n";
         echo "          </div>\n";
         echo "      </div>\n";
