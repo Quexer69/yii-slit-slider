@@ -110,7 +110,7 @@ class SlitSliderWidget extends CWidget
 
     public function getActivePageId()
     {
-        if (isset($this->pageId) && $this->pageId !== NULL) {
+        if (isset($this->pageId) && $this->pageId !== NULL && !empty($this->pageId)) {
             return $this->pageId;
         } else {
             $activePage = $this->getActivePage();

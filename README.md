@@ -46,16 +46,6 @@ Setup
         ...
 ```
 
-**add slitSlider Widget to the P3Widgets**
-```php
-'p3widgets' => array(
-        'params' => array(
-            'widgets' => array(
-                ...
-                'slitSlider.components.SlitSliderWidget' => 'SlitSlider'
-        ),
-        ...
-```
 
 edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
 
@@ -96,6 +86,29 @@ Run widget
 
 ```
 
+**Or easily add through P3WidgetContainer**
+
+*(you need to add slitSlider Widget to the P3Widgets)*
+```php
+'p3widgets' => array(
+        'params' => array(
+            'widgets' => array(
+                ...
+                'slitSlider.components.SlitSliderWidget' => 'SlitSlider'
+        ),
+        ...
+```
+*output on any p3page template*
+```php 
+    $this->widget('p3widgets.components.P3WidgetContainer', 
+        array(
+            'id' => 'slitSlider', 
+            'varyByRequestParam' => P3Page::PAGE_ID_KEY
+        )
+    );
+```
+
+
 Administration
 =============
 Now you get in the P3Admin backend the module SlitSlider to configurate your sliders!!!
@@ -107,17 +120,17 @@ Custom Attributes
 Every slide will also have some data-attributes that we will use in order to control the effect for each slide. 
 The data attributes that we want are the following:
 
-`	
+```
 data-orientation
 data-slice1-rotation
 data-slice2-rotation
 data-slice1-scale
 data-slice2-scale
-`
+```
 
 The first one, `data-orientation` should be either `vertical` or `horizontal`.
-This we need in order to know where to “slice” the slide. It will be either slice horizontally or vertically. 
-The `data-slice1-rotation` and `data-slice2-rotation` value will be the **rotation degree** for each one of the slices 
+This we need in order to know where to “slice” the slide. It will be either slice horizontally or vertically.
+The `data-slice1-rotation` and `data-slice2-rotation` value will be the **rotation degree** for each one of the slices
 and the `data-slice1-scale` and `data-slice2-scale` value will be the **scale value**.
 
 Documentation
