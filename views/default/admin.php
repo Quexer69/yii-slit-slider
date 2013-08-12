@@ -32,26 +32,33 @@ $this->widget('TbGridView', array(
         'displayFirstAndLast' => true,
     ),
     'columns' => array(
+        'status',
+        'language',
+        array(
+            'name' => 'headline',
+            'type' => 'html',
+            'value' => function($data) {
+                return ($data->headline !== null) ? $data->headline : '<i class="icon-ban-circle"></i>';
+            }
+        ),
         array(
             'name' => 'media_id',
             'type' => 'raw',
             'value' => function($data) {
-                return ($data->media_id !== null) ? $data->createImageLink($data->media_id, 'View Image', array('//slitSlider/default/view', 'id' => $data->id), 'p3media-upload') : 'n/a';
+                return ($data->media_id !== null) ? $data->createImageLink($data->media_id, 'View Image', array('//slitSlider/default/view', 'id' => $data->id), 'p3media-upload') : '<i class="icon-ban-circle"></i>';
             }
         ),
         array(
-            'name' => 'page_name',
+            'name' => 'page_id',
             'type' => 'raw',
             'value' => function($data) {
-                $thePageName = P3Page::model()->findByPk($data->page_name);
-                return $thePageName->nameId;
+                $thePageName = P3Page::model()->findByPk($data->page_id);
+                return $thePageName->id;
             }
         ),
-        'language',
-        'status',
         'rank',
         'type',
-        'headline',
+        
         #'subline',
         #'link',
         /*

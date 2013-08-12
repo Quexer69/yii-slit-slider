@@ -25,14 +25,18 @@ $this->breadcrumbs[] = $model->id;
                 'headline',
                 'subline',
                 'link',
-                'bodyHtml',
+                array(
+                    'name' => 'bodyHtml',
+                    'type' => 'raw',
+                    'value' => ($model->bodyHtml !== null) ? '<pre>'.$model->bodyHtml.'</pre>' : '<i class="icon-ban-circle"></i>'
+                ),
                 'keywords',
                 array(
                     'name' => 'media_id',
                     'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'p3media-ckbrowse') : 'n/a',
                     'type' => 'html',
                 ),
-                'page_name',
+                'page_id',
                 'rank',
                 'data_orientation',
                 'data_slice1_rotation',

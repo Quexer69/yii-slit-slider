@@ -183,7 +183,7 @@ class SlitSliderWidget extends CWidget
     {
         $criteria = new CDbCriteria();
         $criteria->order = $this->order;
-        $criteria->addSearchCondition('page_name', $pageID);
+        $criteria->addSearchCondition('page_id', $pageID);
         $criteria->addSearchCondition('status', $this::SLIT_ACTIVE);
         $criteria->addSearchCondition('language', Yii::app()->getLanguage());
 
