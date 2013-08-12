@@ -87,10 +87,9 @@
 } ?>
     </div>
 
-
     <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'bodyHtml'); ?></div>
-            <div class='controls'><?php $this->widget('ckeditor.CKEditor', array('model'=>$model,'attribute'=>'bodyHtml','options'=>Yii::app()->params['ext.ckeditor.options']));; ?></div>
+            <div class='controls'><?php $this->widget('ckeditor.CKEditor', array('model'=>$model,'attribute'=>'bodyHtml','options'=>Yii::app()->params['ext.ckeditor.options'])); ?></div>
             <?php echo $form->error($model,'bodyHtml'); ?>
             <?php if('help.bodyHtml' != $help = Yii::t('SlitSliderModule.crud', 'help.bodyHtml')) { 
                 echo "<span class='help-block'>{$help}</span>";            
@@ -110,7 +109,9 @@
 
      <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model,'media_id'); ?></div>
-            <div class='controls'><?php echo $form->dropDownList($model,'media_id', SlitSliderWidget::getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?></div>
+            
+            <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?></div>
+                <?php //echo $form->dropDownList($model,'media_id', SlitSliderWidget::getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?>
             <?php echo $form->error($model,'media_id'); ?>
             <?php if('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) { 
                 echo "<span class='help-block'>{$help}</span>";            
