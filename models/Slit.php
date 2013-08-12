@@ -6,51 +6,66 @@ Yii::import('Slit.*');
 
 class Slit extends BaseSlit
 {
-	// Add your model-specific methods here. This file will not be overriden by gtc except you force it.
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    // Add your model-specific methods here. This file will not be overriden by gtc except you force it.
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	public function init()
-	{
-		return parent::init();
-	}
+    public function init()
+    {
+        return parent::init();
+    }
 
 	public function get_label() {
-		return (string) $this->status;
+        return (string) $this->status;
 
-	}
+    }
 
-	public function behaviors()
-	{
-		return array_merge(
+    public function behaviors()
+    {
+        return array_merge(
 			parent::behaviors(),
 			array(
-		'CTimestampBehavior' => array(
-				'class' => 'zii.behaviors.CTimestampBehavior',
-				'createAttribute' => 'created_at',
-				'updateAttribute' => 'updated_at',
-					),
+            'CTimestampBehavior' => array(
+                'class' => 'zii.behaviors.CTimestampBehavior',
+                'createAttribute' => 'created_at',
+                'updateAttribute' => 'updated_at',
+            ),
 
-		'OwnerBehavior' => array(
-								'class' => 'OwnerBehavior',
-							'ownerColumn' => 'created_by',
-								),
+            'OwnerBehavior' => array(
+                'class' => 'OwnerBehavior',
+                'ownerColumn' => 'created_by',
+            ),
 
-            ));
-	}
+        ));
+    }
 
 
-	public function rules()
-	{
-		return array_merge(
-		    parent::rules()
-            /*, array(
-			array('column1, column2', 'rule1'),
-			array('column3', 'rule2'),
-		    )*/
-		);
-	}
+    public function rules()
+    {
+        return array_merge(
+                parent::rules()
+                /* , array(
+                  array('column1, column2', 'rule1'),
+                  array('column3', 'rule2'),
+                  ) */
+        );
+    }
+    
+    /**
+     * 
+     * @param type $media_id
+     * @param type $title
+     * @param type $preset
+     * @return type image with link
+     */
+    public function createImageLink($media_id, $title, $preset = null)
+    {
+        $createUrl  = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $media_id, 'preset' => $preset));
+        $image      = CHtml::image($createUrl, $title, array('class'=>'pull-left'));
+        $link       = CHtml::link($image, array('//p3media/p3Media/view','id'=>$media_id), array('class'=>'pull-left btn-info'));
+        return $image;
+    }
 
 }
