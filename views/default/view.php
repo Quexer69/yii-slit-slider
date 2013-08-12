@@ -27,7 +27,11 @@ $this->breadcrumbs[] = $model->id;
         'link',
         'bodyHtml',
         'keywords',
-        'media_id',
+        array(
+            'name'=>'media_id',
+            'value'=>($model->media_id !== null)? $model->createImageLink($model->media_id, 'View Image', 'p3media-ckbrowse'):'n/a',
+            'type'=>'html',
+        ),
         'page_name',
         'rank',
         'data_orientation',

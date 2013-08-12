@@ -111,7 +111,6 @@
             <div class='control-label'><?php echo $form->labelEx($model,'media_id'); ?></div>
             
             <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?></div>
-                <?php //echo $form->dropDownList($model,'media_id', SlitSliderWidget::getP3MediaNames(), array('size'=>60,'maxlength'=>255)); ?>
             <?php echo $form->error($model,'media_id'); ?>
             <?php if('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) { 
                 echo "<span class='help-block'>{$help}</span>";            
