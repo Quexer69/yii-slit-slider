@@ -119,10 +119,10 @@
 
 
     <div class="control-group">
-            <div class='control-label'><?php echo $form->labelEx($model,'page_name'); ?></div>
-            <div class='controls'><?php echo $form->dropDownList($model,'page_name', SlitSliderWidget::getP3Pages(), array('size'=>60,'maxlength'=>255)); ?></div>
-            <?php echo $form->error($model,'page_name'); ?>
-            <?php if('help.page_name' != $help = Yii::t('SlitSliderModule.crud', 'help.page_name')) { 
+            <div class='control-label'><?php echo $form->labelEx($model,'page_id'); ?></div>
+            <div class='controls'><?php echo $form->dropDownList($model,'page_id', SlitSliderWidget::getP3Pages(), array('size'=>60,'maxlength'=>255)); ?></div>
+            <?php echo $form->error($model,'page_id'); ?>
+            <?php if('help.page_id' != $help = Yii::t('SlitSliderModule.crud', 'help.page_id')) { 
                 echo "<span class='help-block'>{$help}</span>";            
 } ?>
     </div>
