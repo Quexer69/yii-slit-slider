@@ -15,6 +15,9 @@ class SlitSliderWidget extends CWidget
     const IMAGE             = 'image';
     const HTML              = 'html';
 
+    /**
+     *  Public params
+     */
     public $orientation     = 'horizontal';
     public $image_preset    = 'slitslider';
     public $order           = 'rank ASC';
@@ -31,8 +34,12 @@ class SlitSliderWidget extends CWidget
      *   $this->widget(
      *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
      *          array(
+     *              'orientation'   => 'horizontal',
      *              'image_preset'  => 'slitslider',
      *              'order'         => 'rank DESC',
+     *              'pageId'        => null,
+     *              'width'         => '100%',
+     *              'height'        => '600px',
      *          )
      *   );
      * ?>
@@ -78,20 +85,12 @@ class SlitSliderWidget extends CWidget
         }
     }
 
-    public function getP3MediaNames()
-    {
-        // TODO: checkAccess for media Files!!
-        $mediaIds = array();
-
-        //FindAll P3Media's
-        $p3medias = P3Media::model()->findAll();
-        foreach ($p3medias AS $p3media) {
-            
-                $mediaIds[$p3media->id] = $p3media->originalName;
-        }
-        return $mediaIds;
-    }
-
+    /**
+     * 
+     * @return array with all P3Pages
+     * Index: [P3Page->id]
+     * Value: [P3Page->nameId]
+     */
     public function getP3Pages()
     {
         $nameIds = array();
@@ -106,7 +105,12 @@ class SlitSliderWidget extends CWidget
         }
         return $nameIds;
     }
-
+    /**
+     * 
+     * @return array
+     * Index: [P3Page->id]
+     * Value: [P3Page->nameId]
+     */
     public function getActivePage()
     {
         if (!P3Page::getActivePage()) {
@@ -115,7 +119,11 @@ class SlitSliderWidget extends CWidget
             return array(P3Page::getActivePage()->id => P3Page::getActivePage()->nameId);
         }
     }
-
+    
+    /**
+     * 
+     * @return int : P3Page->id
+     */
     public function getActivePageId()
     {
         if (isset($this->pageId) && $this->pageId !== NULL && !empty($this->pageId)) {
@@ -129,6 +137,10 @@ class SlitSliderWidget extends CWidget
         }
     }
 
+    /**
+     * 
+     * @return string : P3Page->nameId
+     */
     public function getActivePageNameId()
     {
         $activePage = $this->getActivePage();
@@ -137,7 +149,11 @@ class SlitSliderWidget extends CWidget
             return $nameId;
         }
     }
-
+    
+    /**
+     * Register CSS Files and JavaScript
+     * Register CSS from width and height param
+     */
     public function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
@@ -157,7 +173,12 @@ class SlitSliderWidget extends CWidget
         $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', true, -1, true); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
     }
-
+    
+    /**
+     * 
+     * @param type $pageID
+     * @return type
+     */
     public function querySlits($pageID)
     {
         $criteria = new CDbCriteria();
@@ -169,7 +190,11 @@ class SlitSliderWidget extends CWidget
         // findAll with this $creteria
         return Slit::model()->findAll($criteria);
     }
-
+    /**
+     * 
+     * @param type $allSlits
+     * @return boolean
+     */
     public function hasSlits($allSlits)
     {
         if (sizeof($allSlits) > 0) {
@@ -177,7 +202,11 @@ class SlitSliderWidget extends CWidget
         }
         return false;
     }
-
+    /**
+     * 
+     * @param type $allSlits
+     * @return boolean
+     */
     public function hasDots($allSlits)
     {
         if (sizeof($allSlits) > 1) {
@@ -185,7 +214,11 @@ class SlitSliderWidget extends CWidget
         }
         return false;
     }
-
+    
+    /**
+     * 
+     * @param type $model
+     */
     public function showImage($model)
     {
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => $this->image_preset));
@@ -210,7 +243,11 @@ class SlitSliderWidget extends CWidget
         echo "          </div>\n";
         echo "      </div>\n";
     }
-
+    
+    /**
+     * 
+     * @param type $model
+     */
     public function showHtml($model)
     {
         echo "      <div class=\"sl-slide\" 
@@ -228,6 +265,10 @@ class SlitSliderWidget extends CWidget
         echo "      </div>\n";
     }
 
+    /**
+     * 
+     * @param type $allSlits
+     */
     public function showDots($allSlits)
     {
         if ($this->hasDots($allSlits)) {
@@ -245,7 +286,7 @@ class SlitSliderWidget extends CWidget
             }
         }
     }
-
+    
     public function openSliderWrapper()
     {
         echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
@@ -257,7 +298,5 @@ class SlitSliderWidget extends CWidget
         echo "   </div>\n";
         echo "</div>\n";
     }
-
 }
-
 ?>
