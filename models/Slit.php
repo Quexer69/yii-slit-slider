@@ -56,16 +56,17 @@ class Slit extends BaseSlit
     /**
      * 
      * @param type $media_id
+     * @param type $link
      * @param type $title
      * @param type $preset
-     * @return type image with link
+     * @return type
      */
-    public function createImageLink($media_id, $title, $preset = null)
+    public function createImageLink($media_id, $title, $link = array(), $preset = null)
     {
         $createUrl  = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $media_id, 'preset' => $preset));
         $image      = CHtml::image($createUrl, $title, array('class'=>'pull-left'));
-        $link       = CHtml::link($image, array('//p3media/p3Media/view','id'=>$media_id), array('class'=>'pull-left btn-info'));
-        return $image;
+        $link       = CHtml::link($image, is_array($link) ? $link : '', array('class'=>'pull-left btn-info'));
+        return $link;
     }
 
 }
