@@ -49,7 +49,7 @@
                                     'model' => $model,
                                     'attribute' => 'start_date',
                                     'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
-                                    'htmlOptions' => array('size' => 20, 'readonly' => true, 'placeholder' => 'Choose...'),
+                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
                                     'options' => array(
                                         'showButtonPanel' => false,
                                         'disable' => true,
@@ -99,7 +99,7 @@
                                     'model' => $model,
                                     'attribute' => 'end_date',
                                     'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
-                                    'htmlOptions' => array('size' => 20, 'readonly' => true, 'placeholder' => 'Choose...'),
+                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
                                     'options' => array(
                                         'showButtonPanel' => false,
                                         'changeYear' => true,

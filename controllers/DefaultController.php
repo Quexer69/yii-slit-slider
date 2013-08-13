@@ -68,6 +68,9 @@ class DefaultController extends Controller
             $model->attributes  = $_POST['Slit'];
             $model->updated_by  = Yii::app()->user->id;
             $model->language    = Yii::app()->getLanguage();
+            
+//            if ($_POST['Slit']['start_date'] === NULL) $model->start_date = $now = new CDbExpression("NOW()");   
+//            if ($_POST['Slit']['start_date'] === NULL) $model->start_date = $now = new CDbExpression("NOW()");
 
             try {
                 if ($model->save()) {
@@ -91,6 +94,7 @@ class DefaultController extends Controller
     {
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
+        //$now = new CDbExpression("NOW()");
 
         if ($this->checkAccess($model)) {
             $this->performAjaxValidation($model, 'slit-form');
@@ -99,6 +103,9 @@ class DefaultController extends Controller
                 $model->attributes  = $_POST['Slit'];
                 $model->updated_by  = Yii::app()->user->id;
                 $model->language    = Yii::app()->getLanguage();
+                
+//                if ($model->start_date === NULL) $model->start_date = $now;
+//                if ($model->end_date === NULL) $model->end_date = $now;
 
                 try {
                     if ($model->save()) {

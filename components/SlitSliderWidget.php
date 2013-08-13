@@ -6,6 +6,29 @@
  * @link      https://github.com/Quexer69
  * @copyright Copyright &copy; 2005-2010 diemeisterei GmbH
  * @license   http://www.phundament.com/license/
+ *
+ *  Call this Widget on which page and position
+ *  you what the slit-slider appear
+ * 
+ * <pre>
+ * <?php
+ *   $this->widget(
+ *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
+ *          array(
+ *              'orientation'   => 'horizontal',
+ *              'image_preset'  => 'slitslider',
+ *              'order'         => 'rank DESC',
+ *              'pageId'        => null,
+ *              'width'         => '100%',
+ *              'height'        => '600px',
+ *          )
+ *   );
+ * ?>
+ * </pre>
+ * {@link SlitController}
+ * @author  Christopher Stebe <chris@stebe.eu>
+ * @version 0.1.0
+ * @package quexer69/yii-slit-slider
  */
 class SlitSliderWidget extends CWidget
 {
@@ -14,9 +37,7 @@ class SlitSliderWidget extends CWidget
     const IMAGE = 'image';
     const HTML = 'html';
 
-    /**
-     *  Public params
-     */
+    // Public params for JSON Editor
     public $orientation = 'horizontal';
     public $image_preset = 'original';
     public $order = 'rank ASC';
@@ -24,30 +45,6 @@ class SlitSliderWidget extends CWidget
     public $width = '100%';
     public $height = '600px';
 
-    /**
-     *  Call this Widget on which page and position
-     *  you what the slit-slider appear
-     * 
-     * <pre>
-     * <?php
-     *   $this->widget(
-     *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
-     *          array(
-     *              'orientation'   => 'horizontal',
-     *              'image_preset'  => 'slitslider',
-     *              'order'         => 'rank DESC',
-     *              'pageId'        => null,
-     *              'width'         => '100%',
-     *              'height'        => '600px',
-     *          )
-     *   );
-     * ?>
-     * </pre>
-     * {@link SlitController}
-     * @author  Christopher Stebe <chris@stebe.eu>
-     * @version 0.1.0
-     * @package quexer69/yii-slit-slider
-     */
     public function run()
     {
         // @var pageID: Get active P3Page->id
@@ -89,10 +86,23 @@ class SlitSliderWidget extends CWidget
         foreach (Yii::app()->getModules()['p3media']['params']['presets'] AS $key => $presets) {
 
             $name = (isset($presets['name'])) ? " {$presets['name']}" : $key;
-            $size = (isset($presets['commands']['resize'][0])) ? "| {$presets['commands']['resize'][0]}x{$presets['commands']['resize'][1]}" : '';
-            $modus = (isset($presets['commands']['resize'][2])) ? " | Modus {$presets['commands']['resize'][2]}" : '';
+            $size = (isset($presets['commands']['resize'][0])) ? "|| {$presets['commands']['resize'][0]}x{$presets['commands']['resize'][1]}" : '';
+            $modus = (isset($presets['commands']['resize'][2])) ? " || Modus {$presets['commands']['resize'][2]}" : '';
             $title = "{$name} {$size} {$modus}";
             $p3mediaPreset[$key] = $title;
+        }
+        return $p3mediaPreset;
+    }
+    
+    /**
+     * 
+     * @return array
+     */
+    public function getP3MediaPresetNames()
+    {
+        $p3mediaPreset = array();
+        foreach (Yii::app()->getModules()['p3media']['params']['presets'] AS $key => $presets) {
+            array_push($p3mediaPreset, $key);
         }
         return $p3mediaPreset;
     }
@@ -195,7 +205,12 @@ class SlitSliderWidget extends CWidget
     public function querySlits($pageID)
     {
         $criteria = new CDbCriteria();
+        $now = new CDbExpression("NOW()");
         $criteria->order = $this->order;
+
+//        $criteria->addCondition('start_date > ' . $now);
+//        $criteria->addCondition($now . ' < end_date');
+
         $criteria->addSearchCondition('page_id', $pageID);
         $criteria->addSearchCondition('status', $this::SLIT_ACTIVE);
         $criteria->addSearchCondition('language', Yii::app()->getLanguage());
@@ -229,7 +244,7 @@ class SlitSliderWidget extends CWidget
         }
         return false;
     }
-    
+
     /**
      * 
      * @return string
@@ -238,7 +253,7 @@ class SlitSliderWidget extends CWidget
     {
         // Master Dimension
         $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL | ";
-	return $modes;
+        return $modes;
     }
 
     /**
@@ -249,8 +264,8 @@ class SlitSliderWidget extends CWidget
     {
         // Create image URL, check if media_preset for image is in config/main availible
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
-            'id' => $model->media_id, 
-            'preset' => (isset($model->image_preset) && in_array(self::getP3MediaPreset(), $model->image_preset)) ? $model->image_preset : $this->image_preset));
+            'id' => $model->media_id,
+            'preset' => (isset($model->image_preset) && in_array($model->image_preset, self::getP3MediaPresetNames())) ? $model->image_preset : $this->image_preset));
 
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
@@ -329,4 +344,5 @@ class SlitSliderWidget extends CWidget
     }
 
 }
+
 ?>

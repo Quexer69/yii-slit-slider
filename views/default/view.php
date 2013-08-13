@@ -24,6 +24,7 @@ $this->breadcrumbs[] = $model->id;
                     'type' => 'raw',
                     'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'small') : 'n/a',
                 ),
+                'image_preset',
                 array(
                     'name' => 'status',
                     'type' => 'raw',

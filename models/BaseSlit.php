@@ -47,14 +47,14 @@ abstract class BaseSlit extends CActiveRecord{
 		return array_merge(
 		    parent::rules(), array(
 			array('status, language, type, page_id, rank', 'required'),
-			array('headline, subline, link, bodyHtml, keywords, media_id, page_id, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('headline, subline, link, bodyHtml, keywords, media_id, page_id, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at, image_preset', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('media_id, rank, created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>9),
 			array('language', 'length', 'max'=>8),
 			array('type, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale', 'length', 'max'=>5),
 			array('headline, subline, link, keywords, page_id, image_preset', 'length', 'max'=>255),
 			array('data_orientation', 'length', 'max'=>10),
-			array('bodyHtml, start_date, end_date, created_at, updated_at, media_preset', 'safe'),
+			array('bodyHtml, start_date, end_date, created_at, updated_at', 'safe'),
 			array('id, status, language, type, headline, subline, link, bodyHtml, keywords, media_id, page_id, rank, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
 		    )
 		);
