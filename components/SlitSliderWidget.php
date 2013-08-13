@@ -229,6 +229,17 @@ class SlitSliderWidget extends CWidget
         }
         return false;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getImageModeInfo()
+    {
+        // Master Dimension
+        $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL | ";
+	return $modes;
+    }
 
     /**
      * 
