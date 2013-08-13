@@ -15,7 +15,6 @@ return false;
 });
 ");
 ?>
-<div class="icon-thumbs-down icon-large"></div>
 <?php $this->widget("TbBreadcrumbs", array("links" => $this->breadcrumbs)) ?>
 <h1>
     <?php echo Yii::t('SlitSliderModule.crud', 'Slits'); ?> <small><?php echo Yii::t('SlitSliderModule.crud', 'Manage'); ?></small>
@@ -44,7 +43,7 @@ $this->widget('TbGridView', array(
             'name' => 'status',
             'type' => 'raw',
             'value' => function($data) {
-                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-thumbs-up icon-2x"></i> ' . $data->status . '</span>' : '<span class="badge badge-danger"><i class="icon-square icon-thumbs-down"></i> ' . $data->status . '</span>';
+                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $data->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $data->status . '</span>';
             }
         ),
         array(

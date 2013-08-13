@@ -27,7 +27,17 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'status',
                     'type' => 'raw',
-                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-thumbs-up icon-2x"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-square icon-thumbs-down"></i> ' . $model->status . '</span>',
+                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
+                ),
+                array(
+                    'name' => 'page_id',
+                    'type' => 'raw',
+                    'value' => '<span class="badge badge-warning">' . $model->page_id . '</span>',
+                ),
+                array(
+                    'name' => 'rank',
+                    'type' => 'raw',
+                    'value' => '<span class="badge badge-info"># ' . $model->rank . '</span>',
                 ),
                 'language',
                 'keywords',
@@ -40,16 +50,6 @@ $this->breadcrumbs[] = $model->id;
                 'headline',
                 'subline',
                 'link',
-                array(
-                    'name' => 'page_id',
-                    'type' => 'raw',
-                    'value' => '<span class="badge badge-warning">' . $model->page_id . '</span>',
-                ),
-                array(
-                    'name' => 'rank',
-                    'type' => 'raw',
-                    'value' => '<span class="badge badge-info"># ' . $model->rank . '</span>',
-                ),
                 'data_orientation',
                 'data_slice1_rotation',
                 'data_slice2_rotation',

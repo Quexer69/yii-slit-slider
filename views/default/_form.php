@@ -185,7 +185,7 @@
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'media_id'); ?></div>
 
-                    <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'page_id')); ?></div>
+                    <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?></div>
                     <?php echo $form->error($model, 'media_id'); ?>
                     <?php
                     if ('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) {
@@ -197,9 +197,10 @@
                     <div class='control-label'><?php echo $form->labelEx($model, 'image_preset'); ?></div>
                     <?php
                     $this->widget('bootstrap.widgets.TbButton', array(
-                        'label' => 'Top popover',
-                        'type' => 'primary',
-                        'htmlOptions' => array('data-title' => 'A Title', 'data-placement' => 'top', 'data-content' => 'And here\'s some amazing content. It\'s very engaging. right?', 'rel' => 'popover'),
+                        'label' => 'Info',
+                        'icon' => 'icon-info-sign',
+                        'type' => 'info',
+                        'htmlOptions' => array('class' => 'pull-right', 'data-placement' => 'left', 'data-content' => SlitSliderWidget::getImageModeInfo(), 'rel' => 'popover'),
                     ));
                     ?> 
                     <div class='controls'><?php echo $form->dropDownList($model, 'image_preset', SlitSliderWidget::getP3MediaPreset(), array('class' => 'span10', 'placeholder' => 'Choose Image Preset')); ?></div>
