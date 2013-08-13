@@ -52,9 +52,9 @@ abstract class BaseSlit extends CActiveRecord{
 			array('status', 'length', 'max'=>9),
 			array('language', 'length', 'max'=>8),
 			array('type, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale', 'length', 'max'=>5),
-			array('headline, subline, link, keywords, page_id', 'length', 'max'=>255),
+			array('headline, subline, link, keywords, page_id, image_preset', 'length', 'max'=>255),
 			array('data_orientation', 'length', 'max'=>10),
-			array('bodyHtml, start_date, end_date, created_at, updated_at', 'safe'),
+			array('bodyHtml, start_date, end_date, created_at, updated_at, media_preset', 'safe'),
 			array('id, status, language, type, headline, subline, link, bodyHtml, keywords, media_id, page_id, rank, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
 		    )
 		);
@@ -90,13 +90,14 @@ abstract class BaseSlit extends CActiveRecord{
 			'bodyHtml' => Yii::t('SlitSliderModule.crud', 'Body Html'),
 			'keywords' => Yii::t('SlitSliderModule.crud', 'Keywords'),
 			'media_id' => Yii::t('SlitSliderModule.crud', 'P3Media'),
-			'page_id' => Yii::t('SlitSliderModule.crud', 'P3Page ID'),
+                        'image_preset' => Yii::t('SlitSliderModule.crud', 'Image Preset'),
+			'page_id' => Yii::t('SlitSliderModule.crud', 'P3Page'),
 			'rank' => Yii::t('SlitSliderModule.crud', 'Rank'),
-			'data_orientation' => Yii::t('SlitSliderModule.crud', 'Data Orientation'),
-			'data_slice1_rotation' => Yii::t('SlitSliderModule.crud', 'Data Slice1 Rotation'),
-			'data_slice2_rotation' => Yii::t('SlitSliderModule.crud', 'Data Slice2 Rotation'),
-			'data_slice1_scale' => Yii::t('SlitSliderModule.crud', 'Data Slice1 Scale'),
-			'data_slice2_scale' => Yii::t('SlitSliderModule.crud', 'Data Slice2 Scale'),
+			'data_orientation' => Yii::t('SlitSliderModule.crud', 'Orientation'),
+			'data_slice1_rotation' => Yii::t('SlitSliderModule.crud', 'Up | Rotation'),
+			'data_slice2_rotation' => Yii::t('SlitSliderModule.crud', 'Down | Rotation'),
+			'data_slice1_scale' => Yii::t('SlitSliderModule.crud', 'Up | Scale'),
+			'data_slice2_scale' => Yii::t('SlitSliderModule.crud', 'Down | Scale'),
 			'start_date' => Yii::t('SlitSliderModule.crud', 'Start Date'),
 			'end_date' => Yii::t('SlitSliderModule.crud', 'End Date'),
 			'created_at' => Yii::t('SlitSliderModule.crud', 'Created At'),
@@ -112,7 +113,9 @@ abstract class BaseSlit extends CActiveRecord{
         if (is_null($criteria)) {
     		$criteria=new CDbCriteria;
         }
-
+                // TODO: validate not only language, distri check
+                $criteria->addSearchCondition('language', Yii::app()->getLanguage());
+                
 		$criteria->compare('t.id', $this->id);
 		$criteria->compare('t.status', $this->status, true);
 		$criteria->compare('t.language', $this->language, true);
@@ -123,6 +126,7 @@ abstract class BaseSlit extends CActiveRecord{
 		$criteria->compare('t.bodyHtml', $this->bodyHtml, true);
 		$criteria->compare('t.keywords', $this->keywords, true);
 		$criteria->compare('t.media_id', $this->media_id);
+                $criteria->compare('t.image_preset', $this->image_preset);
 		$criteria->compare('t.page_id', $this->page_id, true);
 		$criteria->compare('t.rank', $this->rank);
 		$criteria->compare('t.data_orientation', $this->data_orientation, true);

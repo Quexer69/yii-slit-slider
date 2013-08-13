@@ -7,23 +7,22 @@
  * @copyright Copyright &copy; 2005-2010 diemeisterei GmbH
  * @license   http://www.phundament.com/license/
  */
-
 class SlitSliderWidget extends CWidget
 {
-    
-    const SLIT_ACTIVE       = 'published';
-    const IMAGE             = 'image';
-    const HTML              = 'html';
+
+    const SLIT_ACTIVE = 'published';
+    const IMAGE = 'image';
+    const HTML = 'html';
 
     /**
      *  Public params
      */
-    public $orientation     = 'horizontal';
-    public $image_preset    = 'slitslider';
-    public $order           = 'rank ASC';
-    public $pageId          = null;
-    public $width           = '100%';
-    public $height          = '600px';
+    public $orientation = 'horizontal';
+    public $image_preset = 'slitslider';
+    public $order = 'rank ASC';
+    public $pageId = null;
+    public $width = '100%';
+    public $height = '600px';
 
     /**
      *  Call this Widget on which page and position
@@ -49,40 +48,53 @@ class SlitSliderWidget extends CWidget
      * @version 0.1.0
      * @package quexer69/yii-slit-slider
      */
-    
     public function run()
     {
         // @var pageID: Get active P3Page->id
-        $pageID = $this->getActivePageId();
+        $pageID = self::getActivePageId();
 
         // get Slit models for this P3Page and status
-        $thisSlits = $this->querySlits($pageID);
-        
+        $thisSlits = self::querySlits($pageID);
+
         // Check if slits are availible for this P3age
-        if ($this->hasSlits($thisSlits)) {
+        if (self::hasSlits($thisSlits)) {
 
             // Just if there are slits for this P3Page, publish Assets (css, js)
-            $this->registerAssets();
+            self::registerAssets();
 
             // Output HTML Template (for IMAGE and HTML slits)
-            $this->openSliderWrapper();
+            self::openSliderWrapper();
 
             foreach ($thisSlits as $slit) {
 
                 // if slit type -> image
-                if ($slit->type === $this::IMAGE) {
-                    $this->showImage($slit);
+                if ($slit->type === self::IMAGE) {
+                    self::showImage($slit);
                 }
                 // if slit type -> html
-                elseif ($slit->type === $this::HTML) {
-                    $this->showHtml($slit);
+                elseif ($slit->type === self::HTML) {
+                    self::showHtml($slit);
                 }
             }
             // put needed dots to navigate, first hast class 'nav-dot-current'
-            $this->showDots($thisSlits);
+            self::showDots($thisSlits);
 
-            $this->closeSliderWrapper();
+            self::closeSliderWrapper();
         }
+    }
+
+    public function getP3MediaPreset()
+    {
+        $p3mediaPreset = array();
+        foreach (Yii::app()->getModules()['p3media']['params']['presets'] AS $key => $presets) {
+
+            $name = (isset($presets['name'])) ? " {$presets['name']}" : $key;
+            $size = (isset($presets['commands']['resize'][0])) ? "| {$presets['commands']['resize'][0]}x{$presets['commands']['resize'][1]}" : '';
+            $modus = (isset($presets['commands']['resize'][2])) ? " | Modus {$presets['commands']['resize'][2]}" : '';
+            $title = "{$name} {$size} {$modus}";
+            $p3mediaPreset[$key] = $title;
+        }
+        return $p3mediaPreset;
     }
 
     /**
@@ -105,6 +117,7 @@ class SlitSliderWidget extends CWidget
         }
         return $nameIds;
     }
+
     /**
      * 
      * @return array
@@ -119,7 +132,7 @@ class SlitSliderWidget extends CWidget
             return array(P3Page::getActivePage()->id => P3Page::getActivePage()->nameId);
         }
     }
-    
+
     /**
      * 
      * @return int : P3Page->id
@@ -149,12 +162,12 @@ class SlitSliderWidget extends CWidget
             return $nameId;
         }
     }
-    
+
     /**
      * Register CSS Files and JavaScript
      * Register CSS from width and height param
      */
-    public function registerAssets()
+    private function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
 
@@ -173,7 +186,7 @@ class SlitSliderWidget extends CWidget
         $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', true, -1, true); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
     }
-    
+
     /**
      * 
      * @param type $pageID
@@ -190,41 +203,43 @@ class SlitSliderWidget extends CWidget
         // findAll with this $creteria
         return Slit::model()->findAll($criteria);
     }
+
     /**
      * 
      * @param type $allSlits
      * @return boolean
      */
-    public function hasSlits($allSlits)
+    private function hasSlits($allSlits)
     {
         if (sizeof($allSlits) > 0) {
             return true;
         }
         return false;
     }
+
     /**
      * 
      * @param type $allSlits
      * @return boolean
      */
-    public function hasDots($allSlits)
+    private function hasDots($allSlits)
     {
         if (sizeof($allSlits) > 1) {
             return true;
         }
         return false;
     }
-    
+
     /**
      * 
      * @param type $model
      */
-    public function showImage($model)
+    private function showImage($model)
     {
-        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => $this->image_preset));
+        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => (isset($model->image_preset) ? $model->image_preset : $this->image_preset)));
 
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
-        
+
         echo "      <div class=\"sl-slide\" 
                             data-orientation=\"$thisDataOrientation\" 
                             data-slice1-rotation=\"$model->data_slice1_rotation\" 
@@ -243,12 +258,12 @@ class SlitSliderWidget extends CWidget
         echo "          </div>\n";
         echo "      </div>\n";
     }
-    
+
     /**
      * 
      * @param type $model
      */
-    public function showHtml($model)
+    private function showHtml($model)
     {
         echo "      <div class=\"sl-slide\" 
                             data_orientation=\"$model->data_orientation\" 
@@ -269,7 +284,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @param type $allSlits
      */
-    public function showDots($allSlits)
+    private function showDots($allSlits)
     {
         if ($this->hasDots($allSlits)) {
             $_size = sizeof($allSlits);
@@ -286,17 +301,18 @@ class SlitSliderWidget extends CWidget
             }
         }
     }
-    
-    public function openSliderWrapper()
+
+    private static function openSliderWrapper()
     {
         echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
         echo "   <div class=\"sl-slider\">\n";
     }
 
-    public function closeSliderWrapper()
+    private static function closeSliderWrapper()
     {
         echo "   </div>\n";
         echo "</div>\n";
     }
+
 }
 ?>

@@ -18,26 +18,38 @@ $this->breadcrumbs[] = $model->id;
         $this->widget('TbDetailView', array(
             'data' => $model,
             'attributes' => array(
-                'id',
-                'status',
+                #'id',
+                array(
+                    'name' => 'media_id',
+                    'type' => 'raw',
+                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'small') : 'n/a',
+                ),
+                array(
+                    'name' => 'status',
+                    'type' => 'raw',
+                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-thumbs-up icon-2x"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-square icon-thumbs-down"></i> ' . $model->status . '</span>',
+                ),
                 'language',
+                'keywords',
                 'type',
+                array(
+                    'name' => 'bodyHtml',
+                    'type' => 'raw',
+                    'value' => ($model->bodyHtml !== null) ? '<pre>' . $model->bodyHtml . '</pre>' : '<i class="icon-ban-circle"></i>'
+                ),
                 'headline',
                 'subline',
                 'link',
                 array(
-                    'name' => 'bodyHtml',
+                    'name' => 'page_id',
                     'type' => 'raw',
-                    'value' => ($model->bodyHtml !== null) ? '<pre>'.$model->bodyHtml.'</pre>' : '<i class="icon-ban-circle"></i>'
+                    'value' => '<span class="badge badge-warning">' . $model->page_id . '</span>',
                 ),
-                'keywords',
                 array(
-                    'name' => 'media_id',
-                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'p3media-ckbrowse') : 'n/a',
-                    'type' => 'html',
+                    'name' => 'rank',
+                    'type' => 'raw',
+                    'value' => '<span class="badge badge-info"># ' . $model->rank . '</span>',
                 ),
-                'page_id',
-                'rank',
                 'data_orientation',
                 'data_slice1_rotation',
                 'data_slice2_rotation',
@@ -46,10 +58,18 @@ $this->breadcrumbs[] = $model->id;
                 'start_date',
                 'end_date',
                 'created_at',
-                'created_by',
                 'updated_at',
-                'updated_by',
-            ),
+                array(
+                    'name' => 'created_by',
+                    'type' => 'text',
+                    'value' => $model->getFullUserId($model->created_by)
+                ),
+                array(
+                    'name' => 'updated_by',
+                    'type' => 'text',
+                    'value' => $model->getFullUserId($model->updated_by)
+                ),
+            )
         ));
         ?>
     </div>

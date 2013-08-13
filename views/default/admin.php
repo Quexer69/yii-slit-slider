@@ -15,13 +15,14 @@ return false;
 });
 ");
 ?>
-
+<div class="icon-thumbs-down icon-large"></div>
 <?php $this->widget("TbBreadcrumbs", array("links" => $this->breadcrumbs)) ?>
 <h1>
     <?php echo Yii::t('SlitSliderModule.crud', 'Slits'); ?> <small><?php echo Yii::t('SlitSliderModule.crud', 'Manage'); ?></small>
 </h1>
 
 <?php $this->renderPartial("_toolbar", array("model" => $model)); ?>
+<br />
 <?php
 $this->widget('TbGridView', array(
     'id' => 'slit-grid',
@@ -32,15 +33,6 @@ $this->widget('TbGridView', array(
         'displayFirstAndLast' => true,
     ),
     'columns' => array(
-        'status',
-        'language',
-        array(
-            'name' => 'headline',
-            'type' => 'html',
-            'value' => function($data) {
-                return ($data->headline !== null) ? $data->headline : '<i class="icon-ban-circle"></i>';
-            }
-        ),
         array(
             'name' => 'media_id',
             'type' => 'raw',
@@ -49,42 +41,62 @@ $this->widget('TbGridView', array(
             }
         ),
         array(
+            'name' => 'status',
+            'type' => 'raw',
+            'value' => function($data) {
+                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-thumbs-up icon-2x"></i> ' . $data->status . '</span>' : '<span class="badge badge-danger"><i class="icon-square icon-thumbs-down"></i> ' . $data->status . '</span>';
+            }
+        ),
+        array(
             'name' => 'page_id',
             'type' => 'raw',
             'value' => function($data) {
                 $thePageName = P3Page::model()->findByPk($data->page_id);
-                return $thePageName->id;
+                return '<span class="badge badge-warning">' . $thePageName->id . '</span>';
             }
         ),
-        'rank',
+        array(
+            'name' => 'rank',
+            'type' => 'raw',
+            'value' => function($data) {
+                return '<span class="badge badge-info"># ' . $data->rank . '</span>';
+            }
+        ),
+        'language',
+        array(
+            'name' => 'headline',
+            'type' => 'html',
+            'value' => function($data) {
+                return ($data->headline !== null) ? $data->headline : '<i class="icon-ban-circle"></i>';
+            }
+        ),
         'type',
-        
-        #'subline',
-        #'link',
-        /*
-          'bodyHtml',
-         */
-        #'keywords',     
-        /*
-          'rank',
-          'data_orientation',
-          'data_slice1_rotation',
-          'data_slice2_rotation',
-          'data_slice1_scale',
-          'data_slice2_scale',
-          'start_date',
-          'end_date',
-          'created_at',
-          'created_by',
-          'updated_at',
-          'updated_by',
-         */
         array(
             'class' => 'TbButtonColumn',
             'viewButtonUrl' => "Yii::app()->controller->createUrl('view', array('id' => \$data->id))",
             'updateButtonUrl' => "Yii::app()->controller->createUrl('update', array('id' => \$data->id))",
             'deleteButtonUrl' => "Yii::app()->controller->createUrl('delete', array('id' => \$data->id))",
         ),
+    #'subline',
+    #'link',
+    /*
+      'bodyHtml',
+     */
+    #'keywords',     
+    /*
+      'rank',
+      'data_orientation',
+      'data_slice1_rotation',
+      'data_slice2_rotation',
+      'data_slice1_scale',
+      'data_slice2_scale',
+      'start_date',
+      'end_date',
+      'created_at',
+      'created_by',
+      'updated_at',
+      'updated_by',
+     */
     ),
 ));
-
+?>
