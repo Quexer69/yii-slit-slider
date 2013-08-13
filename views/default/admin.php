@@ -50,8 +50,8 @@ $this->widget('TbGridView', array(
             'name' => 'page_id',
             'type' => 'raw',
             'value' => function($data) {
-                $thePageName = P3Page::model()->findByPk($data->page_id);
-                return '<span class="badge badge-warning">' . $thePageName->id . '</span>';
+                return '<span class="badge badge-warning">ID: ' . $data->page_id . '</span> <span class="badge badge-warning">' . $data->getPageName($data->page_id) . '</span>';
+                
             }
         ),
         array(

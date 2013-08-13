@@ -33,17 +33,17 @@
 class SlitSliderWidget extends CWidget
 {
 
-    const SLIT_ACTIVE = 'published';
-    const IMAGE = 'image';
-    const HTML = 'html';
-
+    const SLIT_ACTIVE       = 'published';
+    const IMAGE             = 'image';
+    const HTML              = 'html';
+    
     // Public params for JSON Editor
-    public $orientation = 'horizontal';
-    public $image_preset = 'original';
-    public $order = 'rank ASC';
-    public $pageId = null;
-    public $width = '100%';
-    public $height = '600px';
+    public $orientation     = 'horizontal';
+    public $image_preset    = 'original';
+    public $order           = 'rank ASC';
+    public $pageId          = null;
+    public $width           = '100%';
+    public $height          = '600px';
 
     public function run()
     {
@@ -73,13 +73,17 @@ class SlitSliderWidget extends CWidget
                     self::showHtml($slit);
                 }
             }
-            // put needed dots to navigate, first hast class 'nav-dot-current'
+            // put needed dots to navigate, first has class 'nav-dot-current'
             self::showDots($thisSlits);
 
             self::closeSliderWrapper();
         }
     }
 
+    /**
+     * 
+     * @return type array
+     */
     public function getP3MediaPreset()
     {
         $p3mediaPreset = array();
@@ -98,6 +102,21 @@ class SlitSliderWidget extends CWidget
      * 
      * @return array
      */
+    public function getP3MediaPresetName($preset)
+    {            
+        foreach (Yii::app()->getModules()['p3media']['params']['presets'] AS $key => $presets) {
+
+          if ($key === $preset) {
+                $name = (isset($presets['name'])) ? " {$presets['name']}" : $key;
+                $size = (isset($presets['commands']['resize'][0])) ? "{$presets['commands']['resize'][0]}x{$presets['commands']['resize'][1]}" : '';
+                $modus = (isset($presets['commands']['resize'][2])) ? " Modus {$presets['commands']['resize'][2]}" : '';
+                $title = "<span class=\"badge badge-danger\">{$name}</span> <span class=\"badge badge-danger\">{$size}</span> <span class=\"badge badge-danger\">{$modus}</span>";
+                return $title;
+          }
+        }
+        return false;       
+    }
+    
     public function getP3MediaPresetNames()
     {
         $p3mediaPreset = array();
@@ -121,9 +140,9 @@ class SlitSliderWidget extends CWidget
         $p3pages = P3Page::model()->findAll();
         foreach ($p3pages AS $p3page) {
 
-            // If page hast nameId
+            // If page has nameId
             if ($p3page->nameId)
-                $nameIds[$p3page->id] = $p3page->nameId;
+                $nameIds[$p3page->id] = "ID: " . $p3page->id . " || " .$p3page->nameId;
         }
         return $nameIds;
     }

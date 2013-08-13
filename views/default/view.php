@@ -24,7 +24,11 @@ $this->breadcrumbs[] = $model->id;
                     'type' => 'raw',
                     'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'small') : 'n/a',
                 ),
-                'image_preset',
+                 array(
+                    'name' => 'image_preset',
+                    'type' => 'raw',
+                    'value' => SlitSliderWidget::getP3MediaPresetName($model->image_preset),
+                ),
                 array(
                     'name' => 'status',
                     'type' => 'raw',
@@ -33,7 +37,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'page_id',
                     'type' => 'raw',
-                    'value' => '<span class="badge badge-warning">' . $model->page_id . '</span>',
+                    'value' => '<span class="badge badge-warning">ID: ' . $model->page_id . '</span> <span class="badge badge-warning">' . $model->getPageName($model->page_id) . '</span>',
                 ),
                 array(
                     'name' => 'rank',

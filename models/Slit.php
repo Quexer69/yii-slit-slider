@@ -64,6 +64,17 @@ class Slit extends BaseSlit
         $thisUser = Profile::model()->findByPk($user_id);
         return "{$thisUser->first_name} {$thisUser->last_name} | ID:{$thisUser->user_id}";
     }
+    
+    /**
+     * 
+     * @param type $page_id
+     * @return type string
+     */
+    public function getPageName($page_id)
+    {
+        $thisPage = P3Page::model()->findByAttributes(array('id' => $page_id));
+        return "{$thisPage->nameId}";
+    }
 
     public function rules()
     {
