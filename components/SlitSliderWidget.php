@@ -18,7 +18,7 @@ class SlitSliderWidget extends CWidget
      *  Public params
      */
     public $orientation = 'horizontal';
-    public $image_preset = 'slitslider';
+    public $image_preset = 'original';
     public $order = 'rank ASC';
     public $pageId = null;
     public $width = '100%';
@@ -247,7 +247,10 @@ class SlitSliderWidget extends CWidget
      */
     private function showImage($model)
     {
-        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $model->media_id, 'preset' => (isset($model->image_preset) ? $model->image_preset : $this->image_preset)));
+        // Create image URL, check if media_preset for image is in config/main availible
+        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
+            'id' => $model->media_id, 
+            'preset' => (isset($model->image_preset) && in_array(self::getP3MediaPreset(), $model->image_preset)) ? $model->image_preset : $this->image_preset));
 
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
