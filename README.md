@@ -7,7 +7,7 @@ Yii Slit Slider Widget
 What is Slit Slider Widget?
 =============
 
-The well known jQuery Slit Slider.
+A phundament3 Widget from the well known jQuery Slit Slider.
 But we have one backend crud to administrate all the slider widgets in your webapplication.
 *featuring P3Pages and P3Media*
 
