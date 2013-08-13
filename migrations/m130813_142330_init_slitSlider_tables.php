@@ -5,7 +5,7 @@
  * Created with https://github.com/schmunk42/database-command
  */
 
-class m130811_203247_init_slitSlider_tables extends CDbMigration {
+class m130813_142330_init_slitSlider_tables extends CDbMigration {
 
 	public function safeUp() {
         if (Yii::app()->db->schema instanceof CMysqlSchema) {
@@ -30,7 +30,8 @@ class m130811_203247_init_slitSlider_tables extends CDbMigration {
             "bodyHtml"=>"text",
             "keywords"=>"varchar(255)",
             "media_id"=>"int(11)",
-            "page_name"=>"varchar(255)",
+            "image_preset"=>"varchar(255)",
+            "page_id"=>"varchar(255)",
             "rank"=>"int(11) NOT NULL",
             "data_orientation"=>"enum('horizontal','vertical')",
             "data_slice1_rotation"=>"varchar(5)",

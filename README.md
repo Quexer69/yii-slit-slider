@@ -146,7 +146,7 @@ dump Schema
 ---
      app/yiic database dump init_slitSlider_tables --prefix=slider_ \
      --dbConnection=db --createSchema=1 \
-    --insertData=0
+     --insertData=0
 
 dump datas
 ---
