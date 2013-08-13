@@ -270,11 +270,11 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label'><?php echo $form->labelEx($model, 'data_slice2_scale'); ?></div>
-                            <div class='controls'><?php echo $form->textField($model, 'data_slice2_scale', array('size' => 5, 'maxlength' => 5, 'placeholder' => '0 - 10')); ?></div>
-                            <?php echo $form->error($model, 'data_slice2_scale'); ?>
+                            <div class='control-label'><?php echo $form->labelEx($model, 'data_slice2_rotation'); ?></div>
+                            <div class='controls'><?php echo $form->textField($model, 'data_slice2_rotation', array('size' => 5, 'maxlength' => 5, 'placeholder' => '-90 -> 90')); ?></div>
+                            <?php echo $form->error($model, 'data_slice2_rotation'); ?>
                             <?php
-                            if ('help.data_slice2_scale' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_scale')) {
+                            if ('help.data_slice2_rotation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_rotation')) {
                                 echo "<span class='help-block'>{$help}</span>";
                             }
                             ?>
@@ -296,11 +296,11 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label'><?php echo $form->labelEx($model, 'data_slice2_rotation'); ?></div>
-                            <div class='controls'><?php echo $form->textField($model, 'data_slice2_rotation', array('size' => 5, 'maxlength' => 5, 'placeholder' => '-90 -> 90')); ?></div>
-                            <?php echo $form->error($model, 'data_slice2_rotation'); ?>
+                            <div class='control-label'><?php echo $form->labelEx($model, 'data_slice2_scale'); ?></div>
+                            <div class='controls'><?php echo $form->textField($model, 'data_slice2_scale', array('size' => 5, 'maxlength' => 5, 'placeholder' => '0 - 10')); ?></div>
+                            <?php echo $form->error($model, 'data_slice2_scale'); ?>
                             <?php
-                            if ('help.data_slice2_rotation' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_rotation')) {
+                            if ('help.data_slice2_scale' != $help = Yii::t('SlitSliderModule.crud', 'help.data_slice2_scale')) {
                                 echo "<span class='help-block'>{$help}</span>";
                             }
                             ?>
@@ -325,5 +325,5 @@
         ?>
     </div>
 
-<?php $this->endWidget() ?>
+    <?php $this->endWidget() ?>
 </div> <!-- form -->
