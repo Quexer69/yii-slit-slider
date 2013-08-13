@@ -25,6 +25,11 @@ class SlitSliderModule extends CWebModule
             'vendor.phundament.p3pages.models.*',
             'vendor.phundament.p3media.models.*'
         ));
+        
+        // Register some JS Code for features used in Crud
+        $jsSnipp = "jQuery('body').popover({'selector':'[rel=popover]'});";
+        $registerScripts = Yii::app()->getClientScript();
+        $registerScripts->registerScript('Yii.features' . 'slitSlider', $jsSnipp);
     }
 
     public function beforeControllerAction($controller, $action)
