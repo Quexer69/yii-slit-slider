@@ -45,5 +45,5 @@
 			"clevertech/YiiBooster": "dev-master",
 			"phundament/p3pages":"0.13.*",
 			"phundament/p3media":"0.13.*"
-		},
+		}
 }
