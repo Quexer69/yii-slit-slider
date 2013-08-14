@@ -21,7 +21,7 @@
         "phundament/p3media": "0.13.*"
     },
     "suggest": {
-        "ckeditor": "Any ckeditor extension"
+        "Slider": "Any new slider extensions"
     }
 }
 
