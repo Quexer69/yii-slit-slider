@@ -13,10 +13,9 @@
         }
     ],
     "dependencies": {
-        "php": ">=5.3.2",
         "yiisoft/yii": "1.1.13",
         "vitalets/x-editable-yii": "1.2.0",
-        "clevertech/YiiBooster": "dev-master",
+        "clevertech/YiiBooster": "0.1.*",
         "phundament/p3pages": "0.13.*",
         "phundament/p3media": "0.13.*"
     },
