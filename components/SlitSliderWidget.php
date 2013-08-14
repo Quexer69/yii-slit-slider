@@ -302,7 +302,10 @@ class SlitSliderWidget extends CWidget
         echo "                    <h2>{$model->headline}</h2>\n";
         echo "                    <blockquote>\n";
         echo "                        <p>{$model->subline}</p>\n";
-        echo                         Yii::app()->createUrl($model->link)."</blockquote>\n";
+                                        if ($model->link !== NULL){
+                                            echo "<a class=\"btn btn-theme\" href=\"{$model->link}\"><i class=\"icon-external-link\">mehr</a>";
+                                        }
+        echo                         "</blockquote>\n";
         echo "          </div>\n";
         echo "      </div>\n";
     }
