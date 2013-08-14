@@ -43,7 +43,7 @@
 			"yiisoft/yii":"1.1.13",
 			"vitalets/x-editable-yii": "1.2.0",
 			"clevertech/YiiBooster": "dev-master",
-			"phundament/p3pages":"0.13.*",
-			"phundament/p3media":"0.13.*"
-		},
+			"phundament/p3pages": "0.13.*",
+			"phundament/p3media": "0.13.*"
+		}
 }
