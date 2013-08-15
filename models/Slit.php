@@ -54,16 +54,6 @@ class Slit extends BaseSlit
         $link = CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
         return $link;
     }
-
-    /**
-     * 
-     * @param type $user_id
-     */
-    public function getFullUserId($user_id)
-    {
-        $thisUser = Profile::model()->findByPk($user_id);
-        return "{$thisUser->first_name} {$thisUser->last_name} | ID:{$thisUser->user_id}";
-    }
     
     /**
      * 

@@ -67,12 +67,12 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'created_by',
                     'type' => 'text',
-                    'value' => $model->getFullUserId($model->created_by)
+                    'value' => Yii::app()->user->id
                 ),
                 array(
                     'name' => 'updated_by',
                     'type' => 'text',
-                    'value' => $model->getFullUserId($model->updated_by)
+                    'value' => Yii::app()->user->id
                 ),
             )
         ));
