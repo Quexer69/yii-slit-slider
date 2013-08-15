@@ -224,15 +224,13 @@ class SlitSliderWidget extends CWidget
     public function querySlits($pageID)
     {
         $criteria = new CDbCriteria();
-        $now = new CDbExpression("NOW()");
+        // TODO prepare fore start_date -> end_date support
+        //$now = new CDbExpression("NOW()");
         $criteria->order = $this->order;
 
-//        $criteria->addCondition('start_date > ' . $now);
-//        $criteria->addCondition($now . ' < end_date');
-
-        $criteria->addSearchCondition('page_id', $pageID);
-        $criteria->addSearchCondition('status', $this::SLIT_ACTIVE);
-        $criteria->addSearchCondition('language', Yii::app()->getLanguage());
+        $criteria->addCondition('page_id = '. $pageID);
+        $criteria->addCondition('status = '. $this::SLIT_ACTIVE);
+        $criteria->addCondition('language = '. Yii::app()->getLanguage());
 
         // findAll with this $creteria
         return Slit::model()->findAll($criteria);
