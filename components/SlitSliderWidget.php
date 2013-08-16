@@ -231,7 +231,7 @@ class SlitSliderWidget extends CWidget
         //$now = new CDbExpression("NOW()");
         $criteria->order = $this->order;
 
-        $criteria->addCondition('page_id    = '. $pageID);
+        $criteria->addCondition('page_id    = \''. $pageID. '\'');
         $criteria->addCondition('status     = \''. $this::SLIT_ACTIVE. '\'');
         $criteria->addCondition('language   = \''. Yii::app()->getLanguage(). '\'');
 
