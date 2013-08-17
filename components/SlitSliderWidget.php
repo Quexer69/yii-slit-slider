@@ -205,11 +205,18 @@ class SlitSliderWidget extends CWidget
         //$now = new CDbExpression("NOW()");
         $criteria->order = $this->order;
 
-
-        if ($groupID !== NULL) {
-            $criteria->addCondition('group_id    = \'' . $groupID . '\'');
+        /**
+         * check if SliderWidget groupId is set
+         * OR NULL because slits without group_id
+         * will be shown in all sliders
+         */
+        if ($groupID !== NULL && !empty($groupID)) {
+            $criteria->addCondition('group_id   = \'' . $groupID . '\' OR group_id IS NULL');
         }
+        // checl if slit is an active slit (published)
         $criteria->addCondition('status     = \'' . $this::SLIT_ACTIVE . '\'');
+        
+        // check if slit is for current language
         $criteria->addCondition('language   = \'' . Yii::app()->getLanguage() . '\'');
 
         // findAll with this $creteria
