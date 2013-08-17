@@ -214,11 +214,11 @@
 
 
                 <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'page_id'); ?></div>
-                    <div class='controls'><?php echo $form->dropDownList($model, 'page_id', SlitSliderWidget::getP3Pages(), array('class' => 'span10', 'placeholder' => 'Search Page Name')); ?></div>
-                    <?php echo $form->error($model, 'page_id'); ?>
+                    <div class='control-label'><?php echo $form->labelEx($model, 'group_id'); ?></div>
+                    <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group')); ?></div>
+                    <?php echo $form->error($model, 'group_id'); ?>
                     <?php
-                    if ('help.page_id' != $help = Yii::t('SlitSliderModule.crud', 'help.page_id')) {
+                    if ('help.group_id' != $help = Yii::t('SlitSliderModule.crud', 'help.group_id')) {
                         echo "<span class='help-block'>{$help}</span>";
                     }
                     ?>

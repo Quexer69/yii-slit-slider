@@ -47,10 +47,10 @@ $this->widget('TbGridView', array(
             }
         ),
         array(
-            'name' => 'page_id',
+            'name' => 'group_id',
             'type' => 'raw',
             'value' => function($data) {
-                return '<span class="badge badge-warning">ID: ' . $data->page_id . '</span> <span class="badge badge-warning">' . $data->getPageName($data->page_id) . '</span>';
+                return '<span class="badge badge-warning">Group ID: ' . $data->group_id . '</span>';
                 
             }
         ),

@@ -35,9 +35,9 @@ $this->breadcrumbs[] = $model->id;
                     'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
                 ),
                 array(
-                    'name' => 'page_id',
+                    'name' => 'group_id',
                     'type' => 'raw',
-                    'value' => '<span class="badge badge-warning">ID: ' . $model->page_id . '</span> <span class="badge badge-warning">' . $model->getPageName($model->page_id) . '</span>',
+                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">ID: ' . $model->group_id . '</span>',
                 ),
                 array(
                     'name' => 'rank',
