@@ -3,12 +3,12 @@
 /**
  * Class File
  * @author    Christopher Stebe <chris@stebe.eu>
- * @link      https://github.com/Quexer69
- * @copyright Copyright &copy; 2005-2010 diemeisterei GmbH
- * @license   http://www.phundament.com/license/
+ * @link      https://github.com/Quexer69/yii-slit-slider
+ * @copyright Copyright &copy; 2013 Christopher Stebe
  *
  *  Call this Widget on which page and position
- *  you what the slit-slider appear
+ *  you what the slit-slider appear.
+ *  With group ID's you can manage multiple sliders in your web application
  * 
  * <pre>
  * <?php
@@ -18,46 +18,74 @@
  *              'orientation'   => 'horizontal',
  *              'image_preset'  => 'slitslider',
  *              'order'         => 'rank DESC',
- *              'pageId'        => null,
+ *              'groupId'       => NULL,
  *              'width'         => '100%',
- *              'height'        => '600px',
+ *              'height'        => '500px',
  *          )
  *   );
  * ?>
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.1.4
+ * @version 0.2.0
  * @package quexer69/yii-slit-slider
  */
 class SlitSliderWidget extends CWidget
 {
+    const widgetName    = 'slitSlider';
+    const SLIT_ACTIVE   = 'published';
+    const IMAGE         = 'image';
+    const HTML          = 'html';
 
-    const SLIT_ACTIVE       = 'published';
-    const IMAGE             = 'image';
-    const HTML              = 'html';
+    /**
+     * @var slider animation 
+     */
+    public $orientation = 'horizontal';
+
+    /**
+     * @var P3Media image preset 
+     */
+    public $image_preset = 'original';
+
+    /**
+     * @var sort order 
+     */
+    public $order = 'rank ASC';
+
+    /**
+     * @var groupId to specify a slider group  
+     * @type varchar(60) so you can assign numbers or words
+     */
+    public $groupId = NULL;
+
+    /**
+     * @var default width 
+     */
+    public $width = '100%';
+
+    /**
+     * @var default height 
+     */
+    public $height = '500px';
+
     
-    // Public params for JSON Editor
-    public $orientation     = 'horizontal';
-    public $image_preset    = 'original';
-    public $order           = 'rank ASC';
-    public $pageId          = null;
-    public $width           = '100%';
-    public $height          = '600px';
-
+    
+    /**
+     * run slit slider widget
+     */
     public function run()
     {
-        // @var pageID: Get active P3Page->id
-        $pageID = self::getActivePageId();
+        // @var $groupID: Get group_id
+        $groupID = $this->groupId;
 
         // get Slit models for this P3Page and status
-        $thisSlits = self::querySlits($pageID);
+        $thisSlits = self::querySlits($groupID);
 
         // Check if slits are availible for this P3age
         if (self::hasSlits($thisSlits)) {
 
             // Just if there are slits for this P3Page, publish Assets (css, js)
-            self::registerAssets();
+            self::registerAssets($thisSlits);
 
             // Output HTML Template (for IMAGE and HTML slits)
             self::openSliderWrapper();
@@ -87,7 +115,7 @@ class SlitSliderWidget extends CWidget
     public function getP3MediaPreset()
     {
         $p3mediaPreset = array();
-        $mediaModule    = Yii::app()->getModules();
+        $mediaModule = Yii::app()->getModules();
         foreach ($mediaModule['p3media']['params']['presets'] AS $key => $presets) {
 
             $name = (isset($presets['name'])) ? " {$presets['name']}" : $key;
@@ -98,31 +126,35 @@ class SlitSliderWidget extends CWidget
         }
         return $p3mediaPreset;
     }
-    
+
     /**
      * 
      * @return array
      */
     public function getP3MediaPresetName($preset)
-    {         
-        $mediaModule    = Yii::app()->getModules();
+    {
+        $mediaModule = Yii::app()->getModules();
         foreach ($mediaModule['p3media']['params']['presets'] AS $key => $presets) {
 
-          if ($key === $preset) {
+            if ($key === $preset) {
                 $name = (isset($presets['name'])) ? " {$presets['name']}" : $key;
                 $size = (isset($presets['commands']['resize'][0])) ? "{$presets['commands']['resize'][0]}x{$presets['commands']['resize'][1]}" : '';
                 $modus = (isset($presets['commands']['resize'][2])) ? " Modus {$presets['commands']['resize'][2]}" : '';
                 $title = "<span class=\"badge badge-danger\">{$name}</span> <span class=\"badge badge-danger\">{$size}</span> <span class=\"badge badge-danger\">{$modus}</span>";
                 return $title;
-          }
+            }
         }
-        return false;       
+        return false;
     }
-    
+
+    /**
+     * 
+     * @return array with p3media preset names from config/main
+     */
     public function getP3MediaPresetNames()
     {
         $p3mediaPreset = array();
-        $mediaModule    = Yii::app()->getModules();
+        $mediaModule = Yii::app()->getModules();
         foreach ($mediaModule['p3media']['params']['presets'] AS $key => $presets) {
             array_push($p3mediaPreset, $key);
         }
@@ -130,76 +162,10 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
-     * @return array with all P3Pages
-     * Index: [P3Page->id]
-     * Value: [P3Page->nameId]
-     */
-    public function getP3Pages()
-    {
-        $nameIds = array();
-
-        //FindAll P3Page's
-        $p3pages = P3Page::model()->findAll();
-        foreach ($p3pages AS $p3page) {
-
-            // If page has nameId
-            if ($p3page->nameId)
-                $nameIds[$p3page->id] = "ID: " . $p3page->id . " || " .$p3page->nameId;
-        }
-        return $nameIds;
-    }
-
-    /**
-     * 
-     * @return array
-     * Index: [P3Page->id]
-     * Value: [P3Page->nameId]
-     */
-    public function getActivePage()
-    {
-        if (!P3Page::getActivePage()) {
-            return false;
-        } else {
-            return array(P3Page::getActivePage()->id => P3Page::getActivePage()->nameId);
-        }
-    }
-
-    /**
-     * 
-     * @return int : P3Page->id
-     */
-    public function getActivePageId()
-    {
-        if (isset($this->pageId) && $this->pageId !== NULL && !empty($this->pageId)) {
-            return $this->pageId;
-        } else {
-            $activePage = $this->getActivePage();
-            foreach ($activePage as $key => $nameId) {
-
-                return $key;
-            }
-        }
-    }
-
-    /**
-     * 
-     * @return string : P3Page->nameId
-     */
-    public function getActivePageNameId()
-    {
-        $activePage = $this->getActivePage();
-        foreach ($activePage as $key => $nameId) {
-
-            return $nameId;
-        }
-    }
-
-    /**
      * Register CSS Files and JavaScript
      * Register CSS from width and height param
      */
-    private function registerAssets()
+    private function registerAssets($slits)
     {
         $registerScripts = Yii::app()->getClientScript();
 
@@ -217,23 +183,34 @@ class SlitSliderWidget extends CWidget
         // CSS files
         $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', true, -1, true); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
+
+        // register meta tags (SEO and page search)
+        foreach ($slits AS $slit) {
+            if ($slit->keywords !== NULL) {
+                $sliderKeywords .= $slit->keywords . ', ';
+            }
+        }
+        Yii::app()->clientScript->registerMetaTag($sliderKeywords, 'keywords', null, array('id' => $this::widgetName));
     }
 
     /**
      * 
-     * @param type $pageID
-     * @return type
+     * @param type $groupID
+     * @return Slit::model()
      */
-    public function querySlits($pageID)
+    public function querySlits($groupID)
     {
         $criteria = new CDbCriteria();
         // TODO prepare fore start_date -> end_date support
         //$now = new CDbExpression("NOW()");
         $criteria->order = $this->order;
 
-        $criteria->addCondition('page_id    = \''. $pageID. '\'');
-        $criteria->addCondition('status     = \''. $this::SLIT_ACTIVE. '\'');
-        $criteria->addCondition('language   = \''. Yii::app()->getLanguage(). '\'');
+
+        if ($groupID !== NULL) {
+            $criteria->addCondition('group_id    = \'' . $groupID . '\'');
+        }
+        $criteria->addCondition('status     = \'' . $this::SLIT_ACTIVE . '\'');
+        $criteria->addCondition('language   = \'' . Yii::app()->getLanguage() . '\'');
 
         // findAll with this $creteria
         return Slit::model()->findAll($criteria);
@@ -272,7 +249,7 @@ class SlitSliderWidget extends CWidget
     public function getImageModeInfo()
     {
         // Master Dimension
-        $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL | ";
+        $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL";
         return $modes;
     }
 
@@ -303,10 +280,10 @@ class SlitSliderWidget extends CWidget
         echo "                    <h2>{$model->headline}</h2>\n";
         echo "                    <blockquote>\n";
         echo "                        <p>{$model->subline}</p>\n";
-                                        if ($model->link !== NULL){
-                                            echo "<a class=\"btn btn-theme\" href=\"{$model->link}\" target=\"_blank\"><i class=\"icon-external-link\"></i>mehr</a>";
-                                        }
-        echo                         "</blockquote>\n";
+        if ($model->link !== NULL) {
+            echo "<a class=\"btn btn-theme\" href=\"{$model->link}\" target=\"_blank\"><i class=\"icon-external-link\"></i>mehr</a>";
+        }
+        echo "</blockquote>\n";
         echo "          </div>\n";
         echo "      </div>\n";
     }
