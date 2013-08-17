@@ -60,7 +60,7 @@ edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
         ),
 ```
 
-*OPTIONAL (if you have schmunk42/multi-theme installed, you can say in wich theme should the SlitSlider Backend be displayed)*
+**OPTIONAL** *(if you have schmunk42/multi-theme installed, you can say in which theme should the SlitSlider Backend be displayed)*
 ```php
 'themeManager' => array(
             'class' => 'vendor.schmunk42.multi-theme.EMultiThemeManager',
@@ -68,7 +68,7 @@ edit in app/config/console.php to add slit-slider migration ($ yiic migrate)
             'baseUrl' => $baseUrl . '/themes',
             'rules' => array(
                 ...
-                '^ckeditorConfigurator/(.*)' => 'backend2',
+                '^slitSlider/(.*)' => 'backend2',
                 ...
             )
         ),
