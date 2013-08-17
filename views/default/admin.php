@@ -50,9 +50,8 @@ $this->widget('TbGridView', array(
             'name' => 'group_id',
             'type' => 'raw',
             'value' => function($data) {
-                return '<span class="badge badge-warning">Group ID: ' . $data->group_id . '</span>';
-                
-            }
+                return ($data->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">ID: ' . $data->group_id . '</span>';
+                }
         ),
         array(
             'name' => 'rank',
