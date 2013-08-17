@@ -22,7 +22,6 @@ class SlitSliderModule extends CWebModule
         $this->setImport(array(
             'slitSlider.models.*',
             'slitSlider.components.*',
-            'vendor.phundament.p3pages.models.*',
             'vendor.phundament.p3media.models.*'
         ));
         
