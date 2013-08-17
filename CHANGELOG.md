@@ -2,10 +2,14 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.2.1**
+**Preview on 0.2.2**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.2.1**
+* fix one case for db criteria (querySlits())
+* fix output for empty group_id's in admin.php
+
 **Version 0.2.0**
 * remove dependency to schmunk42/p3pages
 * you have groupId's to assign slits to any SliderWidget
