@@ -2,12 +2,16 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.2.0**
-* remove dependency to schmunk42/p3pages
-Slits will no longer allocated by the p3page_id
-but you have group_id's
+**Preview on 0.2.1**
+* add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.2.0**
+* remove dependency to schmunk42/p3pages
+* you have groupId's to assign slits to any SliderWidget
+* register meta tags (slit keywords) on the slider pages 
+(for SEO and search functions on your app) 
+
 **Version 0.1.4**
 * small bug fixes
 * stable version for P3Media and P3Pages

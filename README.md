@@ -78,13 +78,17 @@ Run widget
                 'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
                 'image_preset'  => 'slitslider',    // P3Media image preset for pictures
                 'order'         => 'rank DESC',     // sort order of the slits
-                'pageId'        => '5',             // show all slits for a P3Page->id
+                'groupId'       => '5',             // show all slits for a group_id
                 'height'        => '600px',         // css height of the wrapper
                 'width'         => '100%'           // css width of the wrapper
             )
     );
 
 ```
+* `if groupId is NULL for a slider widget` -> all slits will be shown in this slider.
+* `if groupId is NULL for a slit` -> this slit will be shown in all sliders.
+* `groupId` can be a number or a groupname
+
 
 **Or easily add through P3WidgetContainer**
 
