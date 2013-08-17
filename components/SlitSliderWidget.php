@@ -27,7 +27,7 @@
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.1.3
+ * @version 0.1.4
  * @package quexer69/yii-slit-slider
  */
 class SlitSliderWidget extends CWidget
