@@ -165,7 +165,7 @@ class SlitSliderWidget extends CWidget
      * Register CSS Files and JavaScript
      * Register CSS from width and height param
      */
-    private function registerAssets($slits)
+    public function registerAssets($slits)
     {
         $registerScripts = Yii::app()->getClientScript();
 
@@ -228,7 +228,7 @@ class SlitSliderWidget extends CWidget
      * @param type $allSlits
      * @return boolean
      */
-    private function hasSlits($allSlits)
+    public function hasSlits($allSlits)
     {
         if (sizeof($allSlits) > 0) {
             return true;
@@ -241,7 +241,7 @@ class SlitSliderWidget extends CWidget
      * @param type $allSlits
      * @return boolean
      */
-    private function hasDots($allSlits)
+    public function hasDots($allSlits)
     {
         if (sizeof($allSlits) > 1) {
             return true;
@@ -264,7 +264,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @param type $model
      */
-    private function showImage($model)
+    public function showImage($model)
     {
         // Create image URL, check if media_preset for image is in config/main availible
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
@@ -299,7 +299,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @param type $model
      */
-    private function showHtml($model)
+    public function showHtml($model)
     {
         echo "      <div class=\"sl-slide\" 
                             data_orientation=\"$model->data_orientation\" 
@@ -320,7 +320,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @param type $allSlits
      */
-    private function showDots($allSlits)
+    public function showDots($allSlits)
     {
         if ($this->hasDots($allSlits)) {
             $_size = sizeof($allSlits);
@@ -338,13 +338,13 @@ class SlitSliderWidget extends CWidget
         }
     }
 
-    private static function openSliderWrapper()
+    public function openSliderWrapper()
     {
         echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
         echo "   <div class=\"sl-slider\">\n";
     }
 
-    private static function closeSliderWrapper()
+    public function closeSliderWrapper()
     {
         echo "   </div>\n";
         echo "</div>\n";
