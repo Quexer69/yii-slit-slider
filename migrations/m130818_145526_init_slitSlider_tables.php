@@ -5,7 +5,7 @@
  * Created with https://github.com/schmunk42/database-command
  */
 
-class m130817_163021_init_slitSlider_tables extends CDbMigration {
+class m130818_145526_init_slitSlider_tables extends CDbMigration {
 
 	public function safeUp() {
         if (Yii::app()->db->schema instanceof CMysqlSchema) {
