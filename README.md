@@ -116,7 +116,7 @@ Run widget
         ),
         ...
 ```
-*output on any p3page template*
+*output on any page template*
 ```php 
     $this->widget('p3widgets.components.P3WidgetContainer', 
         array(
