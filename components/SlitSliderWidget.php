@@ -212,7 +212,7 @@ class SlitSliderWidget extends CWidget
          * OR NULL because slits without group_id
          * will be shown in all sliders
          */
-        if ($groupID !== NULL && !empty($groupID)) {
+        if ($this->groupId !== NULL && !empty($this->groupId)) {
             $criteria->addCondition('group_id   = \'' . $this->groupId . '\' OR group_id IS NULL');
         }
         // checl if slit is an active slit (published)
