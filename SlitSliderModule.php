@@ -15,16 +15,6 @@ class SlitSliderModule extends CWebModule
 
     public function init()
     {
-        // this method is called when the module is being created
-        // you may place code here to customize the module or the application
-        
-        // import the module-level models and components
-        $this->setImport(array(
-            'slitSlider.models.*',
-            'slitSlider.components.*',
-            'vendor.phundament.p3media.models.*'
-        ));
-        
         // Register some JS Code for features used in Crud
         $jsSnipp = "jQuery('body').popover({'selector':'[rel=popover]'});";
         $registerScripts = Yii::app()->getClientScript();

@@ -30,6 +30,11 @@
  * @version 0.2.0
  * @package quexer69/yii-slit-slider
  */
+
+Yii::import('vendor.quexer69.yii-slit-slider.models.*');
+Yii::import('vendor.phundament.p3media.models.*');
+
+
 class SlitSliderWidget extends CWidget
 {
     const widgetName    = 'slitSlider';
@@ -75,9 +80,6 @@ class SlitSliderWidget extends CWidget
      */
     public function run()
     {
-        // @var $groupID: Get group_id
-        $groupID = $this->groupId;
-
         // get Slit models for this P3Page and status
         $thisSlits = self::querySlits();
 
