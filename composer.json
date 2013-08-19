@@ -13,7 +13,7 @@
         }
     ],
     "dependencies": {
-        
+        "phundament/p3extensions": ">=0.15.2"
     },
     "suggest": {
         "Slider": "Any new slider extensions"
