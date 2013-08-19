@@ -45,7 +45,6 @@ $this->breadcrumbs[] = $model->id;
                     'value' => '<span class="badge badge-info"># ' . $model->rank . '</span>',
                 ),
                 'language',
-                'keywords',
                 'type',
                 array(
                     'name' => 'bodyHtml',

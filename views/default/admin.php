@@ -80,7 +80,6 @@ $this->widget('TbGridView', array(
     /*
       'bodyHtml',
      */
-    #'keywords',     
     /*
       'rank',
       'data_orientation',

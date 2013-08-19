@@ -186,14 +186,6 @@ class SlitSliderWidget extends CWidget
         // CSS files
         $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', true, -1, true); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
-
-        // register meta tags (SEO and page search)
-        foreach ($slits AS $slit) {
-            if ($slit->keywords !== NULL) {
-                $sliderKeywords .= $slit->keywords . ', ';
-            }
-        }
-        Yii::app()->clientScript->registerMetaTag($sliderKeywords, 'keywords', null, array('id' => $this::widgetName));
     }
 
     /**

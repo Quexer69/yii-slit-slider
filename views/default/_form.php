@@ -168,18 +168,6 @@
                     ?>
                 </div>
 
-
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'keywords'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'keywords', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Keyword1, Keyword2, Keyword3')); ?></div>
-                    <?php echo $form->error($model, 'keywords'); ?>
-                    <?php
-                    if ('help.keywords' != $help = Yii::t('SlitSliderModule.crud', 'help.keywords')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
-                </div>
-
                 <hr>
                 <h4><?php echo Yii::t('SlitSliderModule.crud', 'Assignment'); ?></h4>
                 <div class="control-group">
