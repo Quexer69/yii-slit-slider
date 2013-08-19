@@ -79,7 +79,7 @@ class SlitSliderWidget extends CWidget
         $groupID = $this->groupId;
 
         // get Slit models for this P3Page and status
-        $thisSlits = self::querySlits($groupID);
+        $thisSlits = self::querySlits();
 
         // Check if slits are availible for this P3age
         if (self::hasSlits($thisSlits)) {
@@ -198,7 +198,7 @@ class SlitSliderWidget extends CWidget
      * @param type $groupID
      * @return Slit::model()
      */
-    public function querySlits($groupID)
+    public function querySlits()
     {
         $criteria = new CDbCriteria();
         // TODO prepare fore start_date -> end_date support
@@ -211,7 +211,7 @@ class SlitSliderWidget extends CWidget
          * will be shown in all sliders
          */
         if ($groupID !== NULL && !empty($groupID)) {
-            $criteria->addCondition('group_id   = \'' . $groupID . '\' OR group_id IS NULL');
+            $criteria->addCondition('group_id   = \'' . $this->groupId . '\' OR group_id IS NULL');
         }
         // checl if slit is an active slit (published)
         $criteria->addCondition('status     = \'' . $this::SLIT_ACTIVE . '\'');
