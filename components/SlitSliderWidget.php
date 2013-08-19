@@ -30,8 +30,6 @@
  * @version 0.2.0
  * @package quexer69/yii-slit-slider
  */
-// Set alias for slitslider assets
-Yii::setPathOfAlias('SlitAssets', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR));
 
 Yii::import('vendor.quexer69.yii-slit-slider.models.*');
 

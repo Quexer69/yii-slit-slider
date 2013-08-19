@@ -6,6 +6,8 @@
  * @copyright Copyright &copy; 2005-2010 diemeisterei GmbH
  * @license   http://www.phundament.com/license/
  */
+// Set alias for slitslider assets
+Yii::setPathOfAlias('SlitAssets', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR));
 
 class SlitSliderModule extends CWebModule
 {
