@@ -34,15 +34,16 @@
 Yii::setPathOfAlias('SlitAssets', realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR));
 
 Yii::import('vendor.quexer69.yii-slit-slider.models.*');
-Yii::import('vendor.phundament.p3media.models.*');
+
 
 
 class SlitSliderWidget extends CWidget
 {
-    const widgetName    = 'slitSlider';
-    const SLIT_ACTIVE   = 'published';
-    const IMAGE         = 'image';
-    const HTML          = 'html';
+    const widgetName            = 'slitSlider';
+    const SLIT_ACTIVE           = 'published';
+    const media_preset_view     = 'medium-picture-original';
+    const IMAGE                 = 'image';
+    const HTML                  = 'html';
 
     /**
      * @var slider animation 

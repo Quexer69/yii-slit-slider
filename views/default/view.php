@@ -22,7 +22,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'media_id',
                     'type' => 'raw',
-                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id), 'small') : 'n/a',
+                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : 'n/a',
                 ),
                  array(
                     'name' => 'image_preset',

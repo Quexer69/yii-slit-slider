@@ -3,6 +3,7 @@
 // auto-loading
 Yii::setPathOfAlias('Slit', dirname(__FILE__));
 Yii::import('Slit.*');
+Yii::import('vendor.phundament.p3media.models.*');
 
 class Slit extends BaseSlit
 {
@@ -49,7 +50,10 @@ class Slit extends BaseSlit
      */
     public function createImageLink($media_id, $title, $link = array(), $preset = null)
     {
-        $createUrl = Yii::app()->controller->createUrl('/p3media/file/image', array('id' => $media_id, 'preset' => $preset));
+        $createUrl = Yii::app()->controller->createUrl('/p3media/file/image', array(
+            'id' => $media_id, 
+            'preset' => (isset($preset) && in_array($preset, SlitSliderWidget::getP3MediaPresetNames())) ? $preset : SlitSliderWidget::media_preset_view));
+
         $image = CHtml::image($createUrl, $title, array('class' => 'pull-left'));
         $link = CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
         return $link;
