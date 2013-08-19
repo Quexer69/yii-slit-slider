@@ -43,23 +43,23 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label'><?php echo $form->labelEx($model, 'start_date'); ?></div>
+                            <div class='control-label muted'><?php echo $form->labelEx($model, 'start_date'); ?></div>
                             <div class='controls'><?php
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'model' => $model,
-                                    'attribute' => 'start_date',
-                                    'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
-                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
-                                    'options' => array(
-                                        'showButtonPanel' => false,
-                                        'disable' => true,
-                                        'changeYear' => true,
-                                        'changeYear' => true,
-                                        'dateFormat' => 'yy-mm-dd',
-                                    ),
-                                        )
-                                );
-                                ;
+//                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+//                                    'model' => $model,
+//                                    'attribute' => 'start_date',
+//                                    'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
+//                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
+//                                    'options' => array(
+//                                        'showButtonPanel' => false,
+//                                        'disable' => true,
+//                                        'changeYear' => true,
+//                                        'changeYear' => true,
+//                                        'dateFormat' => 'yy-mm-dd',
+//                                    ),
+//                                        )
+//                                );
+//                                ;
                                 ?></div>
                             <?php echo $form->error($model, 'start_date'); ?>
                             <?php
@@ -76,8 +76,8 @@
                             <div class='control-label'><?php echo $form->labelEx($model, 'type'); ?></div>
                             <div class='controls'><?php
                                 echo CHtml::activeDropDownList($model, 'type', array(
-                                    'html' => 'html',
                                     'image' => 'image',
+                                    'html' => 'html',
                                         ), array(
                                     'class' => 'span12'
                                 ));
@@ -93,22 +93,22 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label'><?php echo $form->labelEx($model, 'end_date'); ?></div>
-                            <div class='controls'><?php
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'model' => $model,
-                                    'attribute' => 'end_date',
-                                    'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
-                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
-                                    'options' => array(
-                                        'showButtonPanel' => false,
-                                        'changeYear' => true,
-                                        'changeYear' => true,
-                                        'dateFormat' => 'yy-mm-dd',
-                                    ),
-                                        )
-                                );
-                                ;
+                            <div class='control-label muted'><?php echo $form->labelEx($model, 'end_date'); ?></div>
+                            <div class='controls'><?php 
+//                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+//                                    'model' => $model,
+//                                    'attribute' => 'end_date',
+//                                    'language' => substr(Yii::app()->language, 0, strpos(Yii::app()->language, '_')),
+//                                    'htmlOptions' => array('size' => 20, 'readonly' => false, 'placeholder' => 'Choose...'),
+//                                    'options' => array(
+//                                        'showButtonPanel' => false,
+//                                        'changeYear' => true,
+//                                        'changeYear' => true,
+//                                        'dateFormat' => 'yy-mm-dd',
+//                                    ),
+//                                        )
+//                                );
+//                                ;
                                 ?></div>
                             <?php echo $form->error($model, 'end_date'); ?>
                             <?php
@@ -121,53 +121,54 @@
                 </div>
 
                 <hr>
-                <h4><?php echo Yii::t('SlitSliderModule.crud', 'Input'); ?></h4>
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'headline'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'headline', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
-                    <?php echo $form->error($model, 'headline'); ?>
-                    <?php
-                    if ('help.headline' != $help = Yii::t('SlitSliderModule.crud', 'help.headline')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
+                <div id="slit_image">
+                    <h4><?php echo Yii::t('SlitSliderModule.crud', 'Image Slit'); ?></h4>
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'headline'); ?></div>
+                        <div class='controls'><?php echo $form->textField($model, 'headline', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
+                        <?php echo $form->error($model, 'headline'); ?>
+                        <?php
+                        if ('help.headline' != $help = Yii::t('SlitSliderModule.crud', 'help.headline')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'subline'); ?></div>
+                        <div class='controls'><?php echo $form->textField($model, 'subline', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
+                        <?php echo $form->error($model, 'subline'); ?>
+                        <?php
+                        if ('help.subline' != $help = Yii::t('SlitSliderModule.crud', 'help.subline')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'link'); ?></div>
+                        <div class='controls'><?php echo $form->textField($model, 'link', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
+                        <?php echo $form->error($model, 'link'); ?>
+                        <?php
+                        if ('help.link' != $help = Yii::t('SlitSliderModule.crud', 'help.link')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
                 </div>
-
-
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'subline'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'subline', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
-                    <?php echo $form->error($model, 'subline'); ?>
-                    <?php
-                    if ('help.subline' != $help = Yii::t('SlitSliderModule.crud', 'help.subline')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
+                
+                <div id="slit_html">
+                    <h4><?php echo Yii::t('SlitSliderModule.crud', 'HTML Slit'); ?></h4>          
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'bodyHtml'); ?></div>
+                        <div class='controls'><?php echo $form->textArea($model, 'bodyHtml', array('rows' => 6, 'cols' => 60, 'placeholder' => 'Type: HTML')); ?></div>
+                        <?php echo $form->error($model, 'bodyHtml'); ?>
+                        <?php
+                        if ('help.bodyHtml' != $help = Yii::t('SlitSliderModule.crud', 'help.bodyHtml')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
                 </div>
-
-
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'link'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'link', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'Type: IMAGE')); ?></div>
-                    <?php echo $form->error($model, 'link'); ?>
-                    <?php
-                    if ('help.link' != $help = Yii::t('SlitSliderModule.crud', 'help.link')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
-                </div>
-
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'bodyHtml'); ?></div>
-                    <div class='controls'><?php echo $form->textArea($model, 'bodyHtml', array('rows' => 6, 'cols' => 60, 'placeholder' => 'Type: HTML')); ?></div>
-                    <?php echo $form->error($model, 'bodyHtml'); ?>
-                    <?php
-                    if ('help.bodyHtml' != $help = Yii::t('SlitSliderModule.crud', 'help.bodyHtml')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
-                </div>
-
+                
                 <hr>
                 <h4><?php echo Yii::t('SlitSliderModule.crud', 'Assignment'); ?></h4>
                 <div class="control-group">
@@ -200,10 +201,9 @@
                     ?>
                 </div>
 
-
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'group_id'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group')); ?></div>
+                    <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group','class' => 'span6')); ?></div>
                     <?php echo $form->error($model, 'group_id'); ?>
                     <?php
                     if ('help.group_id' != $help = Yii::t('SlitSliderModule.crud', 'help.group_id')) {
@@ -215,7 +215,7 @@
 
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'rank'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position on this P3Page')); ?></div>
+                    <div class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position within a slider group','class' => 'span6')); ?></div>
                     <?php echo $form->error($model, 'rank'); ?>
                     <?php
                     if ('help.rank' != $help = Yii::t('SlitSliderModule.crud', 'help.rank')) {
@@ -315,3 +315,20 @@
 
     <?php $this->endWidget() ?>
 </div> <!-- form -->
+<script>
+    jQuery('#slit_image').show();
+    jQuery('#slit_html').hide();
+    jQuery('#Slit_type').on('change', function(){
+       
+       if(this.value === 'html') {
+           $('#slit_image').hide();
+           $('#slit_html').show();
+           //alert( this.value ); // or $(this).val()
+       }
+       else if(this.value === 'image') {
+           $('#slit_image').show();
+           $('#slit_html').hide();
+          // alert( this.value ); // or $(this).val()
+       }
+    });
+</script>
