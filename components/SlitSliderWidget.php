@@ -16,7 +16,7 @@
  *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
  *          array(
  *              'orientation'   => 'horizontal',
- *              'image_preset'  => 'slitslider',
+ *              'imagePreset'   => 'slitslider',
  *              'order'         => 'rank DESC',
  *              'groupId'       => NULL,
  *              'width'         => '100%',
@@ -53,7 +53,7 @@ class SlitSliderWidget extends CWidget
     /**
      * @var P3Media image preset 
      */
-    public $image_preset = 'original';
+    public $imagePreset = 'original';
 
     /**
      * @var sort order 
@@ -258,7 +258,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @return string
      */
-    public function getImageModeInfo()
+    public static function getImageModeInfo()
     {
         // Master Dimension
         $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL";
@@ -274,7 +274,7 @@ class SlitSliderWidget extends CWidget
         // Create image URL, check if media_preset for image is in config/main availible
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
             'id' => $model->media_id,
-            'preset' => (isset($model->image_preset) && in_array($model->image_preset, self::getP3MediaPresetNames())) ? $model->image_preset : $this->image_preset));
+            'preset' => (isset($model->image_preset) && in_array($model->image_preset, self::getP3MediaPresetNames())) ? $model->image_preset : $this->imagePreset));
 
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
