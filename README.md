@@ -42,6 +42,9 @@ Setup
 'modules' => array(
         'slitSlider' => array(
             'class' => 'vendor.quexer69.yii-slit-slider.SlitSliderModule',
+            'imagePresets' => array(
+                'slitslider' => 'slitslider-crop-16-9'
+            ),
         ),
         ...
 ```

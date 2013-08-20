@@ -192,7 +192,7 @@
                         'htmlOptions' => array('class' => 'pull-right', 'data-placement' => 'left', 'data-content' => SlitSliderWidget::getImageModeInfo(), 'rel' => 'popover'),
                     ));
                     ?> 
-                    <div class='controls'><?php echo $form->dropDownList($model, 'image_preset', SlitSliderWidget::getP3MediaPreset(), array('class' => 'span10', 'placeholder' => 'Choose Image Preset')); ?></div>
+                    <div class='controls'><?php echo $form->dropDownList($model, 'image_preset', $this->module->imagePresets, array('class' => 'span10', 'placeholder' => 'Choose Image Preset')); ?></div>
                     <?php echo $form->error($model, 'image_preset'); ?>
                     <?php
                     if ('help.image_preset' != $help = Yii::t('SlitSliderModule.crud', 'help.image_preset')) {

@@ -11,6 +11,8 @@ Yii::setPathOfAlias('SlitAssets', realpath(dirname(__FILE__) . DIRECTORY_SEPARAT
 
 class SlitSliderModule extends CWebModule
 {
+    
+    public $imagePresets = array();
 
     public function init()
     {
