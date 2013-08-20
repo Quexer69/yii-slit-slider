@@ -47,9 +47,9 @@ $this->breadcrumbs[] = $model->id;
                 'language',
                 'type',
                 array(
-                    'name' => 'bodyHtml',
+                    'name' => 'body_html',
                     'type' => 'raw',
-                    'value' => ($model->bodyHtml !== null) ? '<pre>' . $model->bodyHtml . '</pre>' : '<i class="icon-ban-circle"></i>'
+                    'value' => ($model->body_html !== null) ? '<pre>' . $model->body_html . '</pre>' : '<i class="icon-ban-circle"></i>'
                 ),
                 'headline',
                 'subline',

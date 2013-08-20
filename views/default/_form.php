@@ -158,11 +158,11 @@
                 <div id="slit_html">
                     <h4><?php echo Yii::t('SlitSliderModule.crud', 'HTML Slit'); ?></h4>          
                     <div class="control-group">
-                        <div class='control-label'><?php echo $form->labelEx($model, 'bodyHtml'); ?></div>
-                        <div class='controls'><?php echo $form->textArea($model, 'bodyHtml', array('rows' => 6, 'cols' => 60, 'placeholder' => 'Type: HTML')); ?></div>
-                        <?php echo $form->error($model, 'bodyHtml'); ?>
+                        <div class='control-label'><?php echo $form->labelEx($model, 'body_html'); ?></div>
+                        <div class='controls'><?php echo $form->textArea($model, 'body_html', array('rows' => 6, 'cols' => 60, 'placeholder' => 'Type: HTML')); ?></div>
+                        <?php echo $form->error($model, 'body_html'); ?>
                         <?php
-                        if ('help.bodyHtml' != $help = Yii::t('SlitSliderModule.crud', 'help.bodyHtml')) {
+                        if ('help.body_html' != $help = Yii::t('SlitSliderModule.crud', 'help.body_html')) {
                             echo "<span class='help-block'>{$help}</span>";
                         }
                         ?>

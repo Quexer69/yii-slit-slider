@@ -44,8 +44,8 @@ echo CHtml::activeDropDownList($model, 'type', array(
     </div>
 
     <div class="row">
-        <?php echo $form->label($model, 'bodyHtml'); ?>
-        <?php echo $form->textField($model, 'bodyHtml', array('size' => 60, 'maxlength' => 255)); ?>
+        <?php echo $form->label($model, 'body_html'); ?>
+        <?php echo $form->textField($model, 'body_html', array('size' => 60, 'maxlength' => 255)); ?>
     </div>
 
     <div class="row">
