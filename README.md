@@ -1,7 +1,7 @@
 Yii Slit Slider Widget
 =============
 
-**Version 0.2.1**
+**Version 0.2.2**
 
 
 What is Slit Slider Widget?
@@ -43,11 +43,31 @@ Setup
         'slitSlider' => array(
             'class' => 'vendor.quexer69.yii-slit-slider.SlitSliderModule',
             'imagePresets' => array(
-                'slitslider' => 'slitslider-crop-16-9'
+                'slitSlider-crop-16-9' => 'SlitSlider - Picture 16:9 cropped 2000x700px (JPG)',
             ),
         ),
         ...
+        'p3media' => array(
+            'class' => 'vendor.phundament.p3media.P3MediaModule',
+            'params' => array(
+                ...
+                'presets' => array(
+                    ...
+                    'slitSlider-crop-16-9' => array(
+                            'name' => 'SlitSlider - Picture 16:9 cropped 2000x700px (JPG)',
+                            'commands' => array(
+                                'resize' => array(2000, 700, 2), // crop
+                                'quality' => '72',
+                            ),
+                            'type' => 'jpg',
+                            'savePublic' => true,
+                    ),
+                    ...
+                ),
+            ),
+        ),
 ```
+*do add imagePresets to the slitslider module. The indices of this array have to be real p3media->params->presets!*
 
 
 edit in app/config/console.php to add slit-slider migration ($ yiic migrate)

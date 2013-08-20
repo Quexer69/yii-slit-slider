@@ -2,10 +2,16 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.2.2**
+**Preview on 0.2.3**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.2.2**
+* remove model property 'keywords'
+* add active selection between type image and html (input fields)
+* add to module property imagePreset (specific presets for slitslider)
+* minor fixes and changes
+
 **Version 0.2.1**
 * fix one case for db criteria (querySlits())
 * fix output for empty group_id's in admin.php
