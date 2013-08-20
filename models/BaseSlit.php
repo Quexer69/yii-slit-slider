@@ -11,7 +11,7 @@
  * @property string $headline
  * @property string $subline
  * @property string $link
- * @property string $bodyHtml
+ * @property string $body_html
  * @property integer $media_id
  * @property string $group_id
  * @property integer $rank
@@ -46,15 +46,15 @@ abstract class BaseSlit extends CActiveRecord{
 		return array_merge(
 		    parent::rules(), array(
 			array('status, language, type, rank', 'required'),
-			array('headline, subline, link, bodyHtml, media_id, group_id, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at, image_preset', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('headline, subline, link, body_html, media_id, group_id, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, updated_at, image_preset', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('media_id, rank, created_by, updated_by', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>9),
 			array('language', 'length', 'max'=>8),
 			array('type, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale', 'length', 'max'=>5),
 			array('headline, subline, link, group_id, image_preset', 'length', 'max'=>255),
 			array('data_orientation', 'length', 'max'=>10),
-			array('bodyHtml, start_date, end_date, created_at, updated_at', 'safe'),
-			array('id, status, language, type, headline, subline, link, bodyHtml, media_id, group_id, rank, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
+			array('body_html, start_date, end_date, created_at, updated_at', 'safe'),
+			array('id, status, language, type, headline, subline, link, body_html, media_id, group_id, rank, data_orientation, data_slice1_rotation, data_slice2_rotation, data_slice1_scale, data_slice2_scale, start_date, end_date, created_at, created_by, updated_at, updated_by', 'safe', 'on'=>'search'),
 		    )
 		);
 	}
@@ -83,7 +83,7 @@ abstract class BaseSlit extends CActiveRecord{
 			'headline' => Yii::t('SlitSliderModule.crud', 'Headline'),
 			'subline' => Yii::t('SlitSliderModule.crud', 'Subline'),
 			'link' => Yii::t('SlitSliderModule.crud', 'Link'),
-			'bodyHtml' => Yii::t('SlitSliderModule.crud', 'Body Html'),
+			'body_html' => Yii::t('SlitSliderModule.crud', 'Body Html'),
 			'media_id' => Yii::t('SlitSliderModule.crud', 'P3Media'),
                         'image_preset' => Yii::t('SlitSliderModule.crud', 'Image Preset'),
 			'group_id' => Yii::t('SlitSliderModule.crud', 'Slider group'),
@@ -118,7 +118,7 @@ abstract class BaseSlit extends CActiveRecord{
 		$criteria->compare('t.headline', $this->headline, true);
 		$criteria->compare('t.subline', $this->subline, true);
 		$criteria->compare('t.link', $this->link, true);
-		$criteria->compare('t.bodyHtml', $this->bodyHtml, true);
+		$criteria->compare('t.body_html', $this->body_html, true);
 		$criteria->compare('t.media_id', $this->media_id);
                 $criteria->compare('t.image_preset', $this->image_preset);
 		$criteria->compare('t.group_id', $this->group_id, true);

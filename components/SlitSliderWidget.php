@@ -291,7 +291,7 @@ class SlitSliderWidget extends CWidget
 
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "              <div class=\"centerHtml\">\n";
-        echo $model->bodyHtml;
+        echo $model->body_html;
         echo "              </div>\n";
         echo "          </div>\n";
         echo "      </div>\n";
