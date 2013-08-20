@@ -88,7 +88,7 @@ class SlitSliderWidget extends CWidget
         if (self::hasSlits($thisSlits)) {
 
             // Just if there are slits for this P3Page, publish Assets (css, js)
-            self::registerAssets($thisSlits);
+            self::registerAssets();
 
             // Output HTML Template (for IMAGE and HTML slits)
             self::openSliderWrapper();
@@ -168,7 +168,7 @@ class SlitSliderWidget extends CWidget
      * Register CSS Files and JavaScript
      * Register CSS from width and height param
      */
-    public function registerAssets($slits)
+    public function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
 
