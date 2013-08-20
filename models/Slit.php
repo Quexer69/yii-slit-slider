@@ -52,7 +52,7 @@ class Slit extends BaseSlit
     {
         $createUrl = Yii::app()->controller->createUrl('/p3media/file/image', array(
             'id' => $media_id, 
-            'preset' => (isset($preset) && in_array($preset, SlitSliderWidget::getP3MediaPresetNames())) ? $preset : SlitSliderWidget::imagePreset_view));
+            'preset' => (isset($preset)) ? $preset : SlitSliderWidget::imagePreset_view));
 
         $image = CHtml::image($createUrl, $title, array('class' => 'pull-left'));
         $link = CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
