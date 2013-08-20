@@ -13,36 +13,31 @@ $this->breadcrumbs[] = $model->id;
 
 <div class="row">
     <div class="span8">
-
+        <br /><br />
         <?php
         $this->widget('TbDetailView', array(
             'data' => $model,
             'attributes' => array(
                 #'id',
                 array(
-                    'name' => 'media_id',
-                    'type' => 'raw',
-                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : 'n/a',
-                ),
-                 array(
-                    'name' => 'image_preset',
-                    'type' => 'raw',
-                    'value' => SlitSliderWidget::getP3MediaPresetName($model->image_preset),
-                ),
-                array(
                     'name' => 'status',
                     'type' => 'raw',
                     'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
                 ),
                 array(
-                    'name' => 'group_id',
+                    'name' => 'image_preset',
                     'type' => 'raw',
-                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">ID: ' . $model->group_id . '</span>',
+                    'value' => SlitSliderWidget::getP3MediaPresetName($model->image_preset),
                 ),
                 array(
-                    'name' => 'rank',
+                    'name' => 'media_id',
                     'type' => 'raw',
-                    'value' => '<span class="badge badge-info"># ' . $model->rank . '</span>',
+                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : 'n/a',
+                ),
+                array(
+                    'name' => 'group_id',
+                    'type' => 'raw',
+                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">Group:</span>' . '<span class="badge badge-warning">' . $model->group_id . '</span> | <span class="badge badge-info">Pos:</span><span class="badge badge-info">' . $model->rank . '</span>',
                 ),
                 'language',
                 'type',
