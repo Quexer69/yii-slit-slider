@@ -22,7 +22,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'status',
                     'type' => 'raw',
-                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
+                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-important"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
                 ),
                 array(
                     'name' => 'image_preset',
