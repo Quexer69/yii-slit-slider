@@ -318,20 +318,29 @@
     <?php $this->endWidget() ?>
 </div> <!-- form -->
 <script>
-    jQuery('#slit_image').show();
-    jQuery('#slit_html').hide();
+    
+    if($('#Slit_type').val() === 'html') {
+            $('#slit_html').show();
+            $('#slit_image').hide();
+    }
+    else if($('#Slit_type').val() === 'image') {
+            $('#slit_image').show();
+            $('#slit_image_assignment').show();
+            $('#slit_html').hide();
+       }
+    
     
     jQuery('#Slit_type').on('change', function(){
        
        if(this.value === 'html') {
-           $('#slit_image').hide();
-           $('#slit_image_assignment').hide();
-           $('#slit_html').show();
+            $('#slit_image').hide();
+            $('#slit_image_assignment').hide();
+            $('#slit_html').show();
        }
        else if(this.value === 'image') {
-           $('#slit_image').show();
-           $('#slit_image_assignment').show();
-           $('#slit_html').hide();
+            $('#slit_image').show();
+            $('#slit_image_assignment').show();
+            $('#slit_html').hide();
        }
     });
 </script>
