@@ -27,7 +27,7 @@
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.2.0
+ * @version 0.2.2
  * @package quexer69/yii-slit-slider
  */
 
@@ -39,7 +39,7 @@ class SlitSliderWidget extends CWidget
 {
     const widgetName            = 'slitSlider';
     const SLIT_ACTIVE           = 'published';
-    const media_preset_view     = 'medium-picture-original';
+    const imagePreset_view      = 'medium-picture-original';
     const IMAGE                 = 'image';
     const HTML                  = 'html';
 
@@ -148,20 +148,6 @@ class SlitSliderWidget extends CWidget
             }
         }
         return false;
-    }
-
-    /**
-     * 
-     * @return array with p3media preset names from config/main
-     */
-    public function getP3MediaPresetNames()
-    {
-        $p3mediaPreset = array();
-        $mediaModule = Yii::app()->getModules();
-        foreach ($mediaModule['p3media']['params']['presets'] AS $key => $presets) {
-            array_push($p3mediaPreset, $key);
-        }
-        return $p3mediaPreset;
     }
 
     /**
