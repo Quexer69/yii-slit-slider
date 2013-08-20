@@ -78,7 +78,7 @@ $this->widget('TbGridView', array(
     #'subline',
     #'link',
     /*
-      'bodyHtml',
+      'body_html',
      */
     /*
       'rank',
