@@ -171,36 +171,38 @@
                 
                 <hr>
                 <h4><?php echo Yii::t('SlitSliderModule.crud', 'Assignment'); ?></h4>
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'media_id'); ?></div>
+                <div id="slit_image_assignment">
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'media_id'); ?></div>
 
-                    <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?></div>
-                    <?php echo $form->error($model, 'media_id'); ?>
-                    <?php
-                    if ('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
+                        <div class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?></div>
+                        <?php echo $form->error($model, 'media_id'); ?>
+                        <?php
+                        if ('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
+                    <div class="control-group">
+                        <div class='control-label'><?php echo $form->labelEx($model, 'image_preset'); ?></div>
+                        <?php
+                        $this->widget('bootstrap.widgets.TbButton', array(
+                            'label' => 'Info',
+                            'icon' => 'icon-info-sign',
+                            'type' => 'info',
+                            'htmlOptions' => array('class' => 'pull-right', 'data-placement' => 'left', 'data-content' => SlitSliderWidget::getImageModeInfo(), 'rel' => 'popover'),
+                        ));
+                        ?> 
+                        <div class='controls'><?php echo $form->dropDownList($model, 'image_preset', $this->module->imagePresets, array('class' => 'span10', 'placeholder' => 'Choose Image Preset')); ?></div>
+                        <?php echo $form->error($model, 'image_preset'); ?>
+                        <?php
+                        if ('help.image_preset' != $help = Yii::t('SlitSliderModule.crud', 'help.image_preset')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <div class='control-label'><?php echo $form->labelEx($model, 'image_preset'); ?></div>
-                    <?php
-                    $this->widget('bootstrap.widgets.TbButton', array(
-                        'label' => 'Info',
-                        'icon' => 'icon-info-sign',
-                        'type' => 'info',
-                        'htmlOptions' => array('class' => 'pull-right', 'data-placement' => 'left', 'data-content' => SlitSliderWidget::getImageModeInfo(), 'rel' => 'popover'),
-                    ));
-                    ?> 
-                    <div class='controls'><?php echo $form->dropDownList($model, 'image_preset', $this->module->imagePresets, array('class' => 'span10', 'placeholder' => 'Choose Image Preset')); ?></div>
-                    <?php echo $form->error($model, 'image_preset'); ?>
-                    <?php
-                    if ('help.image_preset' != $help = Yii::t('SlitSliderModule.crud', 'help.image_preset')) {
-                        echo "<span class='help-block'>{$help}</span>";
-                    }
-                    ?>
-                </div>
-
+                    
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'group_id'); ?></div>
                     <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group','class' => 'span6')); ?></div>
@@ -318,17 +320,18 @@
 <script>
     jQuery('#slit_image').show();
     jQuery('#slit_html').hide();
+    
     jQuery('#Slit_type').on('change', function(){
        
        if(this.value === 'html') {
            $('#slit_image').hide();
+           $('#slit_image_assignment').hide();
            $('#slit_html').show();
-           //alert( this.value ); // or $(this).val()
        }
        else if(this.value === 'image') {
            $('#slit_image').show();
+           $('#slit_image_assignment').show();
            $('#slit_html').hide();
-          // alert( this.value ); // or $(this).val()
        }
     });
 </script>
