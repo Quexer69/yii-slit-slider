@@ -21,73 +21,73 @@ $this->breadcrumbs[] = $model->id;
                 #'id',
                 array(
                     'name' => 'status',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-important"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
                 ),
                 array(
                     'name' => 'image_preset',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => SlitSliderWidget::getP3MediaPresetName($model->image_preset),
                 ),
                 array(
                     'name' => 'media_id',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : '<i class="icon-ban-circle"></i>',
                 ),
                 array(
                     'name' => 'group_id',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">Group:</span>' . '<span class="badge badge-warning">' . $model->group_id . '</span> | <span class="badge badge-info">Pos:</span><span class="badge badge-info">' . $model->rank . '</span>',
                 ),
                 array(
                     'name' => 'type',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->type !== null) ? '<span class="badge ">' . $model->type . '</span>' : '<i class="icon-ban-circle"></i>'
                 ),
                 'language',
                 array(
                     'name' => 'headline',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->headline !== null) ? $model->headline : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'subline',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->subline !== null) ? $model->subline : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'link',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->link !== null) ? $model->link : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'body_html',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->body_html !== null) ? '<pre>' . $model->body_html . '</pre>' : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_orientation',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->data_orientation !== null) ? $model->data_orientation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice1_rotation',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->data_slice1_rotation !== null) ? $model->data_slice1_rotation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice2_rotation',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->data_slice2_rotation !== null) ? $model->data_slice2_rotation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice1_scale',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->data_slice1_scale !== null) ? $model->data_slice1_scale : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice2_scale',
-                    'type' => 'raw',
+                    'type' => 'html',
                     'value' => ($model->data_slice2_scale !== null) ? $model->data_slice2_scale : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
