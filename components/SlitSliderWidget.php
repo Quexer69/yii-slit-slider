@@ -115,7 +115,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @return type array
      */
-    public function getP3MediaPreset()
+    static public function getP3MediaPreset()
     {
         $p3mediaPreset = array();
         $mediaModule = Yii::app()->getModules();
@@ -134,7 +134,7 @@ class SlitSliderWidget extends CWidget
      * 
      * @return array
      */
-    public function getP3MediaPresetName($preset)
+    static public function getP3MediaPresetName($preset)
     {
         $mediaModule = Yii::app()->getModules();
         foreach ($mediaModule['p3media']['params']['presets'] AS $key => $presets) {
