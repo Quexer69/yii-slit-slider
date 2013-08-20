@@ -39,7 +39,7 @@ class SlitSliderWidget extends CWidget
 {
     const widgetName            = 'slitSlider';
     const SLIT_ACTIVE           = 'published';
-    const imagePreset_view      = 'medium-picture-original';
+    const imagePreset_view      = 'small-picture-crop-16-9';
     const IMAGE                 = 'image';
     const HTML                  = 'html';
 
@@ -51,7 +51,7 @@ class SlitSliderWidget extends CWidget
     /**
      * @var P3Media image preset 
      */
-    public $imagePreset = 'original';
+    public $imagePreset = 'p3media-ckbrowse';
 
     /**
      * @var sort order 
@@ -251,7 +251,7 @@ class SlitSliderWidget extends CWidget
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
             'id' => $model->media_id,
             'preset' => (isset($model->image_preset)) ? $model->image_preset : $this->imagePreset));
-
+        
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
         echo "      <div class=\"sl-slide\" 
