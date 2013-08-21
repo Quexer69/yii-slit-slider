@@ -39,35 +39,35 @@ $this->widget('TbGridView', array(
                 return ($data->media_id !== null) ? $data->createImageLink($data->media_id, 'View Image', array('//slitSlider/default/view', 'id' => $data->id), 'p3media-upload') : '<i class="icon-ban-circle"></i>';
             }
         ),
-        array(
-            'name' => 'status',
-            'type' => 'raw',
-            'value' => function($data) {
-                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $data->status . '</span>' : '<span class="badge badge-danger"><i class="icon-eye-close"></i> ' . $data->status . '</span>';
-            }
-        ),
-        array(
-            'name' => 'group_id',
-            'type' => 'raw',
-            'value' => function($data) {
-                return ($data->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">ID: ' . $data->group_id . '</span>';
-                }
-        ),
-        array(
-            'name' => 'rank',
-            'type' => 'raw',
-            'value' => function($data) {
-                return '<span class="badge badge-info"># ' . $data->rank . '</span>';
-            }
-        ),
-        'language',
-        array(
+                array(
             'name' => 'headline',
             'type' => 'html',
             'value' => function($data) {
                 return ($data->headline !== null) ? $data->headline : '<i class="icon-ban-circle"></i>';
             }
         ),
+        array(
+            'name' => 'status',
+            'type' => 'raw',
+            'value' => function($data) {
+                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $data->status . '</span>' : '<span class="badge badge-important"><i class="icon-eye-close"></i> ' . $data->status . '</span>';
+            }
+        ),
+        array(
+            'name' => 'group_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                return ($data->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning"><i class="icon-flag"></i> ' . $data->group_id . '</span>';
+                }
+        ),
+        array(
+            'name' => 'rank',
+            'type' => 'raw',
+            'value' => function($data) {
+                return '<span class="badge badge-info"><i class="icon-list"></i> ' . $data->rank . '</span>';
+            }
+        ),
+        'language',
         'type',
         array(
             'class' => 'TbButtonColumn',
