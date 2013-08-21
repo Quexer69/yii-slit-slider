@@ -59,6 +59,12 @@ class Slit extends BaseSlit
         return $link;
     }
     
+    public function createLink($url)
+    {
+        $link = CHtml::link ($url, $url , array('class' => 'pull-left'));
+        return $link;
+    }
+    
     /**
      * 
      * @param type $page_id

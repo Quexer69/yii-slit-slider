@@ -58,7 +58,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'link',
                     'type' => 'html',
-                    'value' => ($model->link !== null) ? $model->link : '<i class="icon-ban-circle"></i>'
+                    'value' => ($model->link !== null) ? $model->createLink($model->link) : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'body_html',
