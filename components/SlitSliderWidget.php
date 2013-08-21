@@ -268,10 +268,14 @@ class SlitSliderWidget extends CWidget
         echo "                    <h2>{$model->headline}</h2>\n";
         echo "                    <blockquote>\n";
         echo "                        <p>{$model->subline}</p>\n";
-        if ($model->link !== NULL) {
-            echo "<a class=\"btn btn-theme\" href=\"{$model->link}\" target=\"_blank\"><i class=\"icon-external-link\"></i>mehr</a>";
-        }
-        echo "</blockquote>\n";
+                                        if ($model->link !== NULL) {
+                                            if (strpos($model->link,'http') === 0) {
+                                                echo CHtml::link("<i class=\"icon-external-link\"></i> mehr", $model->link , array('target' => '_blank', 'class' => 'btn pull-left'));
+                                            } else {
+                                                echo CHtml::link("<i class=\"icon-share\"></i> mehr", '/' . Yii::app()->getLanguage() . '/' . $model->link , array('target' => '_self', 'class' => 'btn pull-left'));
+                                            }
+                                        }
+        echo "                      </blockquote>\n";
         echo "          </div>\n";
         echo "      </div>\n";
     }

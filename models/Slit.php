@@ -61,7 +61,11 @@ class Slit extends BaseSlit
     
     public function createLink($url)
     {
-        $link = CHtml::link ($url, $url , array('class' => 'pull-left'));
+        if (strpos($url,'http') === 0) {
+            $link = CHtml::link ($url, $url , array('class' => 'pull-left'));
+        } else {
+            $link = CHtml::link ($url, '/' . Yii::app()->getLanguage() . '/' . $url , array('class' => 'pull-left'));
+        }
         return $link;
     }
     

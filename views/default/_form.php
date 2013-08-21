@@ -156,7 +156,7 @@
                     </div>
                     <div class="control-group">
                         <div class='control-label'><?php echo $form->labelEx($model, 'link'); ?></div>
-                        <div class='controls'><?php echo $form->textField($model, 'link', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'URL intern or extern (Optional)')); ?></div>
+                        <div class='controls'><?php echo $form->textField($model, 'link', array('size' => 60, 'maxlength' => 255, 'placeholder' => 'INTERN (controller/action), EXTERN (http://url.com) (Optional)')); ?></div>
                         <?php echo $form->error($model, 'link'); ?>
                         <?php
                         if ('help.link' != $help = Yii::t('SlitSliderModule.crud', 'help.link')) {
