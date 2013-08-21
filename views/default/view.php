@@ -37,7 +37,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'group_id',
                     'type' => 'html',
-                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning">Show on all Sliders</span>' : '<span class="badge badge-warning">Group:</span>' . '<span class="badge badge-warning">' . $model->group_id . '</span> | <span class="badge badge-info">Pos:</span><span class="badge badge-info">' . $model->rank . '</span>',
+                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning"><i class="icon-flag"></i> Show on all Sliders</span> <span class="badge badge-info"><i class="icon-list"></i> ' . $model->rank . '</span>' : '<span class="badge badge-warning"><i class="icon-flag"></i> ' . $model->group_id . '</span> <span class="badge badge-info"><i class="icon-list"></i> ' . $model->rank . '</span>',
                 ),
                 array(
                     'name' => 'type',
