@@ -23,7 +23,7 @@
         ));
         ?>
     </div>
-    <?php echo $form->errorSummary($model);?>
+    <?php echo $form->errorSummary($model); ?>
     <hr>
     <div class="row">
         <div class="span8"> <!-- main inputs -->
@@ -54,7 +54,7 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'start_date'); ?></div>
+                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'start_date');   ?></div>
                             <div class='controls'><?php
 //                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //                                    'model' => $model,
@@ -104,8 +104,8 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'end_date'); ?></div>
-                            <div class='controls'><?php 
+                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'end_date');   ?></div>
+                            <div class='controls'><?php
 //                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //                                    'model' => $model,
 //                                    'attribute' => 'end_date',
@@ -165,7 +165,7 @@
                         ?>
                     </div>
                 </div>
-                
+
                 <div id="slit_html">
                     <h4><?php echo Yii::t('SlitSliderModule.crud', 'HTML Slit'); ?></h4>          
                     <div class="control-group">
@@ -179,7 +179,7 @@
                         ?>
                     </div>
                 </div>
-                
+
                 <hr>
                 <h4><?php echo Yii::t('SlitSliderModule.crud', 'Assignment'); ?></h4>
                 <div id="slit_image_assignment">
@@ -213,10 +213,10 @@
                         ?>
                     </div>
                 </div>
-                    
+
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'group_id'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group','class' => 'span6')); ?></div>
+                    <div class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group', 'class' => 'span6')); ?></div>
                     <?php echo $form->error($model, 'group_id'); ?>
                     <?php
                     if ('help.group_id' != $help = Yii::t('SlitSliderModule.crud', 'help.group_id')) {
@@ -228,7 +228,7 @@
 
                 <div class="control-group">
                     <div class='control-label'><?php echo $form->labelEx($model, 'rank'); ?></div>
-                    <div class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position within a slider group','class' => 'span6')); ?></div>
+                    <div class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position within a slider group', 'class' => 'span6')); ?></div>
                     <?php echo $form->error($model, 'rank'); ?>
                     <?php
                     if ('help.rank' != $help = Yii::t('SlitSliderModule.crud', 'help.rank')) {
@@ -329,29 +329,30 @@
     <?php $this->endWidget() ?>
 </div> <!-- form -->
 <script>
-    
-    if($('#Slit_type').val() === 'html') {
-            $('#slit_html').show();
-            $('#slit_image').hide();
+   
+    if ($('#Slit_type').val() === 'html') {
+        $('#slit_html').show();
+        $('#slit_image').hide();
+        $('#slit_image_assignment').hide();
     }
-    else if($('#Slit_type').val() === 'image') {
-            $('#slit_image').show();
-            $('#slit_image_assignment').show();
-            $('#slit_html').hide();
-       }
-    
-    
-    jQuery('#Slit_type').on('change', function(){
-       
-       if(this.value === 'html') {
+    else if ($('#Slit_type').val() === 'image') {
+        $('#slit_html').hide();
+        $('#slit_image').show();
+        $('#slit_image_assignment').show();
+
+    }
+
+    jQuery('#Slit_type').on('change', function() {
+
+        if (this.value === 'html') {
             $('#slit_image').hide();
             $('#slit_image_assignment').hide();
             $('#slit_html').show();
-       }
-       else if(this.value === 'image') {
+        }
+        else if (this.value === 'image') {
             $('#slit_image').show();
             $('#slit_image_assignment').show();
             $('#slit_html').hide();
-       }
+        }
     });
 </script>
