@@ -31,7 +31,7 @@
  * @package quexer69/yii-slit-slider
  */
 
-Yii::import('vendor.quexer69.yii-slit-slider.models.*');
+Yii::import('slitSlider.models.*');
 
 
 
