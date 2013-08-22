@@ -20,74 +20,148 @@ $this->breadcrumbs[] = $model->id;
             'attributes' => array(
                 #'id',
                 array(
-                    'name' => 'status',
+                    'name' => 'type',
                     'type' => 'html',
-                    'value' => ($model->status !== null && $model->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $model->status . '</span>' : '<span class="badge badge-important"><i class="icon-eye-close"></i> ' . $model->status . '</span>',
+                    'value' => ($model->type === 'image') ? '<span class="badge"><i class="icon-camera"></i> ' . $model->type . '</span>' : '<span class="badge"><i class="icon-barcode"></i> ' . $model->type . '</span>'
+                ),
+                array(
+                    'name' => 'status',
+                    'type' => 'raw',
+                    'value' => $this->widget(
+                            'EditableField', array(
+                        'model' => $model,
+                        'emptytext' => 'Click to select',
+                        'type' => 'select',
+                        'source' => array(
+                            'hidden' => 'hidden',
+                            'published' => 'published',
+                        ),
+                        'attribute' => 'status',
+                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                        'select2' => array(
+                            'placeholder' => 'Select...',
+                            'allowClear' => false
+                        )
+                            ), true
+                    )
                 ),
                 array(
                     'name' => 'image_preset',
-                    'type' => 'html',
-                    'value' => SlitSliderWidget::getP3MediaPresetName($model->image_preset),
+                    'type' => 'raw',
+                    'value' => $this->widget(
+                            'EditableField', array(
+                        'model' => $model,
+                        'emptytext' => 'Click to select',
+                        'type' => 'select',
+                        'source' => $this->module->imagePresets,
+                        'attribute' => 'image_preset',
+                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                        'select2' => array(
+                            'placeholder' => 'Select...',
+                            'allowClear' => false
+                        )
+                            ), true
+                    )
                 ),
                 array(
                     'name' => 'media_id',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : '<i class="icon-ban-circle"></i>',
                 ),
                 array(
                     'name' => 'group_id',
-                    'type' => 'html',
-                    'value' => ($model->group_id === NULL) ? '<span class="badge badge-warning"><i class="icon-flag"></i> Show on all Sliders</span> <span class="badge badge-info"><i class="icon-list"></i> ' . $model->rank . '</span>' : '<span class="badge badge-warning"><i class="icon-flag"></i> ' . $model->group_id . '</span> <span class="badge badge-info"><i class="icon-list"></i> ' . $model->rank . '</span>',
+                    'type' => 'raw',
+                    'value' => $this->widget(
+                            'EditableField', array(
+                        'model' => $model,
+                        'attribute' => 'group_id',
+                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                            ), true
+                    )
                 ),
                 array(
-                    'name' => 'type',
-                    'type' => 'html',
-                    'value' => ($model->type !== null) ? '<span class="badge ">' . $model->type . '</span>' : '<i class="icon-ban-circle"></i>'
+                    'name' => 'rank',
+                    'type' => 'raw',
+                    'value' => $this->widget(
+                            'EditableField', array(
+                        'model' => $model,
+                        'attribute' => 'rank',
+                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                            ), true
+                    )
                 ),
-                'language',
+                array(
+                    'name' => 'language',
+                    'type' => 'raw',
+                    'value' => $this->widget(
+                            'EditableField', array(
+                        'model' => $model,
+                        'attribute' => 'language',
+                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                            ), true
+                    )
+                ),
                 array(
                     'name' => 'headline',
-                    'type' => 'html',
-                    'value' => ($model->headline !== null) ? $model->headline : '<i class="icon-ban-circle"></i>'
+                    'type' => 'raw',
+                    'value' => ($model->headline !== null) ? $this->widget(
+                                    'EditableField', array(
+                                'model' => $model,
+                                'attribute' => 'headline',
+                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                            ) : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'subline',
-                    'type' => 'html',
-                    'value' => ($model->subline !== null) ? $model->subline : '<i class="icon-ban-circle"></i>'
+                    'type' => 'raw',
+                    'value' => ($model->subline !== null) ? $this->widget(
+                                    'EditableField', array(
+                                'model' => $model,
+                                'attribute' => 'subline',
+                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                            ) : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'link',
-                    'type' => 'html',
-                    'value' => ($model->link !== null) ? $model->createLink($model->link) : '<i class="icon-ban-circle"></i>'
+                    'type' => 'raw',
+                    'value' => ($model->link !== null) ? $this->widget(
+                                    'EditableField', array(
+                                'model' => $model,
+                                'attribute' => 'link',
+                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                            ) : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'body_html',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->body_html !== null) ? '<pre>' . $model->body_html . '</pre>' : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_orientation',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->data_orientation !== null) ? $model->data_orientation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice1_rotation',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->data_slice1_rotation !== null) ? $model->data_slice1_rotation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice2_rotation',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->data_slice2_rotation !== null) ? $model->data_slice2_rotation : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice1_scale',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->data_slice1_scale !== null) ? $model->data_slice1_scale : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'data_slice2_scale',
-                    'type' => 'html',
+                    'type' => 'raw',
                     'value' => ($model->data_slice2_scale !== null) ? $model->data_slice2_scale : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
@@ -124,8 +198,10 @@ $this->breadcrumbs[] = $model->id;
         ));
         ?>
     </div>
-
-    <div class="span4">
-
-    </div>
 </div>
+<script>
+    jQuery('button.btn .btn-primary .editable-submit').on('click', function() {
+        alert('hier');
+        location.reload();
+    });
+</script>

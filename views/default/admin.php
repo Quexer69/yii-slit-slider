@@ -40,35 +40,46 @@ $this->widget('TbGridView', array(
             }
         ),
         array(
+            'class' => 'editable.EditableColumn',
             'name' => 'headline',
-            'type' => 'html',
-            'value' => function($data) {
-                return ($data->headline !== null) ? $data->headline : '<i class="icon-ban-circle"></i>';
-            }
+            'editable' => array(
+                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+            )
         ),
         array(
+            'class' => 'editable.EditableColumn',
             'name' => 'group_id',
-            'type' => 'raw',
-            'value' => function($data) {
-                return ($data->group_id === NULL) ? '<span class="badge badge-warning"><i class="icon-flag"></i> Show on all Sliders</span>' : '<span class="badge badge-warning"><i class="icon-flag"></i> ' . $data->group_id . '</span>';
-            }
+            'editable' => array(
+                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+            )
         ),
         array(
+            'class' => 'editable.EditableColumn',
             'name' => 'rank',
-            'type' => 'raw',
-            'value' => function($data) {
-                return '<span class="badge badge-info"><i class="icon-list"></i> ' . $data->rank . '</span>';
-            }
+            'editable' => array(
+                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+            )
         ),
         array(
+            'class' => 'editable.EditableColumn',
             'name' => 'status',
-            'type' => 'raw',
-            'value' => function($data) {
-                return ($data->status !== null && $data->status === SlitSliderWidget::SLIT_ACTIVE) ? '<span class="badge badge-success"><i class="icon-eye-open"></i> ' . $data->status . '</span>' : '<span class="badge badge-important"><i class="icon-eye-close"></i> ' . $data->status . '</span>';
-            }
+            'editable' => array(
+                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                'type' => 'select',
+                'source' => array(
+                    'hidden' => 'hidden',
+                    'published' => 'published',
+                ),
+            )
         ),
-        'language',
         'type',
+        array(
+            'class' => 'editable.EditableColumn',
+            'name' => 'language',
+            'editable' => array(
+                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+            )
+        ),
         array(
             'class' => 'TbButtonColumn',
             'viewButtonUrl' => "Yii::app()->controller->createUrl('view', array('id' => \$data->id))",
