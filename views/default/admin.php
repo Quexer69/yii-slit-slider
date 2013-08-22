@@ -39,6 +39,7 @@ $this->widget('TbGridView', array(
                 return ($data->media_id !== null) ? $data->createImageLink($data->media_id, 'View Image', array('//slitSlider/default/view', 'id' => $data->id), 'p3media-upload') : '<i class="icon-ban-circle"></i>';
             }
         ),
+        'type',
         array(
             'class' => 'editable.EditableColumn',
             'name' => 'headline',
@@ -72,7 +73,6 @@ $this->widget('TbGridView', array(
                 ),
             )
         ),
-        'type',
         array(
             'class' => 'editable.EditableColumn',
             'name' => 'language',
