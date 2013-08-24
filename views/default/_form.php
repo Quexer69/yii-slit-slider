@@ -331,16 +331,13 @@
                         <?php echo $form->labelEx($model, 'updated_at') ?>
                     </div>
                     <div class='controls'>
+                        <?php echo $form->textField($model, 'updated_at', array('disabled' => 'disabled')); ?>
+                        <?php echo $form->error($model, 'updated_at'); ?>
                         <?php
-                        echo $form->textField($model, 'updated_at', array('disabled' => 'disabled'));
-                        echo $form->error($model, 'updated_at')
+                        if ('help.updated_at' != $help = Yii::t('SlitSliderModule.crud', 'help.updated_at')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
                         ?>
-                        <span class="help-block">
-
-                            <?php
-                            echo ($t = Yii::t('crud', 'Feature.updated_at') != 'Feature.updated_at') ? $t : ''
-                            ?>
-                        </span>
                     </div>
                 </div>
             </div>
