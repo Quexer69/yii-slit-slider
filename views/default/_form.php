@@ -54,7 +54,7 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'start_date');   ?></div>
+                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'start_date');     ?></div>
                             <div class='controls'><?php
 //                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //                                    'model' => $model,
@@ -104,7 +104,7 @@
                     </div>
                     <div class="span6">
                         <div class="control-group">
-                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'end_date');   ?></div>
+                            <div class='control-label muted'><?php //echo $form->labelEx($model, 'end_date');     ?></div>
                             <div class='controls'><?php
 //                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //                                    'model' => $model,
@@ -308,6 +308,41 @@
                         </div>
                     </div>
                 </div>
+
+                <hr>
+                <h4><?php echo Yii::t('SlitSliderModule.crud', 'Information'); ?></h4>
+                <div class="control-group">
+                    <div class='control-label'>
+                        <?php echo $form->labelEx($model, 'created_at') ?>
+                    </div>
+                    <div class='controls'>
+                        <?php echo $form->textField($model, 'created_at', array('disabled' => 'disabled')); ?>
+                        <?php echo $form->error($model, 'created_at'); ?>
+                        <?php
+                        if ('help.created_at' != $help = Yii::t('SlitSliderModule.crud', 'help.created_at')) {
+                            echo "<span class='help-block'>{$help}</span>";
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class='control-label'>
+                        <?php echo $form->labelEx($model, 'updated_at') ?>
+                    </div>
+                    <div class='controls'>
+                        <?php
+                        echo $form->textField($model, 'updated_at', array('disabled' => 'disabled'));
+                        echo $form->error($model, 'updated_at')
+                        ?>
+                        <span class="help-block">
+
+                            <?php
+                            echo ($t = Yii::t('crud', 'Feature.updated_at') != 'Feature.updated_at') ? $t : ''
+                            ?>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- main inputs -->
@@ -329,7 +364,7 @@
     <?php $this->endWidget() ?>
 </div> <!-- form -->
 <script>
-   
+
     if ($('#Slit_type').val() === 'html') {
         $('#slit_html').show();
         $('#slit_image').hide();
