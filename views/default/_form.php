@@ -317,12 +317,6 @@
                     </div>
                     <div class='controls'>
                         <?php echo $form->textField($model, 'created_at', array('disabled' => 'disabled')); ?>
-                        <?php echo $form->error($model, 'created_at'); ?>
-                        <?php
-                        if ('help.created_at' != $help = Yii::t('SlitSliderModule.crud', 'help.created_at')) {
-                            echo "<span class='help-block'>{$help}</span>";
-                        }
-                        ?>
                     </div>
                 </div>
 
@@ -332,12 +326,6 @@
                     </div>
                     <div class='controls'>
                         <?php echo $form->textField($model, 'updated_at', array('disabled' => 'disabled')); ?>
-                        <?php echo $form->error($model, 'updated_at'); ?>
-                        <?php
-                        if ('help.updated_at' != $help = Yii::t('SlitSliderModule.crud', 'help.updated_at')) {
-                            echo "<span class='help-block'>{$help}</span>";
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
