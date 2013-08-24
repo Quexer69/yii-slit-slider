@@ -199,9 +199,3 @@ $this->breadcrumbs[] = $model->id;
         ?>
     </div>
 </div>
-<script>
-    jQuery('button.btn .btn-primary .editable-submit').on('click', function() {
-        alert('hier');
-        location.reload();
-    });
-</script>
