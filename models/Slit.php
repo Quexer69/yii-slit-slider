@@ -49,19 +49,6 @@ class Slit extends BaseSlit
 
     /**
      * 
-     * @param type $media_id
-     * @param type $link
-     * @param type $title
-     * @param type $preset
-     * @return type
-     */
-    public function createImageLink($image, $link = array())
-    {
-        return CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
-    }
-    
-    /**
-     * 
      * @param type $url
      * @return type tag a link
      */
