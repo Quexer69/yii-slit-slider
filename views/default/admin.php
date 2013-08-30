@@ -35,7 +35,9 @@ $this->widget('TbGridView', array(
             'type'  => 'raw',
             'value' => function($data) {
                 return ($data->media_id !== null) 
-                        ? CHtml::link($data->media->image(SlitSliderWidget::imagePreset_admin), array('//slitSlider/default/view?id=' . $data->id), array('class' => 'pull-left btn-info'))
+                        ? CHtml::link($data->media->image(SlitSliderWidget::imagePreset_admin),
+                                       Yii::app()->controller->createUrl(
+                                               '//slitSlider/default/view?id=' . $data->id, array()))
                         : '<i class="icon-ban-circle"></i>';
             }   
         ),

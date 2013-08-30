@@ -67,7 +67,9 @@ $this->breadcrumbs[] = $model->id;
                     'name'  => 'media_id',
                     'type'  => 'raw',
                     'value' => ($model->media_id !== null) 
-                                ? CHtml::link($model->media->image(SlitSliderWidget::imagePreset_view), array('//p3media/p3Media/view?id=' . $model->media_id), array('class' => 'pull-left btn-info'))
+                                ? CHtml::link($model->media->image(SlitSliderWidget::imagePreset_view), 
+                                                Yii::app()->controller->createUrl(
+                                                    '//p3media/p3Media/view?id=' . $model->media_id, array()))
                                 : '<i class="icon-ban-circle"></i>',
                 ),
                 array(
