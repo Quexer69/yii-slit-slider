@@ -66,7 +66,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'media_id',
                     'type' => 'raw',
-                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media_id, 'View Image', array('//p3media/p3Media/view', 'id' => $model->media_id)) : '<i class="icon-ban-circle"></i>',
+                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media->image(SlitSliderWidget::imagePreset_view), array('//p3media/p3Media/view', 'id' => $model->media_id)) : '<i class="icon-ban-circle"></i>',
                 ),
                 array(
                     'name' => 'group_id',

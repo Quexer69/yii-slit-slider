@@ -36,7 +36,7 @@ $this->widget('TbGridView', array(
             'name' => 'media_id',
             'type' => 'raw',
             'value' => function($data) {
-                return ($data->media_id !== null) ? $data->createImageLink($data->media_id, 'View Image', array('//slitSlider/default/view', 'id' => $data->id), 'p3media-upload') : '<i class="icon-ban-circle"></i>';
+                return ($data->media_id !== null) ? $data->createImageLink($data->media->image(SlitSliderWidget::imagePreset_admin), array('//slitSlider/default/view?id=' . $data->id)) : '<i class="icon-ban-circle"></i>';
             }
         ),
         'type',
