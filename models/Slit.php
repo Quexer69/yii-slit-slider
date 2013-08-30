@@ -34,21 +34,22 @@ class Slit extends BaseSlit
     public function behaviors()
     {
         return array_merge(
-                parent::behaviors(), array(
-            'CTimestampBehavior' => array(
-                'class' => 'zii.behaviors.CTimestampBehavior',
-                'createAttribute' => 'created_at',
-                'updateAttribute' => 'updated_at',
-            ),
-            'OwnerBehavior' => array(
-                'class' => 'OwnerBehavior',
-                'ownerColumn' => 'created_by',
-            ),
-        ));
+                parent::behaviors(),    array(
+                                            'CTimestampBehavior' => array(
+                                                'class' => 'zii.behaviors.CTimestampBehavior',
+                                                'createAttribute' => 'created_at',
+                                                'updateAttribute' => 'updated_at',
+                                            ),
+                                            'OwnerBehavior' => array(
+                                                'class' => 'OwnerBehavior',
+                                                'ownerColumn' => 'created_by',
+                                            ),
+                                        )
+        );
     }
 
     /**
-     * 
+     * TODO... find a way
      * @param type $url
      * @return type tag a link
      */
@@ -62,17 +63,6 @@ class Slit extends BaseSlit
         return $link;
     }
     
-    /**
-     * 
-     * @param type $page_id
-     * @return type string
-     */
-    public function getPageName($page_id)
-    {
-        $thisPage = P3Page::model()->findByAttributes(array('id' => $page_id));
-        return "{$thisPage->nameId}";
-    }
-
     public function rules()
     {
         return array_merge(
