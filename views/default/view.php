@@ -22,117 +22,119 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name' => 'type',
                     'type' => 'html',
-                    'value' => ($model->type === 'image') ? '<span class="badge"><i class="icon-camera"></i> ' . $model->type . '</span>' : '<span class="badge"><i class="icon-barcode"></i> ' . $model->type . '</span>'
+                    'value' => ($model->type === 'image') 
+                                ? '<span class="badge"><i class="icon-camera"></i> ' . $model->type . '</span>' 
+                                : '<span class="badge"><i class="icon-barcode"></i> ' . $model->type . '</span>'
                 ),
                 array(
                     'name' => 'status',
                     'type' => 'raw',
-                    'value' => $this->widget(
-                            'EditableField', array(
-                        'model' => $model,
-                        'emptytext' => 'Click to select',
-                        'type' => 'select',
-                        'source' => array(
-                            'hidden' => 'hidden',
-                            'published' => 'published',
-                        ),
-                        'attribute' => 'status',
-                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
-                        'select2' => array(
-                            'placeholder' => 'Select...',
-                            'allowClear' => false
-                        )
-                            ), true
-                    )
+                    'value' => $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'emptytext' => 'Click to select',
+                                        'type' => 'select',
+                                        'source' => array(
+                                            'hidden' => 'hidden',
+                                            'published' => 'published',
+                                        ),
+                                        'attribute' => 'status',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                        'select2' => array(
+                                            'placeholder' => 'Select...',
+                                            'allowClear' => false
+                                        )
+                                    ), true
+                                )
                 ),
                 array(
                     'name' => 'image_preset',
                     'type' => 'raw',
-                    'value' => $this->widget(
-                            'EditableField', array(
-                        'model' => $model,
-                        'emptytext' => 'Click to select',
-                        'type' => 'select',
-                        'source' => $this->module->imagePresets,
-                        'attribute' => 'image_preset',
-                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
-                        'select2' => array(
-                            'placeholder' => 'Select...',
-                            'allowClear' => false
-                        )
-                            ), true
-                    )
+                    'value' => $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'emptytext' => 'Click to select',
+                                        'type' => 'select',
+                                        'source' => $this->module->imagePresets,
+                                        'attribute' => 'image_preset',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                        'select2' => array(
+                                            'placeholder' => 'Select...',
+                                            'allowClear' => false
+                                        )
+                                    ), true
+                                )
                 ),
                 array(
                     'name' => 'media_id',
                     'type' => 'raw',
-                    'value' => ($model->media_id !== null) ? $model->createImageLink($model->media->image(SlitSliderWidget::imagePreset_view), array('//p3media/p3Media/view', 'id' => $model->media_id)) : '<i class="icon-ban-circle"></i>',
+                    'value' => ($model->media_id !== null) 
+                            ? CHtml::link($model->media->image(SlitSliderWidget::imagePreset_view), array('//p3media/p3Media/view?id=' . $model->media_id), array('class' => 'pull-left btn-info'))
+                            : '<i class="icon-ban-circle"></i>',
                 ),
                 array(
                     'name' => 'group_id',
                     'type' => 'raw',
-                    'value' => $this->widget(
-                            'EditableField', array(
-                        'model' => $model,
-                        'attribute' => 'group_id',
-                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
-                            ), true
-                    )
+                    'value' => $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'group_id',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                                )
                 ),
                 array(
                     'name' => 'rank',
                     'type' => 'raw',
-                    'value' => $this->widget(
-                            'EditableField', array(
-                        'model' => $model,
-                        'attribute' => 'rank',
-                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
-                            ), true
-                    )
+                    'value' => $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'rank',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                                )
                 ),
                 array(
                     'name' => 'language',
                     'type' => 'raw',
-                    'value' => $this->widget(
-                            'EditableField', array(
-                        'model' => $model,
-                        'attribute' => 'language',
-                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
-                            ), true
-                    )
+                    'value' => $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'language',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                                    ), true
+                                )
                 ),
                 array(
                     'name' => 'headline',
                     'type' => 'raw',
-                    'value' => ($model->headline !== null) ? $this->widget(
-                                    'EditableField', array(
-                                'model' => $model,
-                                'attribute' => 'headline',
-                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                    'value' => ($model->headline !== null) 
+                                ? $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'headline',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
                                     ), true
-                            ) : '<i class="icon-ban-circle"></i>'
+                                ) 
+                                : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'subline',
                     'type' => 'raw',
-                    'value' => ($model->subline !== null) ? $this->widget(
-                                    'EditableField', array(
-                                'model' => $model,
-                                'attribute' => 'subline',
-                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                    'value' => ($model->subline !== null) 
+                                ? $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'subline',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
                                     ), true
-                            ) : '<i class="icon-ban-circle"></i>'
+                                ) 
+                                : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'link',
                     'type' => 'raw',
-                    'value' => ($model->link !== null) ? $this->widget(
-                                    'EditableField', array(
-                                'model' => $model,
-                                'attribute' => 'link',
-                                'url' => $this->createUrl('/slitSlider/default/editableSaver'),
+                    'value' => ($model->link !== null) 
+                                ? $this->widget('EditableField', array(
+                                        'model' => $model,
+                                        'attribute' => 'link',
+                                        'url' => $this->createUrl('/slitSlider/default/editableSaver'),
                                     ), true
-                            ) : '<i class="icon-ban-circle"></i>'
+                                ) 
+                                : '<i class="icon-ban-circle"></i>'
                 ),
                 array(
                     'name' => 'body_html',

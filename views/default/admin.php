@@ -36,8 +36,10 @@ $this->widget('TbGridView', array(
             'name' => 'media_id',
             'type' => 'raw',
             'value' => function($data) {
-                return ($data->media_id !== null) ? $data->createImageLink($data->media->image(SlitSliderWidget::imagePreset_admin), array('//slitSlider/default/view?id=' . $data->id)) : '<i class="icon-ban-circle"></i>';
-            }
+                return ($data->media_id !== null) 
+                        ? CHtml::link($data->media->image(SlitSliderWidget::imagePreset_admin), array('//slitSlider/default/view?id=' . $data->id), array('class' => 'pull-left btn-info'))
+                        : '<i class="icon-ban-circle"></i>';
+            }   
         ),
         'type',
         array(
@@ -86,25 +88,6 @@ $this->widget('TbGridView', array(
             'updateButtonUrl' => "Yii::app()->controller->createUrl('update', array('id' => \$data->id))",
             'deleteButtonUrl' => "Yii::app()->controller->createUrl('delete', array('id' => \$data->id))",
         ),
-    #'subline',
-    #'link',
-    /*
-      'body_html',
-     */
-    /*
-      'rank',
-      'data_orientation',
-      'data_slice1_rotation',
-      'data_slice2_rotation',
-      'data_slice1_scale',
-      'data_slice2_scale',
-      'start_date',
-      'end_date',
-      'created_at',
-      'created_by',
-      'updated_at',
-      'updated_by',
-     */
     ),
 ));
 ?>
