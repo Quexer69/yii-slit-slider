@@ -18,6 +18,13 @@ class Slit extends BaseSlit
     {
         return parent::init();
     }
+    
+    public function relations()
+	{
+            return array_merge(
+		parent::relations()
+            );
+	}
 
     public function get_label()
     {
@@ -48,17 +55,16 @@ class Slit extends BaseSlit
      * @param type $preset
      * @return type
      */
-    public function createImageLink($media_id, $title, $link = array(), $preset = null)
+    public function createImageLink($image, $link = array())
     {
-        $createUrl = Yii::app()->controller->createUrl('/p3media/file/image', array(
-            'id' => $media_id, 
-            'preset' => (isset($preset)) ? $preset : SlitSliderWidget::imagePreset_view));
-
-        $image = CHtml::image($createUrl, $title, array('class' => 'pull-left'));
-        $link = CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
-        return $link;
+        return CHtml::link($image, is_array($link) ? $link : '', array('class' => 'pull-left btn-info'));
     }
     
+    /**
+     * 
+     * @param type $url
+     * @return type tag a link
+     */
     public function createLink($url)
     {
         if (strpos($url,'http') === 0) {
