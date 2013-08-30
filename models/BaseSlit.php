@@ -70,6 +70,7 @@ abstract class BaseSlit extends CActiveRecord{
 	public function relations()
 	{
 		return array(
+                    'media' => array(self::BELONGS_TO, 'P3Media', 'media_id')
 		);
 	}
 
