@@ -18,8 +18,12 @@ class DefaultController extends Controller
     {
         return array(
             array('allow',
-                'actions' => array('create', 'editableSaver', 'update', 'delete', 'admin', 'view'),
-                'roles' => array('SlitSlider.Default.*'),
+                'actions'       => array('create', 'editableSaver', 'update', 'delete', 'admin', 'view'),
+                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.*")',
+            ),
+            array('allow',
+                'actions'       => array('admin', 'view'),
+                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.view.*")',
             ),
             array('deny',
                 'users' => array('*'),
