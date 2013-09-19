@@ -23,7 +23,7 @@ class DefaultController extends Controller
             ),
             array('allow',
                 'actions'       => array('admin', 'view'),
-                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.view.*")',
+                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.View")',
             ),
             array('deny',
                 'users' => array('*'),
