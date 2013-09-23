@@ -43,7 +43,7 @@ class SlitSliderWidget extends CWidget
     const imagePreset_admin     = 'p3media-upload';
     const IMAGE                 = 'image';
     const HTML                  = 'html';
-
+    
     /**
      * @var slider animation 
      */
@@ -64,17 +64,19 @@ class SlitSliderWidget extends CWidget
      * @type varchar(60) so you can assign numbers or words
      */
     public $groupId = NULL;
-
+        
     /**
-     * @var default width 
+     * @var slider height behavior
+     * [ 1 = full | 0 = none ]
      */
-    public $width = '100%';
-
+    public $scaleable = 1;
+    
     /**
-     * @var default height 
+     * @var slider height / weight
+     * if responsive = false
      */
+    public $weight = '2000px';
     public $height = '500px';
-
     
     
     /**
@@ -158,11 +160,6 @@ class SlitSliderWidget extends CWidget
     public function registerAssets()
     {
         $registerScripts = Yii::app()->getClientScript();
-
-        // Custom CSS wrapper settings
-        $cssParam = ".sl-slider-wrapper {width: {$this->width};height: {$this->height};}";
-        $registerScripts->registerCss('slitSlider_custom', $cssParam);
-
         // JS files
         $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/js', false, -1, false); // set last param to `true` for development
         $registerScripts->registerScriptFile($js . "/jquery.ba-cond.min.js", CClientScript::POS_END);
@@ -171,8 +168,19 @@ class SlitSliderWidget extends CWidget
         $registerScripts->registerScriptFile($js . "/jquery.slitslider.init.js", CClientScript::POS_END);
 
         // CSS files
-        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', false, -1, false); // set last param to `true` for development
+        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', false, -1, true); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
+
+        switch ($this->scaleable) 
+        {
+            case 1 :  
+                $registerScripts->registerCssFile($css . '/responsive.css');
+                break;
+            case 0 :  
+                $cssParam = ".sl-slider-wrapper {width: {$this->weight};height: {$this->height} !important;}";
+                $registerScripts->registerCss('slitSlider_'.$this->weight.'x'.$this->height, $cssParam);
+                break;
+        } 
     }
 
     /**
@@ -195,13 +203,13 @@ class SlitSliderWidget extends CWidget
         if ($this->groupId !== NULL && !empty($this->groupId)) {
             $criteria->addCondition('group_id   = \'' . $this->groupId . '\' OR group_id IS NULL');
         }
-        // checl if slit is an active slit (published)
+        // check if slit is an active slit (published)
         $criteria->addCondition('status     = \'' . $this::SLIT_ACTIVE . '\'');
         
         // check if slit is for current language
         $criteria->addCondition('language   = \'' . Yii::app()->getLanguage() . '\'');
 
-        // findAll with this $creteria
+        // findAll slits with this $creteria
         return Slit::model()->findAll($criteria);
     }
 
@@ -261,22 +269,25 @@ class SlitSliderWidget extends CWidget
                             data-slice2-rotation=\"$model->data_slice2_rotation\" 
                             data-slice1-scale=\"$model->data_slice1_scale\" 
                             data-slice2-scale=\"$model->data_slice2_scale\">\n";
-
+         
         echo "          <div class=\"sl-slide-inner\">\n";
-        echo "              <div class=\"bg-img centerHtml\">\n";
-        echo "                  <img src=\"{$imgSrc}\" alt=\"\" />";
-        echo "              </div>\n";
-        echo "                    <h2>{$model->headline}</h2>\n";
-        echo "                    <blockquote>\n";
-        echo "                        <p>{$model->subline}</p>\n";
+        echo "          <img src=\"{$imgSrc}\" alt=\"\" />\n";
+        echo "              <div class=\"sl-overlay\">\n";
+        echo "                  <div class=\"sl-overlay-inner\">\n";
+        echo "                      <h2><strong>{$model->headline}</strong></h2>\n";
+        echo "                      <div class=\"subline\">{$model->subline}<br />\n";
+        echo "                          <div class=\"sl-link\">\n";
                                         if ($model->link !== NULL) {
                                             if (strpos($model->link,'http') === 0) {
-                                                echo CHtml::link("<i class=\"icon-external-link\"></i> mehr", $model->link , array('target' => '_blank', 'class' => 'btn pull-left'));
+                                                echo CHtml::link("<i class=\"icon-external-link\"></i> mehr", $model->link , array('target' => '_blank', 'class' => 'btn btn-theme pull-left'));
                                             } else {
-                                                echo CHtml::link("<i class=\"icon-share\"></i> mehr", '/' . Yii::app()->getLanguage() . '/' . $model->link , array('target' => '_self', 'class' => 'btn pull-left'));
+                                                echo CHtml::link("<i class=\"icon-share\"></i> mehr", '/' . Yii::app()->getLanguage() . '/' . $model->link , array('target' => '_self', 'class' => 'btn btn-theme pull-left'));
                                             }
                                         }
-        echo "                      </blockquote>\n";
+        echo "                          </div>\n";
+        echo "                      </div>\n";
+        echo "                  </div>\n";
+        echo "              </div>\n";
         echo "          </div>\n";
         echo "      </div>\n";
     }
@@ -326,16 +337,22 @@ class SlitSliderWidget extends CWidget
 
     public function openSliderWrapper()
     {
-        echo "<div class=\"sl-slider-wrapper\" id=\"slider\">\n";
-        echo "   <div class=\"sl-slider\">\n";
+        if ($this->scaleable == 1) {
+            echo "<div class=\"aspect-wrapper\">\n";
+            echo "  <div class=\"aspect-wrapper-inner\">\n";
+        }
+            echo "      <div class=\"sl-slider-wrapper\" id=\"slider\">\n";
+            echo "          <div class=\"sl-slider\">\n";
     }
 
     public function closeSliderWrapper()
     {
-        echo "   </div>\n";
-        echo "</div>\n";
+            echo "          </div>\n";
+            echo "      </div>\n";
+        if ($this->scaleable == 1) {
+            echo "   </div>\n";
+            echo "</div>\n";
+        }
     }
-
 }
-
 ?>
