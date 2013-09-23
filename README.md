@@ -1,7 +1,7 @@
 Yii Slit Slider Widget
 =============
 
-**Version 0.2.2**
+**Version 0.3.0**
 
 
 What is Slit Slider Widget?
@@ -115,6 +115,7 @@ Run widget
                 'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
                 'image_preset'  => 'slitslider',    // P3Media image preset for pictures
                 'order'         => 'rank DESC',     // sort order of the slits
+                'scaleable'     => '1',             // responsive or defined height and width
                 'groupId'       => '5',             // show all slits for a group_id
                 'height'        => '600px',         // css height of the wrapper
                 'width'         => '100%'           // css width of the wrapper
