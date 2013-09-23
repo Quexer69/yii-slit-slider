@@ -18,6 +18,7 @@
  *              'orientation'   => 'horizontal',
  *              'imagePreset'   => 'slitslider',
  *              'order'         => 'rank DESC',
+ *              'scaleable'     => '1',             // responsive or defined height and width
  *              'groupId'       => NULL,
  *              'width'         => '100%',
  *              'height'        => '500px',
@@ -66,7 +67,7 @@ class SlitSliderWidget extends CWidget
     public $groupId = NULL;
         
     /**
-     * @var slider height behavior
+     * @var slider height behavior (responsive)
      * [ 1 = full | 0 = none ]
      */
     public $scaleable = 1;
