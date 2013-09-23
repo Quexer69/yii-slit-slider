@@ -29,7 +29,7 @@ class SlitSliderModule extends CWebModule
         // Register some JS Code for features used in Crud
         $jsSnipp = "jQuery('body').popover({'selector':'[rel=popover]'});";
         $registerScripts = Yii::app()->getClientScript();
-        $registerScripts->registerScript('Yii.features' . 'slitSlider', $jsSnipp);
+        $registerScripts->registerScript('Yii.features' . 'slitSlider', $jsSnipp, CClientScript::POS_END);
     }
 
     public function beforeControllerAction($controller, $action)
