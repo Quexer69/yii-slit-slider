@@ -2,10 +2,22 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.2.3**
+**Preview on 0.3.1**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.3.0**
+* add new public property 'scaleable' [0|1], full responsive or fixed size
+
+**Version 0.2.4**
+* add accessRules to DefaultController
+
+**Version 0.2.4**
+* update p3media usage
+
+**Version 0.2.3**
+* add editable fields to admin and view crud
+
 **Version 0.2.2**
 * remove model property 'keywords'
 * add active selection between type image and html (input fields)
