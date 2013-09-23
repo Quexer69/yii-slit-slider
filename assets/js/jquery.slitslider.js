@@ -68,7 +68,7 @@
 
 	$.Slitslider.defaults = {
 		// transitions speed
-		speed : 1400,
+		speed : 4400,
 		// if true the item's slices will also animate the opacity value
 		optOpacity : true,
 		// amount (%) to translate both slices - adjust as necessary
@@ -214,27 +214,27 @@
 			this._validateValues( config );
 			
 			var cssStyle = config.orientation === 'horizontal' ? {
-					marginTop : -this.size.height / 2
-				} : {
-					marginLeft : -this.size.width / 2
-				},
-				// default slide's slices style
-				resetStyle = {
-					'transform' : 'translate(0%,0%) rotate(0deg) scale(1)',
-					opacity : 1 
-				},
-				// slice1 style
-				slice1Style	= config.orientation === 'horizontal' ? {
-					'transform' : 'translateY(-' + this.options.translateFactor + '%) rotate(' + config.slice1angle + 'deg) scale(' + config.slice1scale + ')'
-				} : {
-					'transform' : 'translateX(-' + this.options.translateFactor + '%) rotate(' + config.slice1angle + 'deg) scale(' + config.slice1scale + ')'
-				},
-				// slice2 style
-				slice2Style	= config.orientation === 'horizontal' ? {
-					'transform' : 'translateY(' + this.options.translateFactor + '%) rotate(' + config.slice2angle + 'deg) scale(' + config.slice2scale + ')'
-				} : {
-					'transform' : 'translateX(' + this.options.translateFactor + '%) rotate(' + config.slice2angle + 'deg) scale(' + config.slice2scale + ')'
-				};
+                                marginTop : -this.size.height / 2
+                        } : {
+                                marginLeft : -this.size.width / 2
+                        },
+                        // default slide's slices style
+                        resetStyle = {
+                                'transform' : 'translate(0%,0%) rotate(0deg) scale(1)',
+                                opacity : 1 
+                        },
+                        // slice1 style
+                        slice1Style	= config.orientation === 'horizontal' ? {
+                                'transform' : 'translateY(-' + this.options.translateFactor + '%) rotate(' + config.slice1angle + 'deg) scale(' + config.slice1scale + ')'
+                        } : {
+                                'transform' : 'translateX(-' + this.options.translateFactor + '%) rotate(' + config.slice1angle + 'deg) scale(' + config.slice1scale + ')'
+                        },
+                        // slice2 style
+                        slice2Style	= config.orientation === 'horizontal' ? {
+                                'transform' : 'translateY(' + this.options.translateFactor + '%) rotate(' + config.slice2angle + 'deg) scale(' + config.slice2scale + ')'
+                        } : {
+                                'transform' : 'translateX(' + this.options.translateFactor + '%) rotate(' + config.slice2angle + 'deg) scale(' + config.slice2scale + ')'
+                        };
 			
 			if( this.options.optOpacity ) {
 			
