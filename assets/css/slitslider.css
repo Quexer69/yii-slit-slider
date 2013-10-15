@@ -24,8 +24,8 @@
 
 .sl-slider-wrapper {
     width: 100%;  
+    min-height: 330px;
     height: 100%;
-    /*min-height: 337px;*/
     overflow: hidden;
     position: relative;
 }

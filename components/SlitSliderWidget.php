@@ -20,15 +20,15 @@
  *              'order'         => 'rank DESC',
  *              'scaleable'     => '1',             // responsive or defined height and width
  *              'groupId'       => NULL,
- *              'width'         => '100%',
- *              'height'        => '500px',
+ *              'max_width'     => '100%',
+ *              'max_height'    => '500px',
  *          )
  *   );
  * ?>
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.2.3
+ * @version 0.3.1
  * @package quexer69/yii-slit-slider
  */
 
@@ -76,8 +76,8 @@ class SlitSliderWidget extends CWidget
      * @var slider height / weight
      * if responsive = false
      */
-    public $weight = '2000px';
-    public $height = '500px';
+    public $max_weight = '2000px';
+    public $max_height = '700px';
     
     
     /**
@@ -178,8 +178,8 @@ class SlitSliderWidget extends CWidget
                 $registerScripts->registerCssFile($css . '/responsive.css');
                 break;
             case 0 :  
-                $cssParam = ".sl-slider-wrapper {width: {$this->weight};height: {$this->height} !important;}";
-                $registerScripts->registerCss('slitSlider_'.$this->weight.'x'.$this->height, $cssParam);
+                $cssParam = ".sl-slider-wrapper {max-width: {$this->max_weight};max-height: {$this->max_height} !important;}";
+                $registerScripts->registerCss('slitSlider_'.$this->max_weight.'x'.$this->max_height, $cssParam);
                 break;
         } 
     }
