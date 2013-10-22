@@ -14,7 +14,7 @@ But we have a backend crud to administrate all the slider widgets in your web ap
 Composer support for easy installation of this phundament3 widget.
 
  * [phundament3 on GitHub]      (https://github.com/phundament/app)
- * [p3Media]                    (https://github.com/schmunk42/p3media)
+ * [p3Media on GitHub]          (https://github.com/schmunk42/p3media)
  * [yii-slit-slider on GitHub]  (https://github.com/quexer69/yii-slit-slider)
 
 
