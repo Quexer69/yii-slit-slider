@@ -8,12 +8,13 @@ What is Slit Slider Widget?
 =============
 
 A phundament3 Widget from the well known jQuery Slit Slider.
-But we have one backend crud to administrate all the slider widgets in your webapplication.
-*featuring P3Pages and P3Media*
+But we have a backend crud to administrate all the slider widgets in your web application.
+*featuring P3Media*
 
 Composer support for easy installation of this phundament3 widget.
 
  * [phundament3 on GitHub]      (https://github.com/phundament/app)
+ * [p3Media]                    (https://github.com/schmunk42/p3media)
  * [yii-slit-slider on GitHub]  (https://github.com/quexer69/yii-slit-slider)
 
 
