@@ -29,7 +29,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name'  => 'status',
                     'type'  => 'raw',
-                    'value' => $this->widget('EditableField', array(
+                    'value' => $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'emptytext' => 'Click to select',
                                         'type' => 'select',
@@ -49,7 +49,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name'  => 'image_preset',
                     'type'  => 'raw',
-                    'value' => $this->widget('EditableField', array(
+                    'value' => $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'emptytext' => 'Click to select',
                                         'type' => 'select',
@@ -75,7 +75,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name'  => 'group_id',
                     'type'  => 'raw',
-                    'value' => $this->widget('EditableField', array(
+                    'value' => $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'group_id',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),
@@ -85,7 +85,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name'  => 'rank',
                     'type'  => 'raw',
-                    'value' => $this->widget('EditableField', array(
+                    'value' => $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'rank',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),
@@ -95,7 +95,7 @@ $this->breadcrumbs[] = $model->id;
                 array(
                     'name'  => 'language',
                     'type'  => 'raw',
-                    'value' => $this->widget('EditableField', array(
+                    'value' => $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'language',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),
@@ -106,7 +106,7 @@ $this->breadcrumbs[] = $model->id;
                     'name'  => 'headline',
                     'type'  => 'raw',
                     'value' => ($model->headline !== null) 
-                                ? $this->widget('EditableField', array(
+                                ? $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'headline',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),
@@ -118,7 +118,7 @@ $this->breadcrumbs[] = $model->id;
                     'name'  => 'subline',
                     'type'  => 'raw',
                     'value' => ($model->subline !== null) 
-                                ? $this->widget('EditableField', array(
+                                ? $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'subline',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),
@@ -130,7 +130,7 @@ $this->breadcrumbs[] = $model->id;
                     'name'  => 'link',
                     'type'  => 'raw',
                     'value' => ($model->link !== null) 
-                                ? $this->widget('EditableField', array(
+                                ? $this->widget('TbEditableField', array(
                                         'model' => $model,
                                         'attribute' => 'link',
                                         'url' => $this->createUrl('/slitSlider/default/editableSaver'),

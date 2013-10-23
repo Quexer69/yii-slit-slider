@@ -43,22 +43,22 @@ $this->widget('TbGridView', array(
         ),
         'type',
         array(
-            'class' => 'editable.EditableColumn',
+            'class' => 'TbEditableColumn',
             'name'  => 'headline',
             'editable' => array('url'   => $this->createUrl('/slitSlider/default/editableSaver'))
         ),
         array(
-            'class' => 'editable.EditableColumn',
+            'class' => 'TbEditableColumn',
             'name'  => 'group_id',
             'editable' => array('url'   => $this->createUrl('/slitSlider/default/editableSaver'))
         ),
         array(
-            'class' => 'editable.EditableColumn',
+            'class' => 'TbEditableColumn',
             'name'  => 'rank',
             'editable' => array('url'   => $this->createUrl('/slitSlider/default/editableSaver'))
         ),
         array(
-            'class' => 'editable.EditableColumn',
+            'class' => 'TbEditableColumn',
             'name'  => 'status',
             'editable' => array('url'   => $this->createUrl('/slitSlider/default/editableSaver'),
                                 'type'  => 'select',
@@ -69,7 +69,7 @@ $this->widget('TbGridView', array(
                             )
         ),
         array(
-            'class' => 'editable.EditableColumn',
+            'class' => 'TbEditableColumn',
             'name'  => 'language',
             'editable' => array('url'   => $this->createUrl('/slitSlider/default/editableSaver'))
         ),
