@@ -2,10 +2,21 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.3.1**
+**Preview on 0.3.4**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.3.3**
+* Fix on 'scaleable' [0|1] height & width property
+* Fix typo in public property
+* Update to clevertech/yiiBooster 2.0 (new dependencie) 
+
+**Version 0.3.2**
+* minor fix on 'scaleable' [0|1] height property
+
+**Version 0.3.1**
+* minor fix on 'scaleable' [0|1] behavior
+
 **Version 0.3.0**
 * add new public property 'scaleable' [0|1], full responsive or fixed size
 
