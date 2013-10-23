@@ -42,11 +42,11 @@ Yii::import('slitSlider.models.*');
 class SlitSliderWidget extends CWidget
 {
     const WIDGET_NAME               = 'slitSlider';
-    const SLIT_ACTIVE           = 'published';
+    const SLIT_ACTIVE               = 'published';
     const IMAGE_PRESET_VIEW         = 'small-picture-crop-16-9';
     const IMAGE_PRESET_ADMIN        = 'p3media-upload';
-    const IMAGE                 = 'image';
-    const HTML                  = 'html';
+    const IMAGE                     = 'image';
+    const HTML                      = 'html';
     
     /**
      * @var slider animation 
@@ -103,13 +103,10 @@ class SlitSliderWidget extends CWidget
 
             foreach ($thisSlits as $slit) {
 
-                // if slit type -> image
-                if ($slit->type === self::IMAGE) {
-                    self::showImage($slit);
-                }
-                // if slit type -> html
-                elseif ($slit->type === self::HTML) {
-                    self::showHtml($slit);
+                switch ($slit->type) {
+                    case self::IMAGE:   $this->showImage($slit); break;
+                    case self::HTML:    $this->showHtml($slit); break;
+                    default: break;
                 }
             }
             // put needed dots to navigate, first has class 'nav-dot-current'
@@ -211,7 +208,7 @@ class SlitSliderWidget extends CWidget
             $criteria->addCondition('group_id   = \'' . $this->groupId . '\' OR group_id IS NULL');
         }
         // check if slit is an active slit (published)
-        $criteria->addCondition('status     = \'' . $this::SLIT_ACTIVE . '\'');
+        $criteria->addCondition('status     = \'' . self::SLIT_ACTIVE . '\'');
         
         // check if slit is for current language
         $criteria->addCondition('language   = \'' . Yii::app()->getLanguage() . '\'');
