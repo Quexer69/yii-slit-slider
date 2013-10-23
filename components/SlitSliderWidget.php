@@ -15,20 +15,23 @@
  *   $this->widget(
  *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
  *          array(
- *              'orientation'   => 'horizontal',
- *              'imagePreset'   => 'slitslider',
- *              'order'         => 'rank DESC',
+ *              'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
+ *              'imagePreset'   => 'slitslider',    // P3Media image preset for pictures
+ *              'order'         => 'rank DESC',     // sort order of the slits
  *              'scaleable'     => '1',             // responsive or defined height and width
- *              'groupId'       => NULL,
- *              'max_width'     => '100%',
- *              'height'    => '500px',
+ *              'groupId'       => NULL,            // show all slits for a group_id
+ *              'max_width'     => '2000px',        // needed for scalabel = 1 (true)
+ *              'width'         => '100%',          // css width of the wrapper
+ *              'height'        => '500px',         // can be set on scalabel = 0 (false)
  *          )
  *   );
+ * 
+ *  Just play around with the properties for your perfect setup of your Slider's !
  * ?>
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.3.2
+ * @version 0.3.3
  * @package quexer69/yii-slit-slider
  */
 
@@ -76,8 +79,9 @@ class SlitSliderWidget extends CWidget
      * @var slider height / weight
      * if responsive = false
      */
-    public $max_weight = '2000px';
-    public $height = '700px';
+    public $width       = '100%';
+    public $max_width   = '2000px';
+    public $height      = '700px';
     
     
     /**
@@ -176,10 +180,12 @@ class SlitSliderWidget extends CWidget
         {
             case 1 :  
                 $registerScripts->registerCssFile($css . '/responsive.css');
+                $cssParam = ".sl-slider-wrapper {max-width: {$this->max_width};}";
+                $registerScripts->registerCss('slitSlider_'.$this->max_width.'x'.$this->height, $cssParam);
                 break;
             case 0 :  
-                $cssParam = ".sl-slider-wrapper {max-width: {$this->max_weight};height: {$this->height} !important;}";
-                $registerScripts->registerCss('slitSlider_'.$this->max_weight.'x'.$this->height, $cssParam);
+                $cssParam = ".sl-slider-wrapper {width: {$this->width};height: {$this->height} !important;}";
+                $registerScripts->registerCss('slitSlider_'.$this->width.'x'.$this->height, $cssParam);
                 break;
         } 
     }
