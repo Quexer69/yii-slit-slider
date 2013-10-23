@@ -224,10 +224,8 @@ class SlitSliderWidget extends CWidget
      */
     public function hasSlits($allSlits)
     {
-        if (sizeof($allSlits) > 0) {
-            return true;
-        }
-        return false;
+        // Check if SlitSlider Group ID has any asigned slit
+        return (sizeof($allSlits) > 0) ? true : false;
     }
 
     /**
@@ -237,10 +235,9 @@ class SlitSliderWidget extends CWidget
      */
     public function hasDots($allSlits)
     {
-        if (sizeof($allSlits) > 1) {
-            return true;
-        }
-        return false;
+        // Check if SlitSlider Group ID has more then 1 asigned slit
+        // Show or hide the dots bar
+        return (sizeof($allSlits) > 1) ? true : false;
     }
 
     /**
