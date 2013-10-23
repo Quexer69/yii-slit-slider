@@ -2,10 +2,13 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.3.4**
+**Preview on 0.3.5**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.3.4**
+* minor updates and fixes on 'component/SlitSliderWidget'
+
 **Version 0.3.3**
 * Fix on 'scaleable' [0|1] height & width property
 * Fix typo in public property

@@ -31,7 +31,7 @@
  * </pre>
  * {@link SlitController}
  * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.3.3
+ * @version 0.3.4
  * @package quexer69/yii-slit-slider
  */
 
