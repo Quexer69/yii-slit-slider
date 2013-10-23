@@ -15,7 +15,8 @@
     "dependencies": {
         "phundament/p3extensions": ">=0.15.2",
         "twitter/bootstrap"      : ">=2.3.*",
-        "phundament/p3media"     : ">=0.13.*"
+        "phundament/p3media"     : ">=0.13.*",
+        "clevertech/YiiBooster"  : ">=2.*"
     },
     "suggest": {
         "Slider": "Any new slider extensions"
