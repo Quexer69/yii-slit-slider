@@ -41,10 +41,10 @@ Yii::import('slitSlider.models.*');
 
 class SlitSliderWidget extends CWidget
 {
-    const widgetName            = 'slitSlider';
+    const WIDGET_NAME               = 'slitSlider';
     const SLIT_ACTIVE           = 'published';
-    const imagePreset_view      = 'small-picture-crop-16-9';
-    const imagePreset_admin     = 'p3media-upload';
+    const IMAGE_PRESET_VIEW         = 'small-picture-crop-16-9';
+    const IMAGE_PRESET_ADMIN        = 'p3media-upload';
     const IMAGE                 = 'image';
     const HTML                  = 'html';
     
