@@ -18,7 +18,7 @@ class Slit extends BaseSlit
     {
         return parent::init();
     }
-    
+
     public function relations()
 	{
             return array_merge(
@@ -62,16 +62,17 @@ class Slit extends BaseSlit
         }
         return $link;
     }
-    
+
     public function rules()
     {
         return array_merge(
                 parent::rules()
-                /* , array(
-                  array('column1, column2', 'rule1'),
-                  array('column3', 'rule2'),
-                  ) */
         );
+    }
+
+    public function getItemLabel()
+    {
+        return $this->headline;
     }
 
 }
