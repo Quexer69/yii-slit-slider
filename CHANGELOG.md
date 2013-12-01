@@ -2,17 +2,23 @@ Yii Slit Slider Widget
 =============
 ## CHANGELOG
 
-**Preview on 0.3.5**
+**Preview on 0.3.6**
 * add date function (define Start Date and End Date for a slit)
 
 ===
+**Version 0.3.5**
+* update slitslider.css -> inputs
+* update controller- > add checkAccess for single tasks -> register css for backend too
+* update model -> validations
+* major update of cruds
+
 **Version 0.3.4**
 * minor updates and fixes on 'component/SlitSliderWidget'
 
 **Version 0.3.3**
 * Fix on 'scaleable' [0|1] height & width property
 * Fix typo in public property
-* Update to clevertech/yiiBooster 2.0 (new dependencie) 
+* Update to clevertech/yiiBooster 2.0 (new dependencie)
 
 **Version 0.3.2**
 * minor fix on 'scaleable' [0|1] height property
@@ -45,8 +51,8 @@ Yii Slit Slider Widget
 **Version 0.2.0**
 * remove dependency to schmunk42/p3pages
 * you have groupId's to assign slits to any SliderWidget
-* register meta tags (slit keywords) on the slider pages 
-(for SEO and search functions on your app) 
+* register meta tags (slit keywords) on the slider pages
+(for SEO and search functions on your app)
 
 **Version 0.1.4**
 * small bug fixes
