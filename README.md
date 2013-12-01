@@ -1,7 +1,7 @@
 Yii Slit Slider Widget
 =============
 
-**Version 0.3.4**
+**Version 0.3.5**
 
 
 What is Slit Slider Widget?
@@ -23,7 +23,7 @@ Quick-Start
 
 ### Composer
 If you have [composer already installed](http://getcomposer.org/doc/00-intro.md#installation-nix)
-   
+
 `composer.phar require quexer69/yii-slit-slider`
 
 **or**
@@ -35,7 +35,7 @@ add the package `quexer69/yii-slit-slider` to your composer.json
 
 
 Setup
-============= 
+=============
 [SETUP] edit in app/config/main.php
 
 **REQUIRED**
@@ -104,7 +104,7 @@ Run widget
 **Default Call of the slitSlider Widget**
 ```php
 
-    $this->widget('slitSlider.components.SlitSliderWidget'); 
+    $this->widget('slitSlider.components.SlitSliderWidget');
 
 ```
 
@@ -112,7 +112,7 @@ Run widget
 ```php
 
     $this->widget(
-       'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
+       'vendor.quexer69.yii-slit-slider.SlitSliderWidget',
            array(
                'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
                'imagePreset'   => 'slitslider',    // P3Media image preset for pictures
@@ -144,10 +144,10 @@ Run widget
         ...
 ```
 *output on any page template*
-```php 
-    $this->widget('p3widgets.components.P3WidgetContainer', 
+```php
+    $this->widget('p3widgets.components.P3WidgetContainer',
         array(
-            'id' => 'slitSlider', 
+            'id' => 'slitSlider',
             'varyByRequestParam' => P3Page::PAGE_ID_KEY
         )
     );
@@ -162,7 +162,7 @@ Now you get in the P3Admin backend the module SlitSlider to configurate your sli
 Custom Attributes
 =============
 
-Every slide will also have some data-attributes that we will use in order to control the effect for each slide. 
+Every slide will also have some data-attributes that we will use in order to control the effect for each slide.
 The data attributes that we want are the following:
 
 ```
