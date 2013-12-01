@@ -18,12 +18,24 @@ class DefaultController extends Controller
     {
         return array(
             array('allow',
-                'actions'       => array('create', 'editableSaver', 'update', 'delete', 'admin', 'view'),
-                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.*")',
+                'actions'    => array('create', 'editableSaver', 'update', 'delete', 'admin', 'view'),
+                'expression' => 'Yii::app()->user->checkAccess("SlitSlider.Default.*")',
             ),
             array('allow',
-                'actions'       => array('admin', 'view'),
-                'expression'    => 'Yii::app()->user->checkAccess("SlitSlider.Default.View")',
+                'actions'    => array('create'),
+                'expression' => 'Yii::app()->user->checkAccess("SlitSlider.Default.Create")',
+            ),
+            array('allow',
+                'actions'    => array('update'),
+                'expression' => 'Yii::app()->user->checkAccess("SlitSlider.Default.Update")',
+            ),
+            array('allow',
+                'actions'    => array('delete'),
+                'expression' => 'Yii::app()->user->checkAccess("SlitSlider.Default.Delete")',
+            ),
+            array('allow',
+                'actions'    => array('admin', 'view', 'editableSaver'),
+                'expression' => 'Yii::app()->user->checkAccess("SlitSlider.Default.View")',
             ),
             array('deny',
                 'users' => array('*'),
@@ -38,16 +50,22 @@ class DefaultController extends Controller
         if (!isset($_GET['id']) && isset($_GET['id'])) {
             $model = Slit::model()->find('id = :id', array(
                 ':id' => $_GET['id']));
-            if ($model !== null) {
+            if ($model !== NULL) {
                 $_GET['id'] = $model->id;
             } else {
                 throw new CHttpException(400);
             }
         }
-        if ($this->module !== null) {
+        if ($this->module !== NULL) {
             $this->breadcrumbs[$this->module->Id] = array('/' . $this->module->Id);
         }
-        return true;
+
+        // CSS files
+        $registerScripts = Yii::app()->getClientScript();
+        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', FALSE, -1, FALSE); // set last param to `true` for development
+        $registerScripts->registerCssFile($css . '/slitslider.css');
+
+        return TRUE;
     }
 
     public function actionView($id)
@@ -55,7 +73,7 @@ class DefaultController extends Controller
         $model = $this->loadModel($id);
 
         if ($this->checkAccess($model))
-            
+
             $this->render('view', array('model' => $model,));
         else
             throw new CHttpException('403', 'No Access!');
@@ -63,17 +81,17 @@ class DefaultController extends Controller
 
     public function actionCreate()
     {
-        $model = new Slit;
+        $model           = new Slit;
         $model->scenario = $this->scenario;
 
         $this->performAjaxValidation($model, 'slit-form');
 
         if (isset($_POST['Slit'])) {
-            $model->attributes  = $_POST['Slit'];
-            $model->updated_by  = Yii::app()->user->id;
-            $model->language    = Yii::app()->getLanguage();
-            
-//            if ($_POST['Slit']['start_date'] === NULL) $model->start_date = $now = new CDbExpression("NOW()");   
+            $model->attributes = $_POST['Slit'];
+            $model->updated_by = Yii::app()->user->id;
+            $model->language   = Yii::app()->getLanguage();
+
+//            if ($_POST['Slit']['start_date'] === NULL) $model->start_date = $now = new CDbExpression("NOW()");
 //            if ($_POST['Slit']['start_date'] === NULL) $model->start_date = $now = new CDbExpression("NOW()");
 
             try {
@@ -96,7 +114,7 @@ class DefaultController extends Controller
 
     public function actionUpdate($id)
     {
-        $model = $this->loadModel($id);
+        $model           = $this->loadModel($id);
         $model->scenario = $this->scenario;
         //$now = new CDbExpression("NOW()");
 
@@ -104,10 +122,10 @@ class DefaultController extends Controller
             $this->performAjaxValidation($model, 'slit-form');
 
             if (isset($_POST['Slit'])) {
-                $model->attributes  = $_POST['Slit'];
-                $model->updated_by  = Yii::app()->user->id;
-                $model->language    = Yii::app()->getLanguage();
-                
+                $model->attributes = $_POST['Slit'];
+                $model->updated_by = Yii::app()->user->id;
+                $model->language   = Yii::app()->getLanguage();
+
 //                if ($model->start_date === NULL) $model->start_date = $now;
 //                if ($model->end_date === NULL) $model->end_date = $now;
 
@@ -133,7 +151,7 @@ class DefaultController extends Controller
     public function actionEditableSaver()
     {
         Yii::import('TbEditableSaver'); //or you can add import 'ext.editable.*' to config
-        $es = new TbEditableSaver('Slit');  // classname of model to be updated
+        $es = new TbEditableSaver('Slit'); // classname of model to be updated
         $es->update();
     }
 
@@ -156,8 +174,7 @@ class DefaultController extends Controller
                     $this->redirect(array('admin'));
                 }
             }
-        }
-        else
+        } else
             throw new CHttpException(400, Yii::t('SlitSliderModule.crud', 'Invalid request. Please do not repeat this request again.'));
     }
 
@@ -182,7 +199,7 @@ class DefaultController extends Controller
     public function loadModel($id)
     {
         $model = Slit::model()->findByPk($id);
-        if ($model === null)
+        if ($model === NULL)
             throw new CHttpException(404, Yii::t('SlitSliderModule.crud', 'The requested page does not exist.'));
         return $model;
     }
@@ -198,7 +215,7 @@ class DefaultController extends Controller
     public function checkAccess($model)
     {
         if ($model->language === Yii::app()->getLanguage())
-            return true;
+            return TRUE;
         else
             throw new CHttpException('403', 'No Access!');
     }
