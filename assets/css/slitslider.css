@@ -1,5 +1,40 @@
+.form-search select,
+.form-inline select,
+.form-horizontal select {
+    width: 250px;
+}
+
+.grid-view table select,
+.grid-view table input,
+.grid-view table textarea,
+.grid-view table
+.uneditable-input {
+    width: 200px;
+}
+
+.form-search input,
+.form-inline input,
+.form-horizontal input,
+.form-search textarea,
+.form-inline textarea,
+.form-horizontal textarea,
+.form-search .help-inline,
+.form-inline .help-inline,
+.form-horizontal .help-inline,
+.form-search .uneditable-input,
+.form-inline .uneditable-input,
+.form-horizontal .uneditable-input,
+.form-search .input-prepend,
+.form-inline .input-prepend,
+.form-horizontal .input-prepend,
+.form-search .input-append,
+.form-inline .input-append,
+.form-horizontal .input-append {
+    width:350px;
+}
+
 /* Slitslider custom css */
-.aspect-wrapper { 
+.aspect-wrapper {
     display: inline-block;
     width: 100%;
     min-height: 337px;
@@ -23,7 +58,7 @@
 }
 
 .sl-slider-wrapper {
-    width: 100%;  
+    width: 100%;
     min-height: 330px;
     height: 100%;
     overflow: hidden;
@@ -46,7 +81,7 @@
     font-family: "Uni Sans Book", Verdana, Arial, sans-serif;
     font-size: 30px;
     padding: 40px 75px 10px 75px;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 1);     
+    text-shadow: 0 0 8px rgba(0, 0, 0, 1);
     text-transform: uppercase;
     line-height: 45px;
     color: #fff;
@@ -107,7 +142,7 @@
     left: 0;
     margin: 0 auto;
     z-index: 1;
-} 
+}
 
 /* The duplicate parts/slices */
 
@@ -262,16 +297,16 @@
     -o-transition: all 0.2s;
     transition: all 0.2s;
     cursor: pointer;
-    box-shadow: 
-        0 1px 1px rgba(255,255,255,0.8), 
+    box-shadow:
+        0 1px 1px rgba(255,255,255,0.8),
         inset 0 1px 1px rgba(0,0,0,0.1),
         0 0 0 2px rgba(144,195,0,0.9);
 }
 
 .nav-dots span.nav-dot-current,
 .nav-dots span:hover {
-    box-shadow: 
-        0 2px 3px rgba(255,255,255,0.8), 
+    box-shadow:
+        0 2px 3px rgba(255,255,255,0.8),
         inset 0 1px 1px rgba(0,0,0,0.4),
         0 0 0 3px rgba(144,195,0,1);
 }
