@@ -2,18 +2,20 @@
 
 /**
  * Class File
- * @author    Christopher Stebe <chris@stebe.eu>
- * @link      https://github.com/Quexer69/yii-slit-slider
- * @copyright Copyright &copy; 2013 Christopher Stebe
+ * @author      Christopher Stebe <cstebe@iserv4u.com>
+ * @link        https://github.com/Quexer69/yii-slit-slider
+ * @copyright   Copyright &copy; 2013 iServ4u GbR
+ * @link        DefaultController
+ * @package     quexer69/yii-slit-slider
  *
  *  Call this Widget on which page and position
  *  you what the slit-slider appear.
  *  With group ID's you can manage multiple sliders in your web application
- * 
+ *
  * <pre>
  * <?php
  *   $this->widget(
- *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget', 
+ *      'vendor.quexer69.yii-slit-slider.SlitSliderWidget',
  *          array(
  *              'orientation'   => 'horizontal',    // default orientation if slit has no orientation set
  *              'imagePreset'   => 'slitslider',    // P3Media image preset for pictures
@@ -25,19 +27,13 @@
  *              'height'        => '500px',         // can be set on scalabel = 0 (false)
  *          )
  *   );
- * 
+ *
  *  Just play around with the properties for your perfect setup of your Slider's !
  * ?>
  * </pre>
- * {@link SlitController}
- * @author  Christopher Stebe <chris@stebe.eu>
- * @version 0.3.4
- * @package quexer69/yii-slit-slider
  */
 
 Yii::import('slitSlider.models.*');
-
-
 
 class SlitSliderWidget extends CWidget
 {
@@ -47,34 +43,34 @@ class SlitSliderWidget extends CWidget
     const IMAGE_PRESET_ADMIN        = 'p3media-upload';
     const IMAGE                     = 'image';
     const HTML                      = 'html';
-    
+
     /**
-     * @var slider animation 
+     * @var slider animation
      */
     public $orientation = 'horizontal';
 
     /**
-     * @var P3Media image preset 
+     * @var P3Media image preset
      */
     public $imagePreset = 'p3media-ckbrowse';
 
     /**
-     * @var sort order 
+     * @var sort order
      */
     public $order = 'rank ASC';
 
     /**
-     * @var groupId to specify a slider group  
+     * @var groupId to specify a slider group
      * @type varchar(60) so you can assign numbers or words
      */
     public $groupId = NULL;
-        
+
     /**
      * @var slider height behavior (responsive)
      * [ 1 = full | 0 = none ]
      */
     public $scaleable = 1;
-    
+
     /**
      * @var slider height / weight
      * if responsive = false
@@ -82,8 +78,8 @@ class SlitSliderWidget extends CWidget
     public $width       = '100%';
     public $max_width   = '2000px';
     public $height      = '700px';
-    
-    
+
+
     /**
      * run slit slider widget
      */
@@ -117,7 +113,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @return type array
      */
     static public function getP3MediaPreset()
@@ -136,7 +132,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @return array
      */
     static public function getP3MediaPresetName($preset)
@@ -173,22 +169,22 @@ class SlitSliderWidget extends CWidget
         $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', false, -1, false); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
 
-        switch ($this->scaleable) 
+        switch ($this->scaleable)
         {
-            case 1 :  
+            case 1 :
                 $registerScripts->registerCssFile($css . '/responsive.css');
                 $cssParam = ".sl-slider-wrapper {max-width: {$this->max_width};}";
                 $registerScripts->registerCss('slitSlider_'.$this->max_width.'x'.$this->height, $cssParam);
                 break;
-            case 0 :  
+            case 0 :
                 $cssParam = ".sl-slider-wrapper {width: {$this->width};height: {$this->height} !important;}";
                 $registerScripts->registerCss('slitSlider_'.$this->width.'x'.$this->height, $cssParam);
                 break;
-        } 
+        }
     }
 
     /**
-     * 
+     *
      * @param type $groupID
      * @return Slit::model()
      */
@@ -209,7 +205,7 @@ class SlitSliderWidget extends CWidget
         }
         // check if slit is an active slit (published)
         $criteria->addCondition('status     = \'' . self::SLIT_ACTIVE . '\'');
-        
+
         // check if slit is for current language
         $criteria->addCondition('language   = \'' . Yii::app()->getLanguage() . '\'');
 
@@ -218,7 +214,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @param type $allSlits
      * @return boolean
      */
@@ -229,7 +225,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @param type $allSlits
      * @return boolean
      */
@@ -241,7 +237,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public static function getImageModeInfo()
@@ -252,7 +248,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @param type $model
      */
     public function showImage($model)
@@ -261,16 +257,16 @@ class SlitSliderWidget extends CWidget
         $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
             'id' => $model->media_id,
             'preset' => (isset($model->image_preset)) ? $model->image_preset : $this->imagePreset));
-        
+
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
-        echo "      <div class=\"sl-slide\" 
-                            data-orientation=\"$thisDataOrientation\" 
-                            data-slice1-rotation=\"$model->data_slice1_rotation\" 
-                            data-slice2-rotation=\"$model->data_slice2_rotation\" 
-                            data-slice1-scale=\"$model->data_slice1_scale\" 
+        echo "      <div class=\"sl-slide\"
+                            data-orientation=\"$thisDataOrientation\"
+                            data-slice1-rotation=\"$model->data_slice1_rotation\"
+                            data-slice2-rotation=\"$model->data_slice2_rotation\"
+                            data-slice1-scale=\"$model->data_slice1_scale\"
                             data-slice2-scale=\"$model->data_slice2_scale\">\n";
-         
+
         echo "          <div class=\"sl-slide-inner\">\n";
         echo "          <img src=\"{$imgSrc}\" alt=\"\" />\n";
         echo "              <div class=\"sl-overlay\">\n";
@@ -294,16 +290,16 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @param type $model
      */
     public function showHtml($model)
     {
-        echo "      <div class=\"sl-slide\" 
-                            data_orientation=\"$model->data_orientation\" 
-                            data_slice1_rotation=\"$model->data_slice1_rotation\" 
-                            data_slice2_rotation=\"$model->data_slice2_rotation\" 
-                            data_slice1_scale=\"$model->data_slice1_scale\" 
+        echo "      <div class=\"sl-slide\"
+                            data_orientation=\"$model->data_orientation\"
+                            data_slice1_rotation=\"$model->data_slice1_rotation\"
+                            data_slice2_rotation=\"$model->data_slice2_rotation\"
+                            data_slice1_scale=\"$model->data_slice1_scale\"
                             data_slice2_scale=\"$model->data_slice2_scale\">\n";
 
         echo "          <div class=\"sl-slide-inner\">\n";
@@ -315,7 +311,7 @@ class SlitSliderWidget extends CWidget
     }
 
     /**
-     * 
+     *
      * @param type $allSlits
      */
     public function showDots($allSlits)
