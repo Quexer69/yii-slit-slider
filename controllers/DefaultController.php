@@ -62,9 +62,37 @@ class DefaultController extends Controller
 
         // CSS files
         $registerScripts = Yii::app()->getClientScript();
-        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', FALSE, -1, FALSE); // set last param to `true` for development
+        $css             = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', FALSE, -1, FALSE); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
 
+        // Register Script for views/default/_form
+        if ($action == 'create' || $action == 'update') {
+            Yii::app()->clientScript->registerScript('slitMode', "
+                if ($('#Slit_type').val() === 'html') {
+                    $('#slit_html').show();
+                    $('#slit_image').hide();
+                    $('#slit_image_assignment').hide();
+                }
+                else if ($('#Slit_type').val() === 'image') {
+                    $('#slit_html').hide();
+                    $('#slit_image').show();
+                    $('#slit_image_assignment').show();
+                }
+
+                $('#Slit_type').on('change', function() {
+
+                    if (this.value === 'html') {
+                        $('#slit_image').hide();
+                        $('#slit_image_assignment').hide();
+                        $('#slit_html').show();
+                    }
+                    else if (this.value === 'image') {
+                        $('#slit_image').show();
+                        $('#slit_image_assignment').show();
+                        $('#slit_html').hide();
+                    }
+                });", CClientScript::POS_END);
+        }
         return TRUE;
     }
 
@@ -76,7 +104,7 @@ class DefaultController extends Controller
 
             $this->render('view', array('model' => $model,));
         else
-            throw new CHttpException('403', 'No Access!');
+            throw new CHttpException('403', Yii::t('SlitSliderModule.crud', 'You are not allowed to perform this action.'));
     }
 
     public function actionCreate()
@@ -144,7 +172,7 @@ class DefaultController extends Controller
 
             $this->render('update', array('model' => $model,));
         } else {
-            throw new CHttpException('403', 'No Access!');
+            throw new CHttpException('403', Yii::t('SlitSliderModule.crud', 'You are not allowed to perform this action.'));
         }
     }
 
@@ -217,6 +245,6 @@ class DefaultController extends Controller
         if ($model->language === Yii::app()->getLanguage())
             return TRUE;
         else
-            throw new CHttpException('403', 'No Access!');
+            throw new CHttpException('403', Yii::t('SlitSliderModule.crud', 'You are not allowed to perform this action.'));
     }
 }
