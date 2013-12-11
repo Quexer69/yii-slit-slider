@@ -109,8 +109,6 @@ abstract class BaseSlit extends CActiveRecord
         if (is_null($criteria)) {
             $criteria = new CDbCriteria;
         }
-        // TODO: validate not only language, distri check
-        $criteria->addSearchCondition('language', Yii::app()->getLanguage());
 
         $criteria->compare('t.id', $this->id);
         $criteria->compare('t.status', $this->status, TRUE);
@@ -135,6 +133,7 @@ abstract class BaseSlit extends CActiveRecord
         $criteria->compare('t.created_by', $this->created_by);
         $criteria->compare('t.updated_at', $this->updated_at, TRUE);
         $criteria->compare('t.updated_by', $this->updated_by);
+        $criteria->scopes = "getLocalized";
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria' => $criteria,
