@@ -134,16 +134,8 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="control-group">
         <div class='control-label'><?php echo $form->labelEx($model, 'image_preset'); ?></div>
-        <?php
-        $this->widget('bootstrap.widgets.TbButton', array(
-            'label'       => 'Info',
-            'icon'        => 'icon-info-sign',
-            'type'        => 'info',
-            'htmlOptions' => array('class' => 'pull-right', 'data-placement' => 'left', 'data-content' => SlitSliderWidget::getImageModeInfo(), 'rel' => 'popover'),
-        ));
-        ?>
         <div
-            class='controls'><?php echo $form->dropDownList($model, 'image_preset', $this->module->imagePresets, array('class' => 'span10', 'placeholder' => Yii::t('SlitSliderModule.crud', 'Choose Image Preset'))); ?></div>
+            class='controls'><?php echo $form->dropDownList($model, 'image_preset', $this->module->imagePresets, array('placeholder' => Yii::t('SlitSliderModule.crud', 'Choose Image Preset'))); ?></div>
         <?php echo $form->error($model, 'image_preset'); ?>
         <?php
         if ('help.image_preset' != $help = Yii::t('SlitSliderModule.crud', 'help.image_preset')) {
@@ -156,7 +148,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="control-group">
     <div class='control-label'><?php echo $form->labelEx($model, 'group_id'); ?></div>
     <div
-        class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group', 'class' => 'span6')); ?></div>
+        class='controls'><?php echo $form->textField($model, 'group_id', array('placeholder' => 'Assign to group', 'class' => '')); ?></div>
     <?php echo $form->error($model, 'group_id'); ?>
     <?php
     if ('help.group_id' != $help = Yii::t('SlitSliderModule.crud', 'help.group_id')) {
@@ -169,7 +161,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="control-group">
     <div class='control-label'><?php echo $form->labelEx($model, 'rank'); ?></div>
     <div
-        class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position within a slider group', 'class' => 'span6')); ?></div>
+        class='controls'><?php echo $form->textField($model, 'rank', array('placeholder' => 'Position within a slider group', 'class' => '')); ?></div>
     <?php echo $form->error($model, 'rank'); ?>
     <?php
     if ('help.rank' != $help = Yii::t('SlitSliderModule.crud', 'help.rank')) {
