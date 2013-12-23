@@ -48,7 +48,7 @@ $this->widget('TbGridView', array(
             'name'  => 'media_id',
             'type'  => 'raw',
             'value' => function ($data) {
-                    return ($data->media_id !== NULL)
+                    return ($data->media !== NULL)
                         ? CHtml::link($data->media->image(SlitSliderWidget::IMAGE_PRESET_ADMIN),
                             Yii::app()->controller->createUrl(
                                 '//slitSlider/default/view?id=' . $data->id, array()))

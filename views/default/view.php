@@ -82,7 +82,7 @@ $this->breadcrumbs[] = Yii::t('SlitSliderModule.crud', 'View');
                 array(
                     'name'  => 'media_id',
                     'type'  => 'raw',
-                    'value' => ($model->media_id !== NULL)
+                    'value' => ($model->media !== NULL)
                             ? CHtml::link($model->media->image(SlitSliderWidget::IMAGE_PRESET_VIEW),
                                 Yii::app()->controller->createUrl(
                                     '//p3media/p3Media/view?id=' . $model->media_id, array()))

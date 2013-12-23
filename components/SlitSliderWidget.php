@@ -254,9 +254,14 @@ class SlitSliderWidget extends CWidget
     public function showImage($model)
     {
         // Create image URL, check if media_preset for image is in config/main availible
-        $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
-            'id' => $model->media_id,
-            'preset' => (isset($model->image_preset)) ? $model->image_preset : $this->imagePreset));
+        if ($model->media !== NULL) {
+            $imgSrc = Yii::app()->controller->createUrl('/p3media/file/image', array(
+                'id'     => $model->media_id,
+                'preset' => (isset($model->image_preset)) ? $model->image_preset : $this->imagePreset));
+
+        } else {
+            $imgSrc = "http://placehold.it/2000x700.jpg";
+        }
 
         $thisDataOrientation = (isset($model->data_orientation)) ? $model->data_orientation : $this->orientation;
 
