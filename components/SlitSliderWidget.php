@@ -159,14 +159,14 @@ class SlitSliderWidget extends CWidget
     {
         $registerScripts = Yii::app()->getClientScript();
         // JS files
-        $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/js', false, -1, false); // set last param to `true` for development
+        $js = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/js', true, -1, false); // set last param to `true` for development
         $registerScripts->registerScriptFile($js . "/jquery.ba-cond.min.js", CClientScript::POS_END);
         $registerScripts->registerScriptFile($js . "/modernizr.custom.79639.js", CClientScript::POS_END);
         $registerScripts->registerScriptFile($js . "/jquery.slitslider.js", CClientScript::POS_END);
         $registerScripts->registerScriptFile($js . "/jquery.slitslider.init.js", CClientScript::POS_END);
 
         // CSS files
-        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', false, -1, false); // set last param to `true` for development
+        $css = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', true, -1, false); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
 
         switch ($this->scaleable)
