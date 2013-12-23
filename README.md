@@ -44,7 +44,8 @@ Setup
         'slitSlider' => array(
             'class' => 'vendor.quexer69.yii-slit-slider.SlitSliderModule',
             'imagePresets' => array(
-                'slitSlider-crop-16-9' => 'SlitSlider - Picture 16:9 cropped 2000x700px (JPG)',
+                'slitSlider-crop-16-9-jpg' => 'Picture 16:9 cropped 2000x700px (JPG)',
+                'slitSlider-crop-16-9-png' => 'Picture 16:9 cropped 2000x700px (PNG)',
             ),
         ),
         ...
@@ -54,14 +55,21 @@ Setup
                 ...
                 'presets' => array(
                     ...
-                    'slitSlider-crop-16-9' => array(
-                            'name' => 'SlitSlider - Picture 16:9 cropped 2000x700px (JPG)',
+                    'slitSlider-crop-16-9-jpg' => array(
+                            'name' => 'Picture 16:9 cropped 2000x700px (JPG)',
                             'commands' => array(
-                                'resize' => array(2000, 700, 2), // crop
-                                'quality' => '72',
+                                'resize' => array(2000, 700, 7), // crop
+                                'quality' => '85',
                             ),
                             'type' => 'jpg',
-                            'savePublic' => true,
+                    ),
+                    'slitSlider-crop-16-9-png' => array(
+                            'name' => 'Picture 16:9 cropped 2000x700px (PNG)',
+                            'commands' => array(
+                                'resize' => array(2000, 700, 7), // crop
+                                'quality' => '85',
+                            ),
+                            'type' => 'png',
                     ),
                     ...
                 ),
