@@ -125,7 +125,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
         <div
             class='controls'><?php $this->widget('p3media.components.P3MediaSelect', array('model' => $model, 'attribute' => 'media_id')); ?>
-            <?php echo CHtml::link(Yii::t('SlitSliderModule.crud', 'Bild hochladen'), Yii::app()->createUrl('/p3media/import/upload')); ?></div>
+            <?php echo CHtml::link(Yii::t('SlitSliderModule.crud', 'Upload Pictures'), Yii::app()->createUrl('/p3media/import/upload')); ?></div>
         <?php echo $form->error($model, 'media_id'); ?>
         <?php
         if ('help.media_id' != $help = Yii::t('SlitSliderModule.crud', 'help.media_id')) {
