@@ -65,8 +65,9 @@ class DefaultController extends Controller
         $css             = Yii::app()->assetManager->publish(Yii::getPathOfAlias('SlitAssets') . '/css', FALSE, -1, FALSE); // set last param to `true` for development
         $registerScripts->registerCssFile($css . '/slitslider.css');
 
+//        var_dump($action == 'update');exit;
         // Register Script for views/default/_form
-        if ($action == 'create' || $action == 'update') {
+//        if ($action == 'create' || $action == 'update') {
             Yii::app()->clientScript->registerScript('slitMode', "
                 if ($('#Slit_type').val() === 'html') {
                     $('#slit_html').show();
@@ -92,7 +93,7 @@ class DefaultController extends Controller
                         $('#slit_html').hide();
                     }
                 });", CClientScript::POS_END);
-        }
+//        }
         return TRUE;
     }
 
