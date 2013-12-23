@@ -238,17 +238,6 @@ class SlitSliderWidget extends CWidget
 
     /**
      *
-     * @return string
-     */
-    public static function getImageModeInfo()
-    {
-        // Master Dimension
-        $modes = "1 = NONE | 2 = AUTO | 3 = HEIGHT | 4 = WIDTH | 7 = AUTO_FIT | 5 = HORIZONTAL | 6 = VERTICAL";
-        return $modes;
-    }
-
-    /**
-     *
      * @param type $model
      */
     public function showImage($model)
@@ -276,7 +265,7 @@ class SlitSliderWidget extends CWidget
                             data-slice2-scale=\"$model->data_slice2_scale\">\n";
 
         echo "          <div class=\"sl-slide-inner\">\n";
-        echo "          <img src=\"{$imgSrc}\" alt=\"\" />\n";
+        echo "          {$imgSrc}\n";
         echo "              <div class=\"sl-overlay\">\n";
         echo "                  <div class=\"sl-overlay-inner\">\n";
         echo "                      <h2><strong>{$model->headline}</strong></h2>\n";
