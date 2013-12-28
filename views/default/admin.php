@@ -76,10 +76,7 @@ $this->widget('TbGridView', array(
             'name'     => 'status',
             'editable' => array('url'    => $this->createUrl('/slitSlider/default/editableSaver'),
                                 'type'   => 'select',
-                                'source' => array(
-                                    'hidden'    => 'hidden',
-                                    'published' => 'published',
-                                ),
+                                'source' => $model->statusList,
             )
         ),
         'language',
