@@ -7,6 +7,15 @@ Yii::import('vendor.phundament.p3media.models.*');
 
 class Slit extends BaseSlit
 {
+    public $statusList = array(
+        'draft'     => 'draft',
+        'published' => 'published',
+        'archived'  => 'archived',
+    );
+    public $slitTypes = array(
+        'image' => 'image',
+        'html'  => 'html',
+    );
 
     // Add your model-specific methods here. This file will not be overriden by gtc except you force it.
     public static function model($className = __CLASS__)
@@ -87,4 +96,13 @@ class Slit extends BaseSlit
         return $this->headline;
     }
 
+    public function getStatusList()
+    {
+        return $this->statusList;
+    }
+
+    public function getSlitTypes()
+    {
+        return $this->slitTypes;
+    }
 }

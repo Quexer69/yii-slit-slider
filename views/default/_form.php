@@ -23,10 +23,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="control-group">
             <div class='control-label'><?php echo $form->labelEx($model, 'type'); ?></div>
             <div class='controls'><?php
-                echo CHtml::activeDropDownList($model, 'type', array(
-                    'image' => 'image',
-                    'html'  => 'html',
-                ), array(
+                echo CHtml::activeDropDownList($model, 'type', $model->slitTypes, array(
                     'class' => 'span12'
                 ));
                 ?>
@@ -44,10 +41,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <div class='control-label'><?php echo $form->labelEx($model, 'status'); ?></div>
 
             <div class='controls'><?php
-                echo CHtml::activeDropDownList($model, 'status', array(
-                    'hidden'    => 'hidden',
-                    'published' => 'published',
-                ), array(
+                echo CHtml::activeDropDownList($model, 'status', $model->statusList, array(
                     'class' => 'span12'
                 ));
                 ?>
