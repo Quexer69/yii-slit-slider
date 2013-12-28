@@ -9,19 +9,13 @@
         <div class="span6">
             <?php echo $form->label($model, 'status'); ?>
             <?php
-            echo CHtml::activeDropDownList($model, 'status', array(
-                'hidden'    => 'hidden',
-                'published' => 'published',
-            ));
+            echo CHtml::activeDropDownList($model, 'status', $model->statusList);
             ?>
         </div>
         <div class="span6">
             <?php echo $form->label($model, 'type'); ?>
             <?php
-            echo CHtml::activeDropDownList($model, 'type', array(
-                'html'  => 'html',
-                'image' => 'image',
-            ));
+            echo CHtml::activeDropDownList($model, 'type', $model->slitTypes);
             ?>
         </div>
     </div>

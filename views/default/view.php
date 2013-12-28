@@ -48,10 +48,7 @@ $this->breadcrumbs[] = Yii::t('SlitSliderModule.crud', 'View');
                                 'model'     => $model,
                                 'emptytext' => 'Click to select',
                                 'type'      => 'select',
-                                'source'    => array(
-                                    'hidden'    => 'hidden',
-                                    'published' => 'published',
-                                ),
+                                'source'    => $model->statusList,
                                 'attribute' => 'status',
                                 'url'       => $this->createUrl('/slitSlider/default/editableSaver'),
                                 'select2'   => array(
