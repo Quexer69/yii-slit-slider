@@ -1,7 +1,7 @@
 Yii Slit Slider Widget
 =============
 
-**Version 0.3.5**
+**Version 0.3.9-patch1**
 
 
 What is Slit Slider Widget?
