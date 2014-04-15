@@ -4,7 +4,7 @@
  * @author      Christopher Stebe <cstebe@iserv4u.com>
  * @link        https://github.com/Quexer69/yii-slit-slider
  * @copyright   Copyright &copy; 2013 iServ4u GbR
- * @version     0.3.5
+ * @version     4.0.0
  * @package     quexer69/yii-slit-slider
  */
 // Set alias for slitslider assets
